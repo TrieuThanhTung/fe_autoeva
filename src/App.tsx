@@ -1,12 +1,22 @@
 import './App.scss'
-import Login from './pages/login/Login'
+import { Routes, Route } from 'react-router-dom'
+import { publicRoutes } from './routes/Routes'
 
 function App() {
 
   return (
-    <>
-      <Login />
-    </>
+    <Routes>
+      {publicRoutes.map((router, index) => {
+        const Page = router.page;
+        return (
+          <Route 
+            key={index}
+            path = {router.path}
+            element = {<Page />}
+          />
+        )
+      })}
+    </Routes>
   )
 }
 
