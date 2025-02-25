@@ -6,11 +6,10 @@ const Signup = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Lama Social.</h1>
+          <h1>Auto Eva.</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+            Finding the perfect used car has never been easier. 
+            Browse thousands of listings from verified sellers, compare prices, and get the best deals.
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
