@@ -8,9 +8,10 @@ const Login = () => {
         <div className="left">
           <h1>Hello World.</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+            Whether you're looking to sell your old car or buy a reliable one at a great price, 
+            we offer a seamless experience. 
+            Enjoy secure transactions, detailed vehicle histories, 
+            and expert support to guide your purchase. 
           </p>
           <span>Don't you have an account?</span>
           <Link to="/register">

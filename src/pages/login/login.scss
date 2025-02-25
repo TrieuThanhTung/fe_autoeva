@@ -88,7 +88,7 @@
 
 @media (max-width: 1280px) {
   card {
-    width: 90%;
+    width: 60% !important;
     height: auto; 
     max-height: 90dvh; 
     display: flex;
@@ -120,7 +120,7 @@
 
 @media (max-width: 768px) {
   .card {
-    width: 90% !important;
+    width: 70% !important;
     flex-direction: column;
     
     .left {
@@ -147,6 +147,12 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 80% !important;
   }
 }
 
