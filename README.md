@@ -3,10 +3,6 @@
 This project is a React application bootstrapped with [Vite](https://vitejs.dev/) and using TypeScript.
 
 ## 📌 Features
-- ⚡ Fast development with Vite
-- 📦 TypeScript for type safety
-- 🎨 Styled with Tailwind CSS (optional)
-- 🛠️ ESLint & Prettier for code formatting
 
 ## 🚀 Getting Started
 
@@ -45,9 +41,10 @@ Make sure you have Node.js installed. You can download it from [here](https://no
 ├── src
 │   ├── components  # Reusable UI components
 │   ├── pages       # Page components
-│   ├── hooks       # Custom hooks
+│   ├── context       # Custom hooks
 │   ├── assets      # Static assets (images, fonts, etc.)
 │   ├── styles      # Global styles
+|   ├── routes      # Contains routes (paths, pages)
 │   ├── main.tsx    # Entry point
 │   ├── App.tsx     # Root component
 ├── public          # Static files
