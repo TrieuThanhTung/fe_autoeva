@@ -1,0 +1,16 @@
+@use "../../App.scss" as map;
+
+.home{
+  @include map.themify(map.$themes) {
+    padding: 20px 70px;
+    background-color: themed("bgSoft");
+
+    @include map.mobile {
+      padding: 10px;
+    }
+
+    @include map.tablet{
+      padding: 20px;
+    }
+  }
+ }
