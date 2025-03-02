@@ -1,3 +1,5 @@
+@use "sass:map";
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -34,13 +36,15 @@ $themes: (
   ),
 );
 
+$theme-map: null;
+
 @mixin themify($themes) {
   @each $theme, $map in $themes {
     .theme-#{$theme} & {
       $theme-map: () !global;
       @each $key, $submap in $map {
-        $value: map-get(map-get($themes, $theme), "#{$key}");
-        $theme-map: map-merge(
+        $value: map.get(map.get($themes, $theme), "#{$key}");
+        $theme-map: map.merge(
           $theme-map,
           (
             $key: $value,
@@ -54,7 +58,7 @@ $themes: (
 }
 
 @function themed($key) {
-  @return map-get($theme-map, $key);
+  @return map.get($theme-map, $key);
 }
 
 @mixin mobile {

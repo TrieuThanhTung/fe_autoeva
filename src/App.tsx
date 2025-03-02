@@ -1,6 +1,8 @@
-import './App.scss'
+import './style.scss'
 import { Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './routes/Routes'
+import AuthLayout from './layouts/AuthLayout';
+import Home from './pages/home/Home';
 
 function App() {
 
@@ -16,6 +18,9 @@ function App() {
           />
         )
       })}
+      <Route path="/" element={<AuthLayout />}>
+        <Route path="/" element={<Home />} />
+      </Route>
     </Routes>
   )
 }
