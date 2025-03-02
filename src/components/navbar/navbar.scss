@@ -1,17 +1,17 @@
-@use "../../App.scss" as map;
+@use "../../style.scss" as style;
 
 .navbar {
-  @include map.themify(map.$themes) {
+  @include style.themify(style.$themes) {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    height: 50px;
-    border-bottom: 1px solid themed("border");
+    height: 70px;
+    border-bottom: 1px solid  style.themed("border");
     position: sticky;
     top: 0;
-    background-color: themed("bg");
-    color:themed("textColor");
+    background-color:  style.themed("bg");
+    color: style.themed("textColor");
     z-index: 999;
 
     .left {
@@ -22,14 +22,14 @@
       span {
         font-weight: bold;
         font-size: 20px;
-        color: themed("logo");
+        color:  style.themed("logo");
       }
 
       .search {
         display: flex;
         align-items: center;
         gap: 10px;
-        border: 1px solid themed("border");
+        border: 1px solid  style.themed("border");
         border-radius: 5px;
         padding: 5px;
 
@@ -37,13 +37,13 @@
           border: none;
           width: 500px;
           background-color: transparent;
-          color: themed("textColor");
+          color:  style.themed("textColor");
 
-          @include map.mobile{
+          @include style.mobile{
             display: none;
           }
 
-          @include map.tablet{
+          @include style.tablet{
             width: 200px;
           }
         }
@@ -55,7 +55,7 @@
       align-items: center;
       gap: 20px;
 
-      @include map.mobile{
+      @include style.mobile{
         display: none;
       }
 
@@ -65,7 +65,7 @@
         gap: 10px;
         font-weight: 500;
 
-        @include map.tablet{
+        @include style.tablet{
           display: none;
         }
 

@@ -3,7 +3,6 @@ import Navbar from "../components/navbar/Navbar";
 import LeftBar from "../components/leftBar/LeftBar";
 import RightBar from "../components/rightBar/RightBar";
 
-
 const AuthLayout = () => {
   return (
     <div className={`theme-dark`}>

@@ -1,15 +1,15 @@
-@use "../../App.scss" as map;
+@use "../../style.scss" as style;
 
 .home{
-  @include map.themify(map.$themes) {
+  @include style.themify(style.$themes) {
     padding: 20px 70px;
-    background-color: themed("bgSoft");
+    background-color: style.themed("bgSoft");
 
-    @include map.mobile {
+    @include style.mobile {
       padding: 10px;
     }
 
-    @include map.tablet{
+    @include style.tablet{
       padding: 20px;
     }
   }

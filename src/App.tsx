@@ -1,4 +1,4 @@
-import './App.scss'
+import './style.scss'
 import { Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './routes/Routes'
 import AuthLayout from './layouts/AuthLayout';

@@ -1,7 +1,7 @@
-@use "../../App.scss" as map;
+@use "../../style.scss" as style;
 
 .comments {
-  @include map.themify(map.$themes) {
+  @include style.themify(style.$themes) {
     img {
       width: 40px;
       height: 40px;
@@ -19,9 +19,9 @@
       input{
         flex:5;
         padding: 10px;
-        border: 1px solid themed("border");
+        border: 1px solid style.themed("border");
         background-color: transparent;
-        color: themed("textColor");
+        color: style.themed("textColor");
       }
 
       button{
@@ -52,7 +52,7 @@
         }
 
         p{
-          color:themed("textColorSoft")
+          color:style.themed("textColorSoft")
         }
       }
 
