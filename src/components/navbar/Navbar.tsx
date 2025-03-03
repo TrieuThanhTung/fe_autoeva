@@ -7,25 +7,28 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { darkMode, toggle } = useContext(DarkModeContext);
   // const { currentUser } = useContext(AuthContext);
-
+  const navigateTo = (_e: React.MouseEvent, path: string) => {
+    navigate(path);
+  }
   return (
     <div className="navbar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>AutoEva</span>
         </Link>
-        <HomeOutlinedIcon />
+        <HomeOutlinedIcon className="btn" onClick = { event => navigateTo(event, "/")}/>
         {darkMode ? (
-          <WbSunnyOutlinedIcon onClick = {toggle} />
+          <WbSunnyOutlinedIcon className="btn" onClick = {toggle} />
         ) : (
-          <DarkModeOutlinedIcon onClick = {toggle} />
+          <DarkModeOutlinedIcon className="btn" onClick = {toggle} />
         )}
         <GridViewOutlinedIcon />
         <div className="search">
@@ -34,10 +37,10 @@ const Navbar = () => {
         </div>
       </div>
       <div className="right">
-        <PersonOutlinedIcon />
-        <EmailOutlinedIcon />
-        <NotificationsOutlinedIcon />
-        <div className="user">
+        <PersonOutlinedIcon className="btn"/>
+        <EmailOutlinedIcon className="btn"/>
+        <NotificationsOutlinedIcon className="btn"/>
+        <div onClick = { event => navigateTo(event, "/profile")} className="btn user">
           <img
             src={"https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"}
             alt=""

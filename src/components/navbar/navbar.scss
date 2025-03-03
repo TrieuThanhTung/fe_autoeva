@@ -1,6 +1,7 @@
 @use "../../style.scss" as style;
 
 .navbar {
+
   @include style.themify(style.$themes) {
     display: flex;
     align-items: center;
@@ -80,5 +81,14 @@
         }
       }
     }
+  }
+
+  .btn:hover {
+    cursor: pointer;
+  }
+
+  input:focus {
+    outline: none;
+    border: none;
   }
 }

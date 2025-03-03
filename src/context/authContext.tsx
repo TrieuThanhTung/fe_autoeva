@@ -1,29 +1,41 @@
-// import { createContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
-// export const AuthContext = createContext();
+interface AuthContextType {
+  isLoggedIn: boolean;
+  setLoggedIn: (value: boolean) => void;
+  logout: () => void;
+  login: () => void;
+}
 
-// export const AuthContextProvider = ({ children }) => {
-//   const [currentUser, setCurrentUser] = useState(
-//     JSON.parse(localStorage.getItem("user")) || null
-//   );
+export const AuthContext = createContext<AuthContextType>({
+  isLoggedIn: true,
+  setLoggedIn: () => {},
+  logout: () => {},
+  login: () => {},
+});
 
-//   const login = () => {
-//     //TO DO
-//     setCurrentUser({
-//       id: 1,
-//       name: "John Doe",
-//       profilePic:
-//         "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
-//     });
-//   };
+export const AuthContextProvider: React.FC<{children: ReactNode}> = ({ children }) => {
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(
+    localStorage.getItem("token") ? true : false
+  );
 
-//   useEffect(() => {
-//     localStorage.setItem("user", JSON.stringify(currentUser));
-//   }, [currentUser]);
+  const login = () => {
+    //TO DO
+    setLoggedIn(true);
+  };
 
-//   return (
-//     <AuthContext.Provider value={{ currentUser, login }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
+  const logout = () => {
+    //TO DO
+    setLoggedIn(false);
+  }
+
+  // useEffect(() => {
+  //   localStorage.setItem("user", JSON.stringify(currentUser));
+  // }, [currentUser]);
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, setLoggedIn, logout, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
