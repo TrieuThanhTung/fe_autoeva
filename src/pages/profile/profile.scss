@@ -1,125 +1,209 @@
-@use "../../style.scss" as style;
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
 
-.profile {
-  @include style.themify(style.$themes) {
-    background-color: style.themed("bgSoft");
+.profile-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
 
-    .images {
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .avatar-section {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+    .avatar {
       width: 100%;
-      height: 300px;
-      position: relative;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ddd;
+    }
 
-      .cover {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .edit-avatar {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: #000000;
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
 
-      .profilePic {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
-        top: 200px;
+      &:hover {
+        background: #0056b3;
       }
     }
-    .profileContainer {
-      padding: 20px 70px;
+  }
 
-      @include style.mobile{
-        padding: 10px;
-      }
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+}
 
-      @include style.tablet{
-        padding: 20px;
-      }
+.profile-content {
+  .profile-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 
-      .uInfo {
-        height: 180px;
-        -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-        -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-        box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-        border-radius: 20px;
-        background-color: style.themed("bg");
-        color: style.themed("textColor");
-        padding: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
+    .profile-row {
+      display: flex;
+      gap: 15px;
 
-        @include style.mobile{
-          flex-direction: column;
-          height: 30vh;
-          padding: 20px;
-          margin-top: 100px;
+      .profile-field {
+        flex: 1;
+        text-align: left;
+
+        label {
+          display: block;
+          font-weight: 500;
+          margin-bottom: 5px;
+          color: #555;
         }
 
-        .left {
-          flex: 1;
-          display: flex;
-          gap: 10px;
-
-          @include style.tablet{
-            flex-wrap: wrap;
-          }
-
-          a{
-            color: style.themed("textColorSoft");
-          }
-        }
-
-        .center {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-
-          span {
-            font-size: 30px;
-            font-weight: 500;
-          }
-
-          .info {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-
-            .item {
-              display: flex;
-              align-items: center;
-              gap: 5px;
-              color: style.themed("textColorSoft");
-
-              span {
-                font-size: 12px;
-              }
-            }
-          }
-          button {
-            border: none;
-            background-color: #5271ff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-          }
-        }
-
-        .right {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 10px;
+        input {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: #f9f9f9;
+          color: #333;
+          cursor: not-allowed;
         }
       }
     }
+  }
+}
+.profile-content {
+  .profile-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .profile-row {
+      display: flex;
+      gap: 32px; 
+
+      .profile-field {
+        flex: 1;
+        text-align: left;
+
+        label {
+          display: block;
+          font-weight: 500;
+          margin-bottom: 5px;
+          color: #555;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: #f9f9f9;
+          color: #333;
+          cursor: not-allowed;
+          height: 1rem; 
+        }
+      }
+    }
+  }
+}
+
+.profile-footer {
+  margin-top: 20px;
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      i {
+        margin-right: 6px;
+      }
+    }
+
+    .edit-btn {
+      background: #000000;
+      color: white;
+
+      &:hover {
+        background: #3a3a3a;
+      }
+    }
+
+    .change-password-btn {
+      background: #ffffff;
+      color: black;
+      border: 2px solid black; 
+
+      &:hover {
+        background: #3a3a3a;
+        color: white;
+        border-color: #3a3a3a; 
+      }
+    }
+    .save-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    
+      i {
+        margin-right: 6px;
+      }
+    
+      &:hover {
+        background: #218838;
+      }
+    }
+    
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-content .profile-row {
+    flex-direction: column;
+  }
+
+  .profile-footer .button-group {
+    flex-direction: column;
   }
 }
