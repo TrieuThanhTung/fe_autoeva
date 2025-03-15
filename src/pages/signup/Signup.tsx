@@ -1,35 +1,79 @@
-import "./signup.scss"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import "./signup.scss";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
-    <div className="register">
-      <div className="card">
-        <div className="left">
-          <h1>Auto Eva.</h1>
-          <p>
-            Finding the perfect used car has never been easier. 
-            Browse thousands of listings from verified sellers, compare prices, and get the best deals.
+    <>
+      <Header />
+      <main className="signup">
+        <div className="form-container">
+          <h1>Đăng ký</h1>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Họ và tên"
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Số điện thoại"
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Mật khẩu"
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Xác nhận mật khẩu"
+              onChange={handleChange}
+              required
+            />
+            <button type="submit">Đăng ký</button>
+            <p className="login-link">
+            Đã có tài khoản? <Link to="/login">Đăng nhập ngay</Link>
           </p>
-          <span>Do you have an account?</span>
-          <Link to="/login">
-          <button>Login</button>
-          </Link>
-        </div>
-        <div className="right">
-          <h1>Register</h1>
-          <form>
-            <input type="text" placeholder="First name" />
-            <input type="text" placeholder="Last name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <input type="password" placeholder="Confirm password" />
-            <button>Register</button>
           </form>
         </div>
-      </div>
-    </div>
-  )
-}
+      </main>
+      <Footer />
+    </>
+  );
+};
 
-export default Signup
+export default Signup;
