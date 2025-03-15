@@ -12,24 +12,20 @@ import Messages from "../../assets/images/10.png";
 import Tutorials from "../../assets/images/11.png";
 import Courses from "../../assets/images/12.png";
 import Fund from "../../assets/images/13.png";
-// import { AuthContext } from "../../context/authContext";
-// import { useContext } from "react";
+import { currentUser } from "../../util/data";
+import { useNavigate } from "react-router-dom";
 
 const LeftBar = () => {
-
-  // const { currentUser } = useContext(AuthContext);
-  const currentUser = {
-    id: 1,
-    name: "John Doe",
-    profilePic:
-      "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  };
+  const navigate = useNavigate();
+  const navigateTo = (_e: React.MouseEvent, path: string) => {
+    navigate(path);
+  }
 
   return (
     <div className="leftBar">
       <div className="container">
         <div className="menu">
-          <div className="user">
+          <div onClick = { event => navigateTo(event, "/profile")} className="user btn">
             <img
               src={currentUser.profilePic}
               alt=""
