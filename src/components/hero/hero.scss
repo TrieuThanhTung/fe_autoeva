@@ -1,0 +1,71 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-width: 375px;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* Lớp phủ tối */
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  max-width: 900px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-top: 10px;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } 
+
+  .icon {
+    margin-right: 10px;
+  }
+}
+
+.hero-buttons button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero-buttons .primary {
+  background-color: black;
+  color: white;
+  margin-right: 10px;
+}
+
+.hero-buttons .secondary {
+  background-color: white;
+  color: black;
+}

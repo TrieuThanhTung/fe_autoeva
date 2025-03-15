@@ -1,13 +1,11 @@
-import Posts from "../../components/posts/Posts"
-import Share from "../../components/share/Share"
-import "./home.scss"
+import React from 'react'
+import './home.scss'
+import Hero from '../../components/hero/Hero'
 
 const Home = () => {
   return (
     <div className="home">
-      <h1 className="text-3xl font-intalic underline">Home</h1>
-      <Share />
-      <Posts />
+      <Hero />
     </div>
   )
 }

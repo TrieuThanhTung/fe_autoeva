@@ -2,9 +2,9 @@ import './style.scss'
 import "./assets/styles/output.css";
 import { Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './routes/Routes'
-import AuthLayout from './layouts/AuthLayout';
 import Home from './pages/home/Home';
-import Profile from './pages/profile/Profile';
+import Home_v1 from './pages/home_v1/Home';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
 
@@ -20,9 +20,8 @@ function App() {
           />
         )
       })}
-      <Route path="/" element={<AuthLayout />}>
+      <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   )
