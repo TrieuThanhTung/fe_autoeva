@@ -1,5 +1,5 @@
 import Login from "../pages/login/Login";
-import Predict from "../pages/predict/predict";
+import Predict from "../pages/predict/Predict";
 import Profile from "../pages/profile/Profile";
 import Signup from "../pages/signup/Signup";
 
