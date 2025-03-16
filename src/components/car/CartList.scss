@@ -1,0 +1,29 @@
+.container {
+  max-width: 1280px;
+  margin: 24px auto 48px;
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.card-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr); /* Mặc định 3 cột trên PC */
+}
+
+@media (max-width: 992px) {
+  .card-list {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .card-list {
+      grid-template-columns: repeat(1, 1fr);
+  }
+}
