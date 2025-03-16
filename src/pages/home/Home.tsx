@@ -1,12 +1,15 @@
-import Posts from "../../components/posts/Posts"
-import Share from "../../components/share/Share"
-import "./home.scss"
+import React from 'react'
+import './home.scss'
+import Hero from '../../components/hero/Hero'
+import CarList from '../../components/car/CarList'
+import PricingForm from '../../components/pricingForm/PricingForm'
 
 const Home = () => {
   return (
     <div className="home">
-      <Share />
-      <Posts />
+      <Hero />
+      <CarList />
+      <PricingForm />
     </div>
   )
 }

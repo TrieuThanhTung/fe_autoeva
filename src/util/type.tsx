@@ -1,4 +1,4 @@
-interface CarCardProps {
+ export interface CarCardProps {
   name: string;
   image: string;
   price: string;
