@@ -12,7 +12,7 @@ const PricingForm: React.FC = () => {
           Công nghệ AI phân tích hàng triệu dữ liệu để đưa ra giá xe chính xác nhất theo thị trường.
           Chỉ cần nhập một số thông tin cơ bản
         </p>
-        <form className="mt-4 space-y-4">
+        <form className="">
           <select className="input-form">
             <option>Chọn hãng xe</option>
             <option>Toyota</option>
