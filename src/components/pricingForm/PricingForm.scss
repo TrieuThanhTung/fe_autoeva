@@ -1,0 +1,45 @@
+@use "../../style.scss" as style;
+
+.container-pricing-form {
+  max-width: 1280px;
+  margin: 24px auto 48px;
+  display: flex;
+  justify-content: space-between;
+
+  .pricing-form {
+    flex: 1;
+    margin: 0 24px;
+  
+    h2 {
+      font-size: 28px;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+
+    .des {
+      color: grey;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .input-form {
+      border: 1px solid #e5e7eb;  
+      padding: 8px;              
+      width: 100%; 
+    }
+  }
+  
+  .pricing-form-image {
+    width: calc(50% - 48px);
+    margin: 0 24px;
+    img {
+      width: 100%;
+    }
+  }
+
+  @include style.mobile {
+    .pricing-form-image {
+      display: none;
+    }
+  }
+}

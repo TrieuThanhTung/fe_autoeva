@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './routes/Routes'
 import Home from './pages/home/Home';
 import Home_v1 from './pages/home_v1/Home';
-import MainLayout from './layouts/MainLayout';
+import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
 
