@@ -1,12 +1,12 @@
 import "./MainLayout.scss"
 import Footer from '../../components/Footer/Footer'
-import Header from '../../components/Header/MainHeader/MainHeader'
 import { Outlet } from 'react-router-dom'
+import AuthHeader from "../../components/Header/AuthHeader/AuthHeader"
 
-const MainLayout = () => {
+const AuthLayout = () => {
   return (
     <div className={ `theme-light` }>
-      <Header />
+      <AuthHeader />
       <main className='main-layout-container'>
         <Outlet />
       </main>
@@ -15,4 +15,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default AuthLayout
