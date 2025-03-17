@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./header.scss";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const Header = () => {
   return (
@@ -9,7 +10,18 @@ const Header = () => {
           <img src="logo_autoeva.svg" alt="Logo" />
         </Link>
 
-        <nav className="nav">
+        <div className="search">
+          <SearchOutlinedIcon />
+          <input type="text" placeholder="Search..." />
+        </div>
+
+        <div className="auth-buttons">
+          <Link to="/login" className="login-btn">Đăng nhập</Link>
+          <Link to="/signup" className="signup-btn">Đăng ký</Link>
+        </div>
+      </div>
+      <div>
+      <nav className="nav">
           <ul>
             <li><Link to="/">Trang chủ</Link></li>
             <li><Link to="/predict">Định giá xe</Link></li>
@@ -17,11 +29,6 @@ const Header = () => {
             <li><Link to="/contact">Liên hệ</Link></li>
           </ul>
         </nav>
-
-        <div className="auth-buttons">
-          <Link to="/login" className="login-btn">Đăng nhập</Link>
-          <Link to="/signup" className="signup-btn">Đăng ký</Link>
-        </div>
       </div>
     </header>
   );

@@ -1,7 +1,9 @@
+// @use "../../style.scss" as style;
+
 .header {
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: sticky;
     width: 100%;
     z-index: 1000;
     padding: 10px 0;
@@ -10,7 +12,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -18,22 +20,51 @@
     .logo img {
       height: 40px;
     }
-  
-    .nav ul {
+
+    .search {
       display: flex;
-      gap: 20px;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid  rgb(223, 214, 214);
+      border-radius: 5px;
+      padding: 5px;
+
+      input {
+        border: none;
+        width: 500px;
+        background-color: transparent;
+      }
+
+      @media (max-width: 496px){
+        display: none;
+      }
+
+      @media (max-width: 768px){
+        width: 200px;
+      }
+    }
   
-      li {
-        list-style: none;
-  
-        a {
-          text-decoration: none;
-          color: #333;
-          font-weight: 500;
-          transition: color 0.3s;
-  
-          &:hover {
-            color: #007bff;
+    .nav {
+      max-width: 1280px;
+      padding: 16px 20px 8px;
+      margin: auto;
+
+      ul {
+        display: flex;
+        gap: 20px;
+    
+        li {
+          list-style: none;
+    
+          a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+    
+            &:hover {
+              color: #007bff;
+            }
           }
         }
       }
@@ -55,6 +86,7 @@
         transition: background 0.3s;
         white-space: nowrap; 
       }
+
       .login-btn {
         background: #fff;
         color: #000000;
@@ -76,4 +108,5 @@
       }
     }
   }
+  
   
