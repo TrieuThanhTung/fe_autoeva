@@ -22,6 +22,9 @@
   text-align: center;
   color: white;
   max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero h2 {
@@ -36,9 +39,10 @@
 
 .hero-buttons {
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
-
+  max-width: 400px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
 
   .btn {
     display: flex;
@@ -49,12 +53,17 @@
   .icon {
     margin-right: 10px;
   }
+
+  @media (max-width: 496px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.hero-buttons button {
-  padding: 12px 24px;
+.hero-buttons .btn {
+  padding: 16px 24px;
   font-size: 1rem;
   border-radius: 8px;
+  min-width: 200px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -62,7 +71,6 @@
 .hero-buttons .primary {
   background-color: black;
   color: white;
-  margin-right: 10px;
 }
 
 .hero-buttons .secondary {
