@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header/AuthHeader/AuthHeader";
 import Footer from "../../components/Footer/Footer";
 import "./signup.scss";
 import { Link } from "react-router-dom";

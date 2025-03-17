@@ -18,29 +18,6 @@
     .logo img {
       height: 40px;
     }
-
-    .search {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid  rgb(223, 214, 214);
-      border-radius: 5px;
-      padding: 5px;
-
-      input {
-        border: none;
-        width: 500px;
-        background-color: transparent;
-      }
-
-      @media (max-width: 496px){
-        display: none;
-      }
-
-      @media (max-width: 768px){
-        width: 200px;
-      }
-    }
   
     .nav {
       max-width: 1280px;

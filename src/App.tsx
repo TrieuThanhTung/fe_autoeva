@@ -1,27 +1,34 @@
 import './style.scss'
 import "./assets/styles/output.css";
 import { Routes, Route } from 'react-router-dom'
-import { publicRoutes } from './routes/Routes'
-import Home from './pages/home/Home';
-import Home_v1 from './pages/home_v1/Home';
+import { authLayoutRoutes, mainLayoutRoutes } from './routes/Routes'
 import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
 
   return (
     <Routes>
-      {publicRoutes.map((router, index) => {
-        const Page = router.page;
-        return (
-          <Route 
-            key={index}
-            path = {router.path}
-            element = {<Page />}
-          />
-        )
-      })}
+      {authLayoutRoutes.map((router, index) => {
+          const Page = router.page;
+          return (
+            <Route 
+              key={index}
+              path = {router.path}
+              element = {<Page />}
+            />
+          )
+        })}
       <Route path="/" element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+        { mainLayoutRoutes.map((router, index) => {
+          const Page = router.page;
+          return (
+            <Route 
+              key={index}
+              path = {router.path}
+              element = {<Page />}
+            />
+          )
+        })}
       </Route>
     </Routes>
   )

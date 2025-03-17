@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import "./header.scss";
+import "./MainHeader.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 const Header = () => {
   return (
@@ -15,9 +18,16 @@ const Header = () => {
           <input type="text" placeholder="Search..." />
         </div>
 
-        <div className="auth-buttons">
-          <Link to="/login" className="login-btn">Đăng nhập</Link>
-          <Link to="/signup" className="signup-btn">Đăng ký</Link>
+        <div className="menu-items">
+            <Link to="/profile" className="item">
+              <PersonOutlineOutlinedIcon />
+            </Link>
+            <Link to="/favorites" className="item">
+              <FavoriteBorderOutlinedIcon />
+            </Link>
+            <Link to="/list-predicted" className="item">
+              <FormatListBulletedIcon />
+            </Link>
         </div>
       </div>
       <div>
