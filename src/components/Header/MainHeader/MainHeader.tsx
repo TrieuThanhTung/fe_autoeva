@@ -5,10 +5,17 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
-const Header = () => {
+type HeaderProps = {
+  toggleSidebar: () => void
+}
+
+const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
   return (
     <header className="header">
       <div className="container">
+        <button onClick={toggleSidebar} className="open-btn">
+          ☰
+        </button>
         <Link to="/" className="logo">
           <img src="logo_autoeva.svg" alt="Logo" />
         </Link>
