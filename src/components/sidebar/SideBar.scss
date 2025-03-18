@@ -2,49 +2,72 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -480px; /* Ẩn bên trái */
-  width: 480px;
+  left: -480px; 
+  width: 100%;
+  max-width: 480px;
   height: 100%;
-  background: #333;
-  color: white;
+  background: var(--bg);
+  color: var(--textColor);
   padding: 20px;
   transition: left 0.3s ease;
   z-index: 1100;
-}
 
-/* Khi mở sidebar */
-.sidebar.show {
-  left: 0;
-}
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 
-/* Nút đóng sidebar */
-.close-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  width: 100%;
-}
+    img {
+      width: 40px;
+      height: 40px;
+    }
 
-/* Nút mở sidebar */
-.open-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
+    .close-btn {
+      background: none;
+      color: var(--textColor);
 
-/* Overlay mờ khi mở sidebar */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+      .icon {
+        font-size: 28px;
+      }
+    }
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid  var(--border);
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-bottom: 20px;
+
+    input {
+      border: none;
+      width: 100%;
+      background-color: transparent;
+    }
+  }
+
+  .menu {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+
+    li {
+      padding: 8px 0;
+    }
+  }
+
+  &.show {
+    left: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
 }

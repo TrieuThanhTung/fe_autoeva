@@ -1,5 +1,8 @@
 import "./SideBar.scss"
 import React from "react";
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { Link } from "react-router-dom";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -10,13 +13,33 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div className={`sidebar ${isOpen ? "show" : ""}`}>
-      <button onClick={toggleSidebar} className="close-btn">✖</button>
+      <div className="top">
+        <Link to="/" className="logo">
+          <img src="logo_autoeva.svg" alt="Logo" onClick={toggleSidebar}/>
+        </Link>
+        <button onClick={toggleSidebar} className="close-btn">
+          <CancelOutlinedIcon className="icon"/>
+        </button>
+      </div>
+
+      <div className="search">
+          <SearchOutlinedIcon />
+          <input type="text" placeholder="Search..." />
+      </div>
       
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
+      <ul className="menu">
+        <li>
+          <Link to="#" onClick={toggleSidebar}>Trang chủ</Link>
+        </li>
+        <li>
+          <Link to="#" onClick={toggleSidebar}>Định giá xe</Link>
+        </li>
+        <li>
+          <Link to="#" onClick={toggleSidebar}>Bài đăng</Link>
+        </li>
+        <li>
+          <Link to="#" onClick={toggleSidebar}>Liên hệ</Link>
+        </li>
       </ul>
     </div>
   );

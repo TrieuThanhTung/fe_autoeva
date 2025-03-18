@@ -13,12 +13,14 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
   return (
     <header className="header">
       <div className="container">
-        <button onClick={toggleSidebar} className="open-btn">
-          ☰
-        </button>
-        <Link to="/" className="logo">
-          <img src="logo_autoeva.svg" alt="Logo" />
-        </Link>
+        <div className="left-block">
+          <button onClick={toggleSidebar} className="open-btn-sidebar-mobile">
+            ☰
+          </button>
+          <Link to="/" className="logo">
+            <img src="logo_autoeva.svg" alt="Logo" />
+          </Link>
+        </div>
 
         <div className="search">
           <SearchOutlinedIcon />
