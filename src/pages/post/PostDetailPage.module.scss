@@ -1,0 +1,22 @@
+
+.container {
+  width: var(--widthBackgroudDesktop);
+  margin: auto;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.mainContent {
+  flex: 2;
+  background: grey;
+  padding: 20px;
+  border-radius: 8px;
+  height: 100px;
+}
+
+.sidebar {
+  background-color: grey;
+  height: 100px;
+  flex: 1;
+}
