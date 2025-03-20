@@ -1,4 +1,4 @@
-import "./CartList.scss";
+import "./CarList.scss";
 import React from "react";
 import CarCard from "./CarCard";
 import { carData } from "../../util/data";
