@@ -1,17 +1,21 @@
-import React from 'react'
-import './home.scss'
-import Hero from '../../components/hero/Hero'
-import CarList from '../../components/car/CarList'
-import PricingForm from '../../components/pricingForm/PricingForm'
+import React from "react";
+import "./home.scss";
+import Hero from "../../components/hero/Hero";
+import CarList from "../../components/car/CarList";
+import PricingForm from "../../components/pricingForm/PricingForm";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <div className="home">
+    <main className="home">
       <Hero />
-      <CarList />
-      <PricingForm />
-    </div>
-  )
-}
+      <section className="latest-cars">
+        <CarList />
+      </section>
+      <section className="pricing-form">
+        <PricingForm />
+      </section>
+    </main>
+  );
+};
 
-export default Home
+export default Home;
