@@ -33,6 +33,10 @@ img, video {
   height: auto;
 }
 
+input {
+  box-sizing: border-box;
+}
+
 $themes: (
   light: (
     textColor: #000,
