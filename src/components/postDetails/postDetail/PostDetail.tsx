@@ -28,7 +28,12 @@ const PostDetail: React.FC<PostDetailProps> = ({
 }) => {
   return (
     <div className={styles.postDetail}>
-      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.postHeader}>
+        <h2 className={styles.title}>{title}</h2>
+        <button className={`${styles.favoriteButton} ${styles.favorited}`}>
+          <i className="fas fa-heart"></i>
+        </button>
+      </div>
       <div className={styles.meta}>
         <span className={`${styles.price} ${styles.priceTag}`}>
           <i className={`${styles.iconPostDetail} fa-solid fa-tag`}></i>

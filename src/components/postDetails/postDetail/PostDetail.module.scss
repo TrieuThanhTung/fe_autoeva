@@ -5,10 +5,30 @@
   margin: auto;
   margin-top: 16px;
 
+  .postHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .title {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
+  }
+
+  .favoriteButton {
+    background: none;
+    border: 2px solid gray;
+    color: gray;
+
+    &.favorited {
+      color: red;
+      border-color: red;
+    }
+
+    &:hover {
+      background: rgba(255, 0, 0, 0.1);
+    }
   }
 
   .meta {
