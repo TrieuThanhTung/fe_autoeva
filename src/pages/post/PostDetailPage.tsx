@@ -2,9 +2,10 @@ import React from 'react'
 import styles from "./PostDetailPage.module.scss";
 import PostImages from '../../components/postDetails/postImages/PostImages';
 import PostDetail from '../../components/postDetails/postDetail/PostDetail';
-import { data_details, images } from '../../util/data';
+import { data_details, images, relatedCars } from '../../util/data';
 import CommentSection from '../../components/postDetails/CommentSection/CommentSection';
 import SellerInfo from '../../components/postDetails/SellerInfo/SellerInfo';
+import RelatedPosts from '../../components/postDetails/RelatedPosts/RelatedPosts';
 
 const PostDetailPage = () => {
 
@@ -26,6 +27,7 @@ const PostDetailPage = () => {
           joinYear={2020}
           phone="0912.345.678"
         />
+        <RelatedPosts posts={relatedCars}/>
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+.relatedContainer {
+  margin-top: 24px;
+  width: calc(100% - 32px);
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(233, 232, 232, 0.7);
+  padding: 16px;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .relatedContainer {
+    max-width: 100%;
+  }
+}

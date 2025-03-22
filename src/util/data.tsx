@@ -70,3 +70,18 @@ export const data_details = {
   description:
     "Toyota Camry 2.5Q 2019 số tự động, máy xăng, lắp ráp trong nước. Xe gia đình sử dụng, bảo dưỡng định kỳ đầy đủ tại hãng. Nội thất nguyên bản, sạch sẽ, không có dấu hiệu ngập nước/tai nạn. Trang bị đầy đủ options cao cấp: Ghế da, cửa sổ trời, màn hình giải trí, camera lùi, cảm biến trước sau...",
 };
+
+export const relatedCars = [
+  {
+    image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
+    title: "Toyota Camry 2.0G 2020",
+    price: "795.000.000",
+    location: "Hà Nội",
+  },
+  {
+    image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
+    title: "Toyota Camry 2.5Q 2018",
+    price: "720.000.000",
+    location: "TP.HCM",
+  },
+]
