@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CarCard from "../../components/car/CarCard";
 import "./favoriteList.scss";
 import { carData } from "../../util/data";
