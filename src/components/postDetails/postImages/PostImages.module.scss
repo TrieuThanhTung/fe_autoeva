@@ -15,8 +15,6 @@
   width: 100%;
   max-height: 400px;
   object-fit: cover; 
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 
 .slick-dots {
@@ -35,11 +33,14 @@
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
-  color: #ff5722; /* Màu nổi bật */
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .image {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -49,6 +50,8 @@
 
   .image {
     height: 250px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   .slick-dots {

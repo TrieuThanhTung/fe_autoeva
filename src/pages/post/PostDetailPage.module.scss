@@ -14,7 +14,17 @@
 .mainContent {
   flex: 2;
   border-radius: 8px;
-  border: 1px solid rgba(233, 232, 232, 0.7)
+
+  .postContainer {
+    border-radius: 8px;
+    border: 1px solid rgba(233, 232, 232, 0.7)
+  }
+
+  .commentContainer {
+    border-radius: 8px;
+    margin-top: 64px;
+    border: 1px solid rgba(233, 232, 232, 0.7);
+  }
 }
 
 .sidebar {
