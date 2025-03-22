@@ -58,7 +58,7 @@ export const images = [
 
 
 export const data_details = {
-  title: "Toyota Camry 2.5Q 2019",
+  title: "Toyota Camry 2.5Q 2019 ",
   price: "850.000.000",
   location: "Hà Nội",
   mileage: "45.000",
