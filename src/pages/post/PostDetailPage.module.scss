@@ -2,11 +2,11 @@
   margin: auto;
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 40px 0;
   width: calc(100% - 40px);
   max-width: var(--widthBackgroudDesktop);
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
   }
 }
@@ -28,8 +28,5 @@
 }
 
 .sidebar {
-  background-color: grey;
-  height: 100px;
   flex: 1;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
