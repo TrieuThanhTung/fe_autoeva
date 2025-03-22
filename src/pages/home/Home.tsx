@@ -6,7 +6,7 @@ import PricingForm from "../../components/pricingForm/PricingForm";
 
 const Home: React.FC = () => {
   return (
-    <main className="home">
+    <main className="home theme-light">
       <Hero />
       <section className="latest-cars">
         <CarList />

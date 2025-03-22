@@ -1,9 +1,10 @@
 .container {
-  width: var(--widthBackgroudDesktop);
   margin: auto;
   display: flex;
   gap: 20px;
   padding: 20px;
+  width: calc(100% - 40px);
+  max-width: var(--widthBackgroudDesktop);
 
   @media (max-width: 768px) {
     flex-direction: column;
