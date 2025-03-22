@@ -2,6 +2,7 @@ import "./CarCard.scss";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRoad } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 interface CarCardProps {
   name: string;
@@ -24,7 +25,9 @@ const CarCard: React.FC<CarCardProps> = ({ name, image, price, location, mileage
         </span>
         <div className="card-content-footer">
           <span className="price">{price} đ</span>
-          <button className="mt-2 bg-black text-white px-4 py-2 rounded-md">Xem chi tiết</button>
+          <Link to={"/post"}>
+            <button className="mt-2 bg-black text-white px-4 py-2 rounded-md">Xem chi tiết</button>
+          </Link>
         </div>
       </div>
     </div>

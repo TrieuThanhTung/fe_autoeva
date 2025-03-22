@@ -1,18 +1,19 @@
-
 .container {
   width: var(--widthBackgroudDesktop);
   margin: auto;
   display: flex;
   gap: 20px;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .mainContent {
   flex: 2;
-  background: grey;
   padding: 20px;
   border-radius: 8px;
-  height: 100px;
 }
 
 .sidebar {

@@ -1,5 +1,4 @@
 import './style.scss'
-// import "./assets/styles/output.css";
 import { Routes, Route } from 'react-router-dom'
 import { authLayoutRoutes, mainLayoutRoutes } from './routes/Routes'
 import MainLayout from './layouts/MainLayout/MainLayout';
