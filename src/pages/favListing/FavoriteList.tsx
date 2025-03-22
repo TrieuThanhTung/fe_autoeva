@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CarCard from "../../components/car/CarCard";
-import "./FavoriteList.scss";
+import "./favoriteList.scss";
 import { carData } from "../../util/data";
 
 const FavoriteList: React.FC = () => {

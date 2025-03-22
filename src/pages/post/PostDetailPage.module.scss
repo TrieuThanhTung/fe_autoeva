@@ -1,0 +1,32 @@
+.container {
+  margin: auto;
+  display: flex;
+  gap: 20px;
+  padding: 40px 0;
+  width: calc(100% - 40px);
+  max-width: var(--widthBackgroudDesktop);
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.mainContent {
+  flex: 2;
+  border-radius: 8px;
+
+  .postContainer {
+    border-radius: 8px;
+    border: 1px solid rgba(233, 232, 232, 0.7)
+  }
+
+  .commentContainer {
+    border-radius: 8px;
+    margin-top: 64px;
+    border: 1px solid rgba(233, 232, 232, 0.7);
+  }
+}
+
+.sidebar {
+  flex: 1;
+}

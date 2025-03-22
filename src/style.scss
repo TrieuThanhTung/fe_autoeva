@@ -4,6 +4,58 @@
   font-family: "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #bbb transparent;
+}
+
+ol, ul, menu {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+b, strong {
+  font-weight: bolder;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  vertical-align: middle;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+input {
+  box-sizing: border-box;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px; 
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 $themes: (
@@ -50,8 +102,9 @@ $theme-map: null;
 }
 
 .theme-light {
+  --widthBackgroudDesktop: 1280px;
   --textColor: #000;
-  --bg: white;
+  --bg: #f9fafb;
   --logo: darkblue;
   --bgSoft: #f6f3f3;
   --textColorSoft: #555;

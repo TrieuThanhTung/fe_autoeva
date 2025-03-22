@@ -1,0 +1,62 @@
+.sellerCard {
+  width: calc(100% - 32px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(233, 232, 232, 0.7);
+}
+
+.sellerInfo {
+  display: flex;
+  align-items: left;
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.joinDate {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.phoneButton {
+  background: black;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.phoneButton:hover {
+  background: #333;
+}
+
+.phoneIcon {
+  font-size: 18px;
+}
