@@ -4,6 +4,8 @@ import PostDetailPage from "../pages/post/PostDetailPage";
 import Predict from "../pages/predict/Predict";
 import Profile from "../pages/profile/Profile";
 import Signup from "../pages/signup/Signup";
+import Favorite from "../pages/favListing/FavoriteList";
+
 
 const authLayoutRoutes = [
   {path: "/signup", page:  Signup},
@@ -14,7 +16,8 @@ const mainLayoutRoutes = [
   {path: "/", page: Home},
   {path: "/predict", page: Predict},
   {path: "/profile", page: Profile},
-  {path: "/post", page: PostDetailPage}
+  {path: "/post", page: PostDetailPage},
+  {path: "/favorites", page: Favorite},
 ]
 
 export {authLayoutRoutes, mainLayoutRoutes}

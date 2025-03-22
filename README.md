@@ -20,7 +20,6 @@ Make sure you have Node.js installed. You can download it from [here](https://no
 2. Install dependencies:
    ```sh
    npm install  # or yarn install
-   npx @tailwindcss/cli -i .src/assets/styles/input.css -o .src/assets/styles/output.css --watch # add tailwind
    ```
 
 3. Start the development server:
