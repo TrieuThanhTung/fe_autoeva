@@ -1,0 +1,84 @@
+.postDetail {
+  background: #fff;
+  padding: 32px;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 16px;
+
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+
+    .iconPostDetail {
+      padding: 0 8px;
+    }
+
+    .priceTag {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .infoSection {
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+
+  .infoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .description {
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .postDetail {
+    padding: 16px;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .postDetail {
+    padding: 16px 8px;
+  }
+
+  .meta {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 10px !important;
+  }
+}

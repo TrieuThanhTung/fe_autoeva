@@ -15,7 +15,8 @@
   width: 100%;
   max-height: 400px;
   object-fit: cover; 
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .slick-dots {
@@ -39,13 +40,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .sliderContainer {
-    max-width: 600px;
-  }
-
-  .image {
-    height: 300px;
-  }
 }
 
 @media (max-width: 480px) {

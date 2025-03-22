@@ -13,25 +13,9 @@ const PostImages: React.FC<PostImagesProps> = ({ images }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1, // Chỉ hiển thị 1 ảnh trên mọi kích thước
+    slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    responsive: [
-      {
-        breakpoint: 1024, // Tablet (≤1024px)
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768, // Mobile (≤768px)
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   return (

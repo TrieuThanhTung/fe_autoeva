@@ -13,12 +13,13 @@
 
 .mainContent {
   flex: 2;
-  padding: 20px;
   border-radius: 8px;
+  border: 1px solid rgba(233, 232, 232, 0.7)
 }
 
 .sidebar {
   background-color: grey;
   height: 100px;
   flex: 1;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

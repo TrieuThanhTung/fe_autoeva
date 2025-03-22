@@ -45,3 +45,28 @@ export const carData = [
     mileage: "18,000 km",
   },
 ];
+
+export const images = [
+  "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
+  "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg",
+  "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg",
+  "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg",
+  "https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg",
+  "https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg",
+  "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
+];
+
+
+export const data_details = {
+  title: "Toyota Camry 2.5Q 2019",
+  price: "850.000.000",
+  location: "Hà Nội",
+  mileage: "45.000",
+  year: "2019",
+  origin: "Lắp ráp trong nước",
+  fuel: "Xăng",
+  transmission: "Tự động",
+  seats: "5 chỗ",
+  description:
+    "Toyota Camry 2.5Q 2019 số tự động, máy xăng, lắp ráp trong nước. Xe gia đình sử dụng, bảo dưỡng định kỳ đầy đủ tại hãng. Nội thất nguyên bản, sạch sẽ, không có dấu hiệu ngập nước/tai nạn. Trang bị đầy đủ options cao cấp: Ghế da, cửa sổ trời, màn hình giải trí, camera lùi, cảm biến trước sau...",
+};
