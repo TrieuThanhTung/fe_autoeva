@@ -12,7 +12,9 @@ const ImageUpload = ({ onUpload }: { onUpload: (files: File[]) => void }) => {
     maxFiles: 10,
     onDrop: (acceptedFiles) => {
       const imageUrls = acceptedFiles.map((file) => URL.createObjectURL(file));
-      setPreviewImages(imageUrls);
+
+      setPreviewImages((prevImages) => [...prevImages, ...imageUrls]);
+
       onUpload(acceptedFiles);
     },
   });
