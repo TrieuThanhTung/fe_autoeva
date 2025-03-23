@@ -1,0 +1,114 @@
+import { useState } from "react";
+import styles from "./CreatePost.module.scss";
+import ImageUpload from "../../../components/uploadImage/UploadImage";
+
+// import 'ckeditor5/ckeditor5.css';
+
+const CreatePost = () => {
+  const [form, setForm] = useState({
+    brand: "",
+    model: "",
+    year: "",
+    mileage: "",
+    price: "",
+    location: "",
+    description: "",
+    images: [] as File[],
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // const handleDescriptionChange = (_event: any, editor: any) => {
+  //   setForm({ ...form, description: editor.getData() });
+  // };
+
+  const handleImageUpload = (files: File[]) => {
+    setForm({ ...form, images: files });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(form);
+  };
+
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.title}>Tạo Bài Đăng Mới</h2>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.row}>
+          <label>Hãng xe</label>
+          <select name="brand" onChange={handleChange} value={form.brand}>
+            <option value="">Chọn hãng xe</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+          </select>
+        </div>
+
+        <div className={styles.row}>
+          <label>Mẫu xe</label>
+          <select name="model" onChange={handleChange} value={form.model}>
+            <option value="">Chọn mẫu xe</option>
+          </select>
+        </div>
+
+        <div className={styles.row}>
+          <label>Năm sản xuất</label>
+          <select name="year" onChange={handleChange} value={form.year}>
+            <option value="">Chọn năm</option>
+          </select>
+        </div>
+
+        <div className={styles.row}>
+          <label>Số km đã đi</label>
+          <input
+            type="number"
+            name="mileage"
+            placeholder="Nhập số km"
+            onChange={handleChange}
+            value={form.mileage}
+          />
+        </div>
+
+        <div className={styles.row}>
+          <label>Giá bán</label>
+          <input
+            type="number"
+            name="price"
+            placeholder="Nhập giá bán (VND)"
+            onChange={handleChange}
+            value={form.price}
+          />
+        </div>
+
+        <div className={styles.row}>
+          <label>Vị trí</label>
+          <select name="location" onChange={handleChange} value={form.location}>
+            <option value="">Chọn tỉnh/thành phố</option>
+          </select>
+        </div>
+
+        <div className={styles.row}>
+          <label>Mô tả chi tiết</label>
+          <textarea placeholder="Nhập thông tin chi tiết về xe..." className=""></textarea>
+        </div>
+
+        <div className={styles.imageUpload}>
+          <label>Hình ảnh</label>
+          <ImageUpload onUpload={handleImageUpload} />
+        </div>
+
+        <div className={styles.containerBtn}>
+          <button className={styles.btnSubmit} type="submit">
+            Đăng bài
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default CreatePost;
