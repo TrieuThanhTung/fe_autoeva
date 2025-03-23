@@ -1,0 +1,168 @@
+.container {
+  width: calc(100% - 40px);
+  max-width: 1280px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rowGrouped {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    textarea,
+    select,
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    textarea {
+      width: 100%;      // Chiều rộng mặc định chiếm toàn bộ container
+      max-width: 100%;  // Không vượt quá kích thước màn hình
+      min-width: 100%;
+      min-height: 120px;
+      max-height: 1280px;
+      box-sizing: border-box;
+    }
+
+    select {
+      background-color: #fff;
+      color: grey
+    }
+  }
+
+  .imageUpload {
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px dashed #ccc;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #333;
+    }
+  }
+
+  .ck-editor__editable {
+    min-height: 200px;
+  }
+
+  .containerBtn {
+    display: flex;
+    justify-content: right;
+  }
+
+  // Responsive cho mobile
+  @media (max-width: 480px) {
+    .rowGrouped {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .row {
+      input,
+      select {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+
+    button {
+      font-size: 14px;
+      padding: 10px;
+      max-width: 100%;
+    }
+  }
+
+  // Responsive cho tablet
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .row {
+
+      input,
+      select {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+/* Đổi màu nền thanh công cụ */
+.se-toolbar {
+  background-color: #f8f9fa;
+}
+
+/* Đổi màu nền của nút trong toolbar */
+.se-btn {
+  background-color: #007bff !important;
+  color: white !important;
+  border-radius: 5px;
+}
+
+/* Đổi style cho nội dung soạn thảo */
+.sun-editor-editable {
+  min-height: 200px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Khi hover vào button */
+.se-btn:hover {
+  background-color: #0056b3 !important;
+}
