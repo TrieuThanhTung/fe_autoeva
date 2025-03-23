@@ -32,3 +32,34 @@
   border-radius: 8px;
   border: 1px solid #ddd;
 }
+
+.imageContainer {
+  position: relative;
+  display: inline-block;
+
+  .removeButton {
+    position: absolute;
+    width: 16px !important;
+    height: 16px;
+    top: 0px;
+    right: 0px; 
+    background: rgba(218, 166, 166, 0.8);
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 2px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgb(201, 149, 149);
+    }
+  }
+
+  &:hover .removeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

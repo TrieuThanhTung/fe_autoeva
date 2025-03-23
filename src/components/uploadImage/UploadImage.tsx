@@ -19,6 +19,11 @@ const ImageUpload = ({ onUpload }: { onUpload: (files: File[]) => void }) => {
     },
   });
 
+  const removeImage = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number) => {
+    e.stopPropagation();
+    setPreviewImages((prevImages) => prevImages.filter((_img, index) => index !== id));
+  };
+
   return (
     <div className={styles.dropzone} {...getRootProps()}>
       <input {...getInputProps()} />
@@ -29,8 +34,13 @@ const ImageUpload = ({ onUpload }: { onUpload: (files: File[]) => void }) => {
       </div>
       {previewImages.length > 0 && (
         <div className={styles.preview}>
-          {previewImages.map((src, index) => (
-            <img key={index} src={src} alt={`preview-${index}`} />
+          {previewImages.map((img, index) => (
+            <div key={index} className={styles.imageContainer}>
+              <img src={img} alt={`preview-${index}`} className={styles.previewImage} />
+              <button className={styles.removeButton} onClick={(event) => removeImage(event, index)}>
+                <i className="fa-solid fa-xmark"></i>
+              </button>
+            </div>
           ))}
         </div>
       )}
