@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./CreatePost.module.scss";
 import ImageUpload from "../../../components/uploadImage/UploadImage";
+import CKEditor from "../../../components/Editor/Editor";
 
 // import 'ckeditor5/ckeditor5.css';
 
@@ -22,9 +23,9 @@ const CreatePost = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // const handleDescriptionChange = (_event: any, editor: any) => {
-  //   setForm({ ...form, description: editor.getData() });
-  // };
+  const handleDesChange = (newContent: string) => {
+    setForm({ ...form, description: newContent });
+  };
 
   const handleImageUpload = (files: File[]) => {
     setForm({ ...form, images: files });
@@ -93,7 +94,7 @@ const CreatePost = () => {
 
         <div className={styles.row}>
           <label>Mô tả chi tiết</label>
-          <textarea placeholder="Nhập thông tin chi tiết về xe..." className=""></textarea>
+          <CKEditor handleEditorChange={handleDesChange}/>
         </div>
 
         <div className={styles.imageUpload}>

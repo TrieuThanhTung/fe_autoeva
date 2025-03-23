@@ -130,3 +130,29 @@
     }
   }
 }
+
+/* Đổi màu nền thanh công cụ */
+.se-toolbar {
+  background-color: #f8f9fa;
+}
+
+/* Đổi màu nền của nút trong toolbar */
+.se-btn {
+  background-color: #007bff !important;
+  color: white !important;
+  border-radius: 5px;
+}
+
+/* Đổi style cho nội dung soạn thảo */
+.sun-editor-editable {
+  min-height: 200px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Khi hover vào button */
+.se-btn:hover {
+  background-color: #0056b3 !important;
+}
