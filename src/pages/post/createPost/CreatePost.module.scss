@@ -17,7 +17,13 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+  }
+
+  .rowGrouped {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .row {
@@ -96,6 +102,10 @@
 
   // Responsive cho mobile
   @media (max-width: 480px) {
+    .rowGrouped {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
     .row {
       input,
       select {

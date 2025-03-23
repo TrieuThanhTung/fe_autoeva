@@ -40,38 +40,41 @@ const CreatePost = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Tạo Bài Đăng Mới</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.row}>
-          <label>Hãng xe</label>
-          <select name="brand" onChange={handleChange} value={form.brand}>
-            <option value="">Chọn hãng xe</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Honda">Honda</option>
-          </select>
-        </div>
+        <div className={styles.rowGrouped}>
+          <div className={styles.row}>
+            <label>Hãng xe</label>
+            <select name="brand" onChange={handleChange} value={form.brand}>
+              <option value="">Chọn hãng xe</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+            </select>
+          </div>
 
-        <div className={styles.row}>
-          <label>Mẫu xe</label>
-          <select name="model" onChange={handleChange} value={form.model}>
-            <option value="">Chọn mẫu xe</option>
-          </select>
+          <div className={styles.row}>
+            <label>Mẫu xe</label>
+            <select name="model" onChange={handleChange} value={form.model}>
+              <option value="">Chọn mẫu xe</option>
+            </select>
+          </div>
         </div>
+        <div className={styles.rowGrouped}>
+          <div className={styles.row}>
+            <label>Năm sản xuất</label>
+            <select name="year" onChange={handleChange} value={form.year}>
+              <option value="">Chọn năm</option>
+            </select>
+          </div>
 
-        <div className={styles.row}>
-          <label>Năm sản xuất</label>
-          <select name="year" onChange={handleChange} value={form.year}>
-            <option value="">Chọn năm</option>
-          </select>
-        </div>
-
-        <div className={styles.row}>
-          <label>Số km đã đi</label>
-          <input
-            type="number"
-            name="mileage"
-            placeholder="Nhập số km"
-            onChange={handleChange}
-            value={form.mileage}
-          />
+          <div className={styles.row}>
+            <label>Số km đã đi</label>
+            <input
+              type="number"
+              name="mileage"
+              placeholder="Nhập số km"
+              onChange={handleChange}
+              value={form.mileage}
+            />
+          </div>
         </div>
 
         <div className={styles.row}>
