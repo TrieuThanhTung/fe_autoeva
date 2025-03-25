@@ -5,7 +5,8 @@ import Predict from "../pages/predict/Predict";
 import Profile from "../pages/profile/Profile";
 import Signup from "../pages/signup/Signup";
 import Favorite from "../pages/favListing/FavoriteList";
-import CreatePost from "../pages/post/createPost/CreatePost";
+import CreatePostPage from "../pages/post/createPost/CreatePostPage";
+import EditPostPage from "../pages/post/editPost/EditPostPage";
 
 
 const authLayoutRoutes = [
@@ -19,7 +20,8 @@ const mainLayoutRoutes = [
   {path: "/profile", page: Profile},
   {path: "/post", page: PostDetailPage},
   {path: "/favorites", page: Favorite},
-  {path: "/create-post", page: CreatePost},
+  {path: "/post/create", page: CreatePostPage},
+  {path: "/post/:id/edit", page: EditPostPage},
 ]
 
 export {authLayoutRoutes, mainLayoutRoutes}

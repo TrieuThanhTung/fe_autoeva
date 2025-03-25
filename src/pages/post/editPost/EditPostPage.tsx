@@ -1,11 +1,11 @@
 import { useState } from "react";
-import styles from "./CreatePost.module.scss";
+import styles from "./EditPostPage.module.scss";
 import ImageUpload from "../../../components/uploadImage/UploadImage";
 import CKEditor from "../../../components/Editor/Editor";
 
 // import 'ckeditor5/ckeditor5.css';
 
-const CreatePost = () => {
+const EditPostPage = () => {
   const [form, setForm] = useState({
     brand: "",
     model: "",
@@ -36,9 +36,11 @@ const CreatePost = () => {
     console.log(form);
   };
 
+  // TODO: fetch data from BE -> edit -> submit.
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Tạo Bài Đăng Mới</h2>
+      <h2 className={styles.title}>Chỉnh Sửa Bài Đăng</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.rowGrouped}>
           <div className={styles.row}>
@@ -107,7 +109,7 @@ const CreatePost = () => {
 
         <div className={styles.containerBtn}>
           <button className={styles.btnSubmit} type="submit">
-            Đăng bài
+            Lưu chỉnh sửa
           </button>
         </div>
       </form>
@@ -115,4 +117,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPostPage;
