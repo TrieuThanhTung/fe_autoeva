@@ -44,7 +44,7 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
           <ul>
             <li><Link to="/">Trang chủ</Link></li>
             <li><Link to="/predict">Định giá xe</Link></li>
-            <li><Link to="/posts">Bài đăng</Link></li>
+            <li><Link to="/my-posts">Bài đăng</Link></li>
             <li><Link to="/contact">Liên hệ</Link></li>
           </ul>
         </nav>
