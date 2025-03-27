@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./UserPostItem.module.scss";
+import { Link } from "react-router-dom";
 
 interface Post {
   id: number;
@@ -38,7 +39,7 @@ const UserPostItem: React.FC<PostItemProps> = ({ post }) => {
       </td>
       <td>{post.date}</td>
       <td className={styles.actionContainer}>
-        <button className={styles.editButton}>Chỉnh sửa</button>
+        <Link to={`/my-posts/${post.id}/edit`}><button className={styles.editButton}>Chỉnh sửa</button></Link>
         {post.status === "Đang hiển thị" && <button className={styles.soldButton}>Đánh dấu đã bán</button>}
         <button className={styles.deleteButton}>Xóa</button>
       </td>
