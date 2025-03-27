@@ -37,17 +37,17 @@ const UserPostPage: React.FC = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Xe</th>
-            <th>Giá</th>
-            <th>Trạng Thái</th>
-            <th>Ngày Đăng</th>
-            <th>Thao Tác</th>
+            <th className={styles.headerName}>Xe</th>
+            <th className={styles.headerPrice}>Giá</th>
+            <th className={styles.headerStatus}>Trạng Thái</th>
+            <th className={styles.headerCreatedAt}>Ngày Đăng</th>
+            <th className={styles.headerAction}>Thao Tác</th>
           </tr>
         </thead>
         <tbody>
-          {posts.map((post) => (
+          {posts.length !== 0 ? posts.map((post) => (
             <PostItem key={post.id} post={post} />
-          ))}
+          )) : <tr><td colSpan={5}>Không có bài đăng nào</td></tr>}
         </tbody>
       </table>
     </div>

@@ -37,7 +37,7 @@ const UserPostItem: React.FC<PostItemProps> = ({ post }) => {
         </span>
       </td>
       <td>{post.date}</td>
-      <td>
+      <td className={styles.actionContainer}>
         <button className={styles.editButton}>Chỉnh sửa</button>
         {post.status === "Đang hiển thị" && <button className={styles.soldButton}>Đánh dấu đã bán</button>}
         <button className={styles.deleteButton}>Xóa</button>
