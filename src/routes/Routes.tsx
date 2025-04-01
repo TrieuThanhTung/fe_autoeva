@@ -8,6 +8,7 @@ import Favorite from "../pages/favListing/FavoriteList";
 import CreatePostPage from "../pages/post/createPost/CreatePostPage";
 import EditPostPage from "../pages/post/editPost/EditPostPage";
 import UserPostPage from "../pages/post/postList/UserPostPage";
+import ListPostPage from "../pages/ListPost/ListPostPage";
 
 
 const authLayoutRoutes = [
@@ -21,6 +22,7 @@ const mainLayoutRoutes = [
   {path: "/profile", page: Profile},
   {path: "/post", page: PostDetailPage},
   {path: "/favorites", page: Favorite},
+  {path: "/posts", page: ListPostPage},
   {path: "/my-posts/create", page: CreatePostPage},
   {path: "/my-posts/:id/edit", page: EditPostPage},
   {path: "/my-posts", page: UserPostPage},

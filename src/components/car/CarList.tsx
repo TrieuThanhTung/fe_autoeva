@@ -12,7 +12,6 @@ const CarList: React.FC = () => {
 
   return (
     <section className="carList container">
-      <h2 className="title">Tin đăng mới nhất</h2>
       <div className="grid">
         {carData.slice(0, 3).map((car, index) => (
           <CarCard
