@@ -9,6 +9,7 @@ const Home: React.FC = () => {
     <main className="home">
       <Hero />
       <section className="latest-cars">
+        <h2 className="title-section">Tin đăng mới nhất</h2>
         <CarList />
       </section>
       <section className="pricing-form">
