@@ -1,6 +1,6 @@
 import React from "react";
 import './hero.scss';
-import heroBackground from '../../assets/images/hero-background.jpg';
+import heroBackground from '../../assets/images/banner.jpg';
 import DirectionsCarRoundedIcon from '@mui/icons-material/DirectionsCarRounded';
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
 import { Link } from "react-router-dom";

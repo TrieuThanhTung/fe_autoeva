@@ -1,6 +1,6 @@
 import "./PricingForm.scss"
 import React, { useState } from "react";
-import ImagePrcingCar from "../../assets/images/pricing-car.jpg";
+import ImagePrcingCar from "../../assets/images/car-valuation.jpg";
 
 const carModels: { [key: string]: string[] } = {
   Toyota: ["Camry", "Corolla", "Fortuner"],
