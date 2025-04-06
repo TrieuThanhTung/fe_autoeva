@@ -1,5 +1,6 @@
 import "./footer.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import logo from "../../assets/logo_autoeva.svg";
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer__content">
           <div className="footer__section">
-            <img src="logo_autoeva.svg" alt="Logo" className="footer__logo" />
+            <img src={logo} alt="Logo" className="footer__logo" />
             <p>Nền tảng mua bán xe cũ uy tín với công nghệ định giá AI thông minh.</p>
           </div>
           <div className="footer__section">

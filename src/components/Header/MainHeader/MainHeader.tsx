@@ -4,6 +4,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import logo from "../../../assets/logo_autoeva.svg";
 
 type HeaderProps = {
   toggleSidebar: () => void
@@ -18,7 +19,7 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
             ☰
           </button>
           <Link to="/" className="logo">
-            <img src="logo_autoeva.svg" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </Link>
         </div>
 

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import "./AuthHeader.scss";
+import logo from "../../../assets/logo_autoeva.svg";
 
 const AuthHeader = () => {
   return (
     <header className="header">
       <div className="container">
         <Link to="/" className="logo">
-          <img src="logo_autoeva.svg" alt="Logo" />
+          <img src={logo} alt="Logo" />
         </Link>
 
         <div className="auth-buttons">
