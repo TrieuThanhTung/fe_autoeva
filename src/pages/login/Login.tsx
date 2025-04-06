@@ -3,15 +3,28 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header/AuthHeader/AuthHeader";
 import Footer from "../../components/Footer/Footer";
 import "./login.scss";
+// import api from "../../api/ApiService";
+// import { useMutation } from "@tanstack/react-query";
+
+// const login = async ({ email, password }: { email: string; password: string }) => {
+//   return await api.post("/api/auth/signin", { email, password })
+// }
+  
+
+// const useLogin = () => {
+//   return useMutation<any, Error, any, any>(login);
+// };
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // const loginMutation = useLogin();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email:", email, "Password:", password);
-    // Thêm logic xử lý đăng nhập ở đây
+
   };
 
   return (<>

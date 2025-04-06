@@ -85,3 +85,26 @@ export const relatedCars = [
     location: "TP.HCM",
   },
 ]
+
+export const userPosts = [
+  {
+    id: 1,
+    image: images[0],
+    name: "Toyota Camry 2.5Q",
+    year: 2023,
+    km: "15,000 km",
+    price: "850,000,000đ",
+    status: "Đang hiển thị",
+    date: "20/02/2024",
+  },
+  {
+    id: 2,
+    name: "Honda Civic RS",
+    image: images[0],
+    year: 2022,
+    km: "25,000 km",
+    price: "720,000,000đ",
+    status: "Đã bán",
+    date: "15/02/2024",
+  },
+];

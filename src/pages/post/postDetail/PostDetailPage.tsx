@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import styles from "./PostDetailPage.module.scss";
 import PostImages from '../../../components/postDetails/postImages/PostImages';
 import PostDetail from '../../../components/postDetails/postDetail/PostDetail';
