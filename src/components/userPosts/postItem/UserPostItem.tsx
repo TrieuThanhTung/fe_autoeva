@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./UserPostItem.module.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Post {
   id: number;
@@ -18,6 +18,12 @@ interface PostItemProps {
 }
 
 const UserPostItem: React.FC<PostItemProps> = ({ post }) => {
+ const navigate = useNavigate();
+
+ const handleNavigate = (url: string) => {
+  navigate(url);
+ }
+
   return (
     <tr className={styles.postRow}>
       <td>
@@ -39,7 +45,7 @@ const UserPostItem: React.FC<PostItemProps> = ({ post }) => {
       </td>
       <td>{post.date}</td>
       <td className={styles.actionContainer}>
-        <Link to={`/my-posts/${post.id}/edit`}><button className={styles.editButton}>Chỉnh sửa</button></Link>
+        <button className={styles.editButton} onClick={() => handleNavigate(`/my-posts/${post.id}/edit`)}>Chỉnh sửa</button>
         {post.status === "Đang hiển thị" && <button className={styles.soldButton}>Đánh dấu đã bán</button>}
         <button className={styles.deleteButton}>Xóa</button>
       </td>
