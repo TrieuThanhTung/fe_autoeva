@@ -6,6 +6,7 @@ import MainLayout from './layouts/MainLayout/MainLayout';
 import NotFoundPage from './pages/notFound/NotFoundPage';
 import AuthLayout from './layouts/authLayout/AuthLayout';
 import { useState } from 'react';
+import ScrollToTop from './util/ScrollToTop';
 
 
 const RootLayout = () => {

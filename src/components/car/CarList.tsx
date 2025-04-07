@@ -15,6 +15,7 @@ const CarList: React.FC = () => {
       <div className="grid">
         {carData.slice(0, 3).map((car, index) => (
           <CarCard
+            id={car.id}
             key={index}
             name={car.name}
             image={car.image}

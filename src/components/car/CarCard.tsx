@@ -3,6 +3,7 @@ import "./CarCard.scss";
 import { Link } from "react-router-dom";
 
 interface CarCardProps {
+  id: string | number;
   name: string;
   image: string;
   price: string;
@@ -12,7 +13,7 @@ interface CarCardProps {
   onToggleFavorite: () => void;
 }
 
-const CarCard: React.FC<CarCardProps> = ({ name, image, price, location, mileage, isFavorited, onToggleFavorite }) => {
+const CarCard: React.FC<CarCardProps> = ({id, name, image, price, location, mileage, isFavorited, onToggleFavorite }) => {
   return (
     <div className="card">
       <div className="card-image">
@@ -26,7 +27,7 @@ const CarCard: React.FC<CarCardProps> = ({ name, image, price, location, mileage
         <div className="card-content-footer">
           <span className="price">{price} ₫</span>
           <div className="actions">
-            <Link to={"/post"}><button className="detailButton">Xem chi tiết</button></Link>
+            <Link to={`/post/${id}`}><button className="detailButton">Xem chi tiết</button></Link>
             <button className={`favoriteButton ${isFavorited ? "favorited" : ""}`} onClick={onToggleFavorite}>
               <i className="fas fa-heart"></i>
             </button>
