@@ -2,6 +2,7 @@ import './style.scss'
 import { Routes, Route } from 'react-router-dom'
 import { authLayoutRoutes, mainLayoutRoutes } from './routes/Routes'
 import MainLayout from './layouts/MainLayout/MainLayout';
+import NotFoundPage from './pages/notFound/NotFoundPage';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           )
         })}
       </Route>
+      <Route path="*" element={<NotFoundPage/>} />
     </Routes>
   )
 }

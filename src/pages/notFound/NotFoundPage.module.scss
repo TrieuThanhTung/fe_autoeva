@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.code {
+  font-size: 10rem;
+  font-weight: bold;
+  color: #222;
+  margin: 0;
+}
+
+.message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: -1rem;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.subMessage {
+  font-size: 1rem;
+  margin: 0.5rem 0 1.5rem 0;
+  color: #666;
+}
+
+.homeButton {
+  padding: 0.75rem 2rem;
+  background-color: #0057ff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 87, 255, 0.3);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0040cc;
+  }
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .code {
+    font-size: 7rem;
+  }
+
+  .message {
+    font-size: 1.25rem;
+  }
+
+  .subMessage {
+    font-size: 0.95rem;
+  }
+
+  .homeButton {
+    padding: 0.65rem 1.75rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .code {
+    font-size: 5rem;
+  }
+
+  .message {
+    font-size: 1rem;
+  }
+
+  .subMessage {
+    font-size: 0.9rem;
+  }
+
+  .homeButton {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+}
