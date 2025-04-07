@@ -29,7 +29,6 @@ type PostProps = {
 const Post = ({ post } : PostProps) => {
   const [commentOpen, setCommentOpen] = useState(false);
 
-  //TEMPORARY
   const liked = false;
 
   return (

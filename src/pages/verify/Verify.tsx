@@ -4,11 +4,12 @@ import VerifySuccess from './success/VerifySuccess';
 import styles from './Verify.module.scss';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
-import CircularProgress from '@mui/material/CircularProgress';
+// import CircularProgress from '@mui/material/CircularProgress';
 
 
 const VerifyPage = () => {
   const [searchParams] = useSearchParams();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [status, setStatus] = useState<'loading' | 'success' | 'expired' | 'error'>('loading');
   const [resent, setResent] = useState(false);
 
