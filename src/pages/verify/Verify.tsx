@@ -9,7 +9,6 @@ import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 const VerifyPage = () => {
   const [searchParams] = useSearchParams();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [status, setStatus] = useState<'loading' | 'success' | 'expired' | 'error'>('loading');
   const [resent, setResent] = useState(false);
 
@@ -39,7 +38,7 @@ const VerifyPage = () => {
 
     // if (email && token) verify();
     // else setStatus('error');
-    // setStatus('loading'); // Simulate success for testing
+    setStatus('loading'); // Simulate success for testing
   }, [email, token]);
 
   const resendEmail = async () => {

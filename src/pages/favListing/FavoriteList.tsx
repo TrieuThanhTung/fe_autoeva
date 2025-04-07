@@ -23,6 +23,7 @@ const FavoriteList: React.FC = () => {
         <div className="grid">
           {carData.map((car, index) => (
             <CarCard
+              id={car.id}
               key={index}
               name={car.name}
               image={car.image}
