@@ -1,13 +1,9 @@
 import React from 'react';
 import styles from './NotFoundPage.module.scss';
-import { useNavigate } from 'react-router-dom';
+import useHandleNagivate from '../../hooks/useHandleNagivate';
 
 const NotFoundPage: React.FC = () => {
-  const navigate = useNavigate();
-
-  const handleGoHome = () => {
-    navigate('/');
-  };
+  const handleNagivate = useHandleNagivate();
 
   return (
     <div className={styles.container}>
@@ -17,7 +13,7 @@ const NotFoundPage: React.FC = () => {
         <p className={styles.subMessage}>
           We are sorry, but the page you requested was not found
         </p>
-        <button className={styles.homeButton} onClick={handleGoHome}>
+        <button className={styles.homeButton} onClick={() => handleNagivate("/")}>
           Go to Homepage
         </button>
       </div>
