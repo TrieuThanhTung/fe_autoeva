@@ -11,13 +11,15 @@ import UserPostPage from "../pages/post/postList/UserPostPage";
 import ListPostPage from "../pages/ListPost/ListPostPage";
 import SignupSuccess from "../pages/signup/sucess/SignupSuccess";
 import VerifySuccess from "../pages/verify/success/VerifySuccess";
+import VerifyPage from "../pages/verify/Verify";
 
 
 const commonRoutes = [
   {path: "/signup", page:  Signup},
   {path: "/login", page: Login},
   {path: "/signup-success", page: SignupSuccess},
-  {path: "/verify-account-success", page: VerifySuccess},
+  {path: "/verify", page: VerifyPage},
+  {path: "/verify-success", page: VerifySuccess},
   {path: "/", page: Home},
   {path: "/post/:id", page: PostDetailPage},
   {path: "/predict", page: Predict},
