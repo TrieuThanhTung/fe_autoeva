@@ -112,6 +112,7 @@ $theme-map: null;
   --desktop: 1280px;
   --tablet: 960px;
   --mobile: 480px;
+  --heigh-auth-layout: calc(100vh - 60px - 240px);
 }
 
 .theme-dark {

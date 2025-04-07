@@ -1,0 +1,64 @@
+.container {
+  max-width: 1280px;
+  margin: 100px auto;
+  padding: 40px;
+  text-align: center;
+  height: var(--heigh-auth-layout);
+}
+
+.icon {
+  font-size: 64px;
+  color: #f44336;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 18px;
+  color: #4b5563;
+  margin-bottom: 30px;
+}
+
+.button {
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #1565c0;
+  }
+}
+
+.loadingWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.spinner {
+  color: #1976d2;
+  margin-bottom: 20px;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

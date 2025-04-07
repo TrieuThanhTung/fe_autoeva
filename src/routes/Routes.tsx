@@ -9,23 +9,29 @@ import CreatePostPage from "../pages/post/createPost/CreatePostPage";
 import EditPostPage from "../pages/post/editPost/EditPostPage";
 import UserPostPage from "../pages/post/postList/UserPostPage";
 import ListPostPage from "../pages/ListPost/ListPostPage";
+import SignupSuccess from "../pages/signup/sucess/SignupSuccess";
+import VerifySuccess from "../pages/verify/success/VerifySuccess";
+import VerifyPage from "../pages/verify/Verify";
 
 
-const authLayoutRoutes = [
+const commonRoutes = [
   {path: "/signup", page:  Signup},
   {path: "/login", page: Login},
+  {path: "/signup-success", page: SignupSuccess},
+  {path: "/verify", page: VerifyPage},
+  {path: "/verify-success", page: VerifySuccess},
+  {path: "/", page: Home},
+  {path: "/post/:id", page: PostDetailPage},
+  {path: "/predict", page: Predict},
+  {path: "/posts", page: ListPostPage},
 ]
 
-const mainLayoutRoutes = [
-  {path: "/", page: Home},
-  {path: "/predict", page: Predict},
+const userRoutes = [
   {path: "/profile", page: Profile},
-  {path: "/post", page: PostDetailPage},
   {path: "/favorites", page: Favorite},
-  {path: "/posts", page: ListPostPage},
   {path: "/my-posts/create", page: CreatePostPage},
   {path: "/my-posts/:id/edit", page: EditPostPage},
   {path: "/my-posts", page: UserPostPage},
 ]
 
-export {authLayoutRoutes, mainLayoutRoutes}
+export {commonRoutes, userRoutes}

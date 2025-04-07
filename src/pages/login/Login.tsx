@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header/AuthHeader/AuthHeader";
-import Footer from "../../components/Footer/Footer";
 import "./login.scss";
 // import api from "../../api/ApiService";
 // import { useMutation } from "@tanstack/react-query";
@@ -9,7 +7,7 @@ import "./login.scss";
 // const login = async ({ email, password }: { email: string; password: string }) => {
 //   return await api.post("/api/auth/signin", { email, password })
 // }
-  
+
 
 // const useLogin = () => {
 //   return useMutation<any, Error, any, any>(login);
@@ -27,8 +25,7 @@ const Login = () => {
 
   };
 
-  return (<>
-    <Header />
+  return (
     <div className="login-container">
       <div className="login-box">
         <h1 className="login-title">Đăng nhập</h1>
@@ -63,8 +60,6 @@ const Login = () => {
         </form>
       </div>
     </div>
-    <Footer/>
-  </>
   );
 };
 
