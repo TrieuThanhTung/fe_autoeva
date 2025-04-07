@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Header from "../../components/Header/AuthHeader/AuthHeader";
-import Footer from "../../components/Footer/Footer";
+// import Header from "../../components/Header/AuthHeader/AuthHeader";
+// import Footer from "../../components/Footer/Footer";
 import "./signup.scss";
 import { Link } from "react-router-dom";
 
@@ -23,9 +23,7 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <Header />
-      <main className="signup">
+    <main className="signup">
         <div className="form-container">
           <h1>Đăng ký</h1>
           <form onSubmit={handleSubmit}>
@@ -71,8 +69,6 @@ const Signup = () => {
           </form>
         </div>
       </main>
-      <Footer />
-    </>
   );
 };
 
