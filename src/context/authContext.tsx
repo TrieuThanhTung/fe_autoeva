@@ -20,12 +20,10 @@ export const AuthContextProvider: React.FC<{children: ReactNode}> = ({ children 
   );
 
   const login = () => {
-    //TO DO
     setLoggedIn(true);
   };
 
   const logout = () => {
-    //TO DO
     setLoggedIn(false);
   }
 
