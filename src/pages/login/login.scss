@@ -27,6 +27,25 @@
 .input-group {
   margin-bottom: 15px;
   text-align: left;
+
+  &.error {
+    input {
+      border-color: var(--input-boder-error);
+      background-color: var(--input-boder-error-bg);
+    }
+  }
+}
+
+.login-description-error {
+  color: var(--input-boder-error);
+  text-align: left;
+  font-size: 16px;
+  margin: 16px 0;
+  display: none;
+
+  &.show {
+    display: block;
+  }
 }
 
 label {
