@@ -6,14 +6,16 @@ import AuthApi from "../../api/AuthApi";
 import { useGlobalLoading } from "../../context/components/globalLoading/GlobalLoadingProvider";
 import { useNavigate } from "react-router-dom";
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
+import { delay } from "../../util/delay";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePassword = () => setShowPassword((prev) => !prev);
 
   const { showLoading, hideLoading } = useGlobalLoading();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,19 +29,14 @@ const Login = () => {
     try {
       const res = await AuthApi.login(payload);
       if (res.status === 200) {
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
+        delay(() => { navigate("/"); }, 1000);
       } else {
-        setError(true);
+        delay(() => { setError(true); }, 1000);
       }
     } catch (error) {
-      setError(true);
+      delay(() => { setError(true); }, 1000);
     } finally {
-      setTimeout(() => {
-        console.log("loading complete");
-        hideLoading();
-      }, 1000);
+      delay(() => { hideLoading(); }, 1000);
     }
   };
 
@@ -55,9 +52,9 @@ const Login = () => {
         </p>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className={`input-group ${error ? 'error' : ''}`}>
-            <label>Email / Số điện thoại</label>
+            <label>Email</label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Nhập email hoặc số điện thoại"
@@ -66,13 +63,23 @@ const Login = () => {
           </div>
           <div className={`input-group ${error ? 'error' : ''}`}>
             <label>Mật khẩu</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Nhập mật khẩu"
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Nhập mật khẩu"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="toggle-password"
+                aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+              >
+                {showPassword ? 'Ẩn' : 'Hiện'}
+              </button>
+            </div>
           </div>
           <div className="forgot-password">
             <Link to="/forgot-password">Quên mật khẩu?</Link>
