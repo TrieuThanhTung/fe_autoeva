@@ -5,15 +5,15 @@ import { commonRoutes, userRoutes } from './routes/Routes'
 import MainLayout from './layouts/MainLayout/MainLayout';
 import NotFoundPage from './pages/notFound/NotFoundPage';
 import AuthLayout from './layouts/authLayout/AuthLayout';
-import { useState } from 'react';
+import { useAuthContext } from './context/authContext';
 
 const RootLayout = () => {
-  const [isAuthenticated] = useState(false);
-  return isAuthenticated ? <MainLayout /> : <AuthLayout />;
+  const {isLoggedIn} = useAuthContext()
+  return isLoggedIn ? <MainLayout /> : <AuthLayout />;
 }
 
 function App() {
-  const [isAuthenticated] = useState(false);
+  const {isLoggedIn} = useAuthContext()
 
   return (
     <Routes>
@@ -23,7 +23,7 @@ function App() {
             key={index}
             path={router.path}
             element={
-              isAuthenticated ?
+              isLoggedIn ?
               <router.page />
               : 
               <Navigate to="/login" />

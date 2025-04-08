@@ -7,9 +7,13 @@ import { useGlobalLoading } from "../../context/components/globalLoading/GlobalL
 import { useNavigate } from "react-router-dom";
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { delay } from "../../util/delay";
+import { AuthContext, useAuthContext } from "../../context/authContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { showLoading, hideLoading } = useGlobalLoading();
+  const { login } = useAuthContext();
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +21,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword((prev) => !prev);
 
-  const { showLoading, hideLoading } = useGlobalLoading();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
@@ -29,7 +32,7 @@ const Login = () => {
     try {
       const res = await AuthApi.login(payload);
       if (res.status === 200) {
-        delay(() => { navigate("/"); }, 1000);
+        delay(() => { navigate("/"); login()}, 1000);
       } else {
         delay(() => { setError(true); }, 1000);
       }
