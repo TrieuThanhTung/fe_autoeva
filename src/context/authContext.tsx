@@ -24,7 +24,7 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider: React.FC<{children: ReactNode}> = ({ children }) => {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(
-    localStorage.getItem("access-token") ? true : false
+    localStorage.getItem("access-token") && localStorage.getItem("client") && localStorage.getItem("uid") ? true : false
   );
 
   const login = () => {
