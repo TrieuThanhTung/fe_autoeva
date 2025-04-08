@@ -1,54 +1,88 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.scss";
-// import api from "../../api/ApiService";
-// import { useMutation } from "@tanstack/react-query";
-
-// const login = async ({ email, password }: { email: string; password: string }) => {
-//   return await api.post("/api/auth/signin", { email, password })
-// }
-
-
-// const useLogin = () => {
-//   return useMutation<any, Error, any, any>(login);
-// };
+import AuthApi from "../../api/AuthApi";
+import { useGlobalLoading } from "../../context/components/globalLoading/GlobalLoadingProvider";
+import { useNavigate } from "react-router-dom";
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
+import { delay } from "../../util/delay";
+import { useAuthContext } from "../../context/authContext";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { showLoading, hideLoading } = useGlobalLoading();
+  const { login } = useAuthContext();
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePassword = () => setShowPassword((prev) => !prev);
 
-  // const loginMutation = useLogin();
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
-
+    setError(false);
+    showLoading();
+    const payload = {
+      email,
+      password,
+    };
+    try {
+      const res = await AuthApi.login(payload);
+      if (res.status === 200) {
+        delay(() => { navigate("/"); login()}, 1000);
+      } else {
+        delay(() => { setError(true); }, 1000);
+      }
+    } catch (error) {
+      delay(() => { setError(true); }, 1000);
+    } finally {
+      delay(() => { hideLoading(); }, 1000);
+    }
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
         <h1 className="login-title">Đăng nhập</h1>
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="input-group">
-            <label>Email / Số điện thoại</label>
+        <p className={`login-description-error ${error ? 'show' : ''}`}>
+          <PriorityHighOutlinedIcon className="error-icon" />
+          Đăng nhập không thành công.
+          <br />
+          Vui lòng kiểm tra lại thông tin đăng nhập.
+        </p>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className={`input-group ${error ? 'error' : ''}`}>
+            <label>Email</label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Nhập email hoặc số điện thoại"
               required
             />
           </div>
-          <div className="input-group">
+          <div className={`input-group ${error ? 'error' : ''}`}>
             <label>Mật khẩu</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Nhập mật khẩu"
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Nhập mật khẩu"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="toggle-password"
+                aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+              >
+                {showPassword ? 'Ẩn' : 'Hiện'}
+              </button>
+            </div>
           </div>
           <div className="forgot-password">
             <Link to="/forgot-password">Quên mật khẩu?</Link>

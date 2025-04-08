@@ -5,3 +5,4 @@
   location: string;
   mileage: string;
 }
+

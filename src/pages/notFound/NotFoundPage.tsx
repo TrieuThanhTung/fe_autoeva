@@ -9,12 +9,12 @@ const NotFoundPage: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <h1 className={styles.code}>404</h1>
-        <p className={styles.message}>Oops! Page not found</p>
+        <p className={styles.message}>Oops! Không tìm thấy trang</p>
         <p className={styles.subMessage}>
-          We are sorry, but the page you requested was not found
+        Chúng tôi xin lỗi, nhưng trang bạn yêu cầu không được tìm thấy
         </p>
         <button className={styles.homeButton} onClick={() => handleNagivate("/")}>
-          Go to Homepage
+          Về trang chủ
         </button>
       </div>
     </div>

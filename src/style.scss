@@ -113,6 +113,8 @@ $theme-map: null;
   --tablet: 960px;
   --mobile: 480px;
   --heigh-auth-layout: calc(100vh - 60px - 240px);
+  --input-boder-error: #ff0000;
+  --input-boder-error-bg: #ff00001c;
 }
 
 .theme-dark {

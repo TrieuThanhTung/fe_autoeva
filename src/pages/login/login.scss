@@ -27,6 +27,25 @@
 .input-group {
   margin-bottom: 15px;
   text-align: left;
+
+  &.error {
+    input {
+      border-color: var(--input-boder-error);
+      background-color: var(--input-boder-error-bg);
+    }
+  }
+}
+
+.login-description-error {
+  color: var(--input-boder-error);
+  text-align: left;
+  font-size: 16px;
+  margin: 16px 0;
+  display: none;
+
+  &.show {
+    display: block;
+  }
 }
 
 label {
@@ -96,3 +115,40 @@ input:focus {
 .signup-link a:hover {
   text-decoration: underline;
 }
+
+.input-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .password-wrapper {
+    position: relative;
+
+    input {
+      width: 100%;
+      padding-right: 40px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0;
+      color: gray;
+      font-size: 14px;
+    }
+  }
+
+  &.error input {
+    border: 1px solid red;
+  }
+}
+
