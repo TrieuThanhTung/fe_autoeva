@@ -7,7 +7,7 @@ import { useGlobalLoading } from "../../context/components/globalLoading/GlobalL
 import { useNavigate } from "react-router-dom";
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import { delay } from "../../util/delay";
-import { AuthContext, useAuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const Login = () => {
   const navigate = useNavigate();
