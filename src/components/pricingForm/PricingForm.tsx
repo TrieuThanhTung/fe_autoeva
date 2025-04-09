@@ -1,6 +1,8 @@
 import "./PricingForm.scss"
 import React, { useState } from "react";
 import ImagePrcingCar from "../../assets/images/car-valuation.jpg";
+import { FaCalculator } from "react-icons/fa";
+
 
 const carModels: { [key: string]: string[] } = {
   Toyota: ["Camry", "Corolla", "Fortuner"],
@@ -12,13 +14,13 @@ const PricingForm: React.FC = () => {
 
   return (
     <section className="container-pricing-form">
-      <div className="pricing-form">
+      <div className="wrapper-pricing-form">
         <h2 className="">Định Giá Xe Thông Minh</h2>
         <p className="des">
           Công nghệ AI phân tích hàng triệu dữ liệu để đưa ra giá xe chính xác nhất theo thị trường.
           Chỉ cần nhập một số thông tin cơ bản
         </p>
-        <form className="">
+        <form className="form-pricing">
           <select 
             className="input-form" 
             onChange={(e) => setSelectedBrand(e.target.value)}
@@ -35,7 +37,10 @@ const PricingForm: React.FC = () => {
           </select>
           <input type="number" placeholder="Năm sản xuất" className="input-form" />
           <input type="number" placeholder="Số km đã đi" className="input-form" />
-          <button className="bg-black text-white px-4 py-2 rounded-md">Định giá ngay</button>
+          <button className="submit-btn">
+            <FaCalculator className="icon" />
+            <span>Định giá ngay</span>
+          </button>
         </form>
       </div>
       <div className="pricing-form-image">

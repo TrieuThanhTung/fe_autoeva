@@ -21,7 +21,8 @@
     border: 2px solid gray;
     color: gray;
     width: 44px;
-    height: 48px;
+    height: 44px;
+    border-radius: 6px;
 
     &.favorited {
       color: red;

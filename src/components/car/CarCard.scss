@@ -60,7 +60,7 @@
 
   .favoriteButton,
   .detailButton {
-    border-radius: 6px;
+    border-radius: 6px; 
     font-size: 14px;
     cursor: pointer;
     width: auto;
@@ -69,6 +69,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    padding: 8px 12px;
   }
 
   .favoriteButton {
