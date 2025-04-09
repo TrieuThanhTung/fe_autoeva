@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
 
-  .pricing-form {
+  .wrapper-pricing-form {
     flex: 1;
     margin: 0 24px;
   
@@ -14,6 +14,34 @@
       font-size: 28px;
       margin-bottom: 24px;
       font-weight: bold;
+    }
+
+    .form-pricing {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .submit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+
+        .icon {
+          margin-right: 8px;
+        }
+
+        &:hover {
+          background-color: #000000d8;
+        }
+      }
     }
 
     .des {
