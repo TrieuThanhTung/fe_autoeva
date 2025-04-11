@@ -35,14 +35,14 @@ const Login = () => {
         localStorage.setItem("access-token", res.headers["access-token"]);
         localStorage.setItem("client", res.headers["client"]);
         localStorage.setItem("uid", res.headers["uid"]);
-        delay(() => { navigate("/"); login()}, 1000);
+        delay(() => { navigate("/"); login()}, 500);
       } else {
-        delay(() => { setError(true); }, 1000);
+        delay(() => { setError(true); }, 500);
       }
     } catch (error) {
-      delay(() => { setError(true); }, 1000);
+      delay(() => { setError(true); }, 500);
     } finally {
-      delay(() => { hideLoading(); }, 1000);
+      delay(() => { hideLoading(); }, 500);
     }
   };
 
