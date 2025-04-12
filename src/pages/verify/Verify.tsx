@@ -1,62 +1,71 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import VerifySuccess from './success/VerifySuccess';
 import styles from './Verify.module.scss';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
-// import CircularProgress from '@mui/material/CircularProgress';
+import { useGlobalLoading } from '../../context/components/globalLoading/GlobalLoadingProvider';
+import AuthApi from '../../api/AuthApi';
 
 
 const VerifyPage = () => {
   const [searchParams] = useSearchParams();
-  const [status, setStatus] = useState<'loading' | 'success' | 'expired' | 'error'>('loading');
+  const [status, setStatus] = useState<'loading' | 'success' | 'expired' | 'confirmed' | 'error'>('loading');
   const [resent, setResent] = useState(false);
+  const {showLoading, hideLoading} = useGlobalLoading();
 
+  const token = searchParams.get('confirmation_token');
   const email = searchParams.get('email');
-  const token = searchParams.get('token');
 
   useEffect(() => {
-    // const verify = async () => {
-    //   try {
-    //     const res = await fetch('/api/verify', {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ email, token }),
-    //     });
+    const verify = async () => {
+      showLoading();
+      try {
+        const res = await AuthApi.verifyEmail(token as string);
+        if (res.status === 200) {
+          setStatus('success');
+        } else {
+          if (res.data.errors.includes("Email was already confirmed, please try signing in")) {
+            setStatus('confirmed');
+          } else {
+            setStatus('expired');
+          }
+        }
+      } catch {
+        setStatus('error');
+      } finally {
+        hideLoading();
+      }
+    };
 
-    //     if (res.ok) {
-    //       setStatus('success');
-    //     } else if (res.status === 410) {
-    //       setStatus('expired');
-    //     } else {
-    //       setStatus('error');
-    //     }
-    //   } catch {
-    //     setStatus('error');
-    //   }
-    // };
-
-    // if (email && token) verify();
-    // else setStatus('error');
-    setStatus('loading'); // Simulate success for testing
-  }, [email, token]);
+    if (token) verify();
+    else setStatus('error');
+  }, [token]);
 
   const resendEmail = async () => {
-    await fetch('/api/resend-verification', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    });
-    setResent(true);
+    showLoading();
+      try {
+        const res = await AuthApi.resendVerifyEmail(email as string);
+        if (res.status === 200) {
+          setResent(true);
+          setStatus('expired');
+        } else {
+          setStatus('error');
+        }
+      } catch {
+        setStatus('error');
+      } finally {
+        hideLoading();
+      }
   };
 
-  if (status === 'success') return <VerifySuccess />;
+  if (status === 'success' || status === 'confirmed') return <VerifySuccess />;
 
   return (
     <div className={styles.container}>
       {status === 'loading' && 
         <div className={styles.loadingWrapper}>
-        {/* <CircularProgress className={styles.spinner} /> */}
         <p>Đang xác minh tài khoản...</p>
       </div>
       }

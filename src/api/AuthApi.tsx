@@ -9,6 +9,14 @@ class AuthApi {
   register = async (payload: UserRegistrationPayload) => {
     return await axiosInstance.post("/api/auth", payload);
   };
+
+  verifyEmail = async (token: string ) => {
+    return await axiosInstance.get(`/api/auth/confirmation?confirmation_token=${token}`);
+  }
+
+  resendVerifyEmail = async (email: string) => {
+    return await axiosInstance.post("/api/auth/confirmation", { email });
+  }
 }
 
 export default new AuthApi();
