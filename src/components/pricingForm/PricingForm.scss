@@ -9,17 +9,43 @@
   .wrapper-pricing-form {
     flex: 1;
     margin: 0 24px;
-  
+
     h2 {
       font-size: 28px;
       margin-bottom: 24px;
       font-weight: bold;
+      color: #333;
+    }
+
+    .des {
+      color: #7e7e7e;
+      font-size: 16px;
+      margin-bottom: 24px;
     }
 
     .form-pricing {
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      .input-form {
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        padding: 8px;
+        width: 100%;
+        font-size: 14px;
+        color: #333;
+        background-color: #fff;
+      }
+
+      select {
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        padding: 8px;
+        font-size: 14px;
+      }
 
       .submit-btn {
         display: flex;
@@ -32,7 +58,7 @@
         border: none;
         cursor: pointer;
         font-size: 16px;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease;
 
         .icon {
           margin-right: 8px;
@@ -43,35 +69,25 @@
         }
       }
     }
-
-    .des {
-      color: grey;
-      font-size: 16px;
-      margin-bottom: 24px;
-    }
-
-    .input-form {
-      border: 1px solid #e5e7eb;  
-      border-radius: 5px;
-      padding: 8px;              
-      width: 100%; 
-    }
-
-    select {
-      background-color: #fff;
-      color: grey
-    }
   }
-  
+
   .pricing-form-image {
     width: calc(50% - 48px);
     margin: 0 24px;
+
     img {
       width: 100%;
+      border-radius: 8px;
     }
   }
 
   @include style.mobile {
+    flex-direction: column;
+
+    .wrapper-pricing-form {
+      margin-bottom: 24px;
+    }
+
     .pricing-form-image {
       display: none;
     }
