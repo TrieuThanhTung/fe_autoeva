@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
         <div className="hero-buttons">
           <div className="btn primary">
             <CalculateRoundedIcon className="icon"/>
-            <Link to="">Định giá ngay</Link>
+            <Link to="/predict">Định giá ngay</Link>
           </div>
           <div className="btn secondary">
             <DirectionsCarRoundedIcon className="icon"/>

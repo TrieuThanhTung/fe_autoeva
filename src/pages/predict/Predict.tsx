@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./predict.scss";
 import { useLocation } from "react-router-dom";
+import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
 
 // Interface định nghĩa cấu trúc dữ liệu trả về từ API
 interface Brand {
@@ -18,6 +19,18 @@ interface Version {
   info: string;
 }
 
+interface PredictionResponseBody {
+  car_name: string;
+  year_of_manufacture: number;
+  mileage: number;
+  predicted_price: string;
+}
+
+interface PredictionResponse {
+  status: number;
+  body: PredictionResponseBody;
+}
+
 // Hàm gọi API và trả về dữ liệu
 const fetchBrands = async (): Promise<Brand[]> => {
   const response = await fetch("https://spec.autoeva.io.vn/api/brands");
@@ -31,6 +44,33 @@ const fetchModels = async (brandId: number): Promise<Model[]> => {
 
 const fetchVersions = async (modelId: number): Promise<Version[]> => {
   const response = await fetch(`https://spec.autoeva.io.vn/api/versions?model_id=${modelId}`);
+  return response.json();
+};
+
+const fetchPrediction = async (
+  brandId: number,
+  modelId: number,
+  versionId: number,
+  year: number,
+  mileage: number
+): Promise<PredictionResponse> => {
+  const response = await fetch("https://spec.autoeva.io.vn/api/predicts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      brand_id: brandId,
+      model_id: modelId,
+      version_id: versionId,
+      year_of_manufacture: year,
+      mileage: mileage,
+    }),
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Failed to predict price");
+  }
   return response.json();
 };
 
@@ -55,7 +95,11 @@ const Predict: React.FC = () => {
   const [versions, setVersions] = useState<Version[]>([]);
 
   const [showResult, setShowResult] = useState<boolean>(false);
-  const [predictedPrice, setPredictedPrice] = useState<number | null>(null);
+  const [predictedPrice, setPredictedPrice] = useState<string | null>(null); // Giá dự đoán là string
+  const [predictionError, setPredictionError] = useState<string | null>(null);
+  const [predictedCarName, setPredictedCarName] = useState<string>("");
+  const [predictedYear, setPredictedYear] = useState<number | null>(null);
+  const [predictedMileage, setPredictedMileage] = useState<number | null>(null);
 
   // Lưu tên của hãng, mẫu và phiên bản đã chọn
   const [selectedBrandName, setSelectedBrandName] = useState<string>("");
@@ -65,8 +109,13 @@ const Predict: React.FC = () => {
   // Lấy danh sách các hãng xe khi component mount
   useEffect(() => {
     const getBrands = async () => {
-      const brandsData = await fetchBrands();
-      setBrands(brandsData);
+      try {
+        const brandsData = await fetchBrands();
+        setBrands(brandsData);
+      } catch (error: any) {
+        console.error("Error fetching brands:", error);
+        // Optionally set an error state to display to the user
+      }
     };
     getBrands();
   }, []);
@@ -75,13 +124,19 @@ const Predict: React.FC = () => {
   useEffect(() => {
     if (selectedBrand) {
       const getModels = async () => {
-        const modelsData = await fetchModels(parseInt(selectedBrand));
-        setModels(modelsData);
-        // Chỉ reset model và version nếu không có giá trị ban đầu từ query params
-        if (!initialModel) {
+        try {
+          const modelsData = await fetchModels(parseInt(selectedBrand));
+          setModels(modelsData);
+          if (!initialModel) {
+            setSelectedModel("");
+          }
+          if (!initialVersion) {
+            setSelectedVersion("");
+          }
+        } catch (error: any) {
+          console.error("Error fetching models:", error);
+          setModels([]);
           setSelectedModel("");
-        }
-        if (!initialVersion) {
           setSelectedVersion("");
         }
       };
@@ -104,10 +159,15 @@ const Predict: React.FC = () => {
   useEffect(() => {
     if (selectedModel) {
       const getVersions = async () => {
-        const versionsData = await fetchVersions(parseInt(selectedModel));
-        setVersions(versionsData);
-        // Chỉ reset version nếu không có giá trị ban đầu từ query params
-        if (!initialVersion) {
+        try {
+          const versionsData = await fetchVersions(parseInt(selectedModel));
+          setVersions(versionsData);
+          if (!initialVersion) {
+            setSelectedVersion("");
+          }
+        } catch (error: any) {
+          console.error("Error fetching versions:", error);
+          setVersions([]);
           setSelectedVersion("");
         }
       };
@@ -128,7 +188,7 @@ const Predict: React.FC = () => {
   useEffect(() => {
     if (selectedVersion) {
       const selectedVersionObj = versions.find(version => version.id.toString() === selectedVersion);
-      setSelectedVersionInfo(selectedVersionObj ? selectedVersionObj.info.split("-")[0] : "");
+      setSelectedVersionInfo(selectedVersionObj ? selectedVersionObj.info.split("/")[0] : "");
     } else {
       setSelectedVersionInfo("");
     }
@@ -157,11 +217,39 @@ const Predict: React.FC = () => {
     setKmDriven(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const randomPrice = Math.floor(300 + Math.random() * 400) * 1000000;
-    setPredictedPrice(randomPrice);
-    setShowResult(true);
+    setPredictedPrice(null);
+    setPredictionError(null);
+    setShowResult(false);
+    setPredictedCarName("");
+    setPredictedYear(null);
+    setPredictedMileage(null);
+
+    if (!selectedBrand || !selectedModel || !selectedVersion || !year || !kmDriven) {
+      setPredictionError("Vui lòng điền đầy đủ thông tin.");
+      setShowResult(true);
+      return;
+    }
+
+    try {
+      const predictionData = await fetchPrediction(
+        parseInt(selectedBrand),
+        parseInt(selectedModel),
+        parseInt(selectedVersion),
+        parseInt(year),
+        parseInt(kmDriven)
+      );
+      setPredictedPrice(predictionData.body.predicted_price);
+      setPredictedCarName(predictionData.body.car_name);
+      setPredictedYear(predictionData.body.year_of_manufacture);
+      setPredictedMileage(predictionData.body.mileage);
+      setShowResult(true);
+    } catch (error: any) {
+      console.error("Error predicting price:", error);
+      setPredictionError(error.message || "Đã có lỗi xảy ra khi dự đoán giá.");
+      setShowResult(true); // Show result even with error to display the message
+    }
   };
 
   return (
@@ -207,7 +295,7 @@ const Predict: React.FC = () => {
               <option value="">Chọn phiên bản</option>
               {versions.map((ver) => (
                 <option key={ver.id} value={ver.id}>
-                  {ver.info.split("-")[0]} {/* Hiển thị phần trước dấu "-" */}
+                  {ver.info.split("/")[0]} {/* Hiển thị phần trước dấu "/" */}
                 </option>
               ))}
             </select>
@@ -234,8 +322,8 @@ const Predict: React.FC = () => {
               required
             />
           </div>
-
           <button type="submit" className="submit-btn">
+            <CalculateRoundedIcon className="icon"/>
             Định giá ngay
           </button>
         </form>
@@ -268,12 +356,18 @@ const Predict: React.FC = () => {
         </div>
       </div>
 
-      {showResult && predictedPrice !== null && (
+      {showResult && (predictedPrice !== null || predictionError !== null) && (
         <div className="predict-modal">
           <div className="modal-content">
             <h2>Thông tin xe của bạn</h2>
 
             <div className="info-table">
+              {predictedCarName && (
+                <div className="row">
+                  <span className="label">Tên xe</span>
+                  <span className="value">{predictedCarName}</span>
+                </div>
+              )}
               <div className="row">
                 <span className="label">Hãng xe</span>
                 <span className="value">{selectedBrandName}</span>
@@ -288,20 +382,25 @@ const Predict: React.FC = () => {
               </div>
               <div className="row">
                 <span className="label">Năm sản xuất</span>
-                <span className="value">{year}</span>
+                <span className="value">{predictedYear !== null ? predictedYear : year}</span>
               </div>
               <div className="row">
                 <span className="label">Công tơ mét</span>
                 <span className="value">
-                  {parseInt(kmDriven).toLocaleString()} km
+                  {predictedMileage !== null ? predictedMileage.toLocaleString() : parseInt(kmDriven).toLocaleString()} km
                 </span>
               </div>
             </div>
 
-            <div className="price">
-              Giá dự đoán:{" "}
-              <span className="value">{predictedPrice.toLocaleString()} VND</span>
-            </div>
+            {predictedPrice !== null ? (
+              <div className="price">
+                Giá dự đoán:{" "}
+                <span className="value">{predictedPrice} VND</span>
+              </div>
+            ) : (
+              predictionError && <div className="error-message">{predictionError}</div>
+            )}
+
             <button onClick={() => setShowResult(false)}>Đóng</button>
           </div>
         </div>
