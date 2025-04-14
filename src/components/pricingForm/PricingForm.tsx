@@ -146,7 +146,7 @@ const PricingForm: React.FC = () => {
           <select className="input-form" value={version} onChange={(e) => setVersion(e.target.value)} disabled={!model}>
             <option value="">Chọn phiên bản</option>
             {versions.map((v) => (
-              <option key={v.id} value={v.id}>{v.info ? v.info.split("-")[0] : v.name}</option>
+              <option key={v.id} value={v.id}>{v.info ? v.info.split("/")[0] : v.name}</option>
             ))}
           </select>
 

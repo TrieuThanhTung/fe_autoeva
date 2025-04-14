@@ -52,9 +52,11 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-
             &:hover {
                 background-color: #3a3a3a;
+            }
+            .icon {
+                margin-right: 10px;
             }
         }
     }
