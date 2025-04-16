@@ -2,8 +2,16 @@ import { useState } from "react";
 import styles from "./CreatePostPage.module.scss";
 import ImageUpload from "../../../components/uploadImage/UploadImage";
 import CKEditor from "../../../components/Editor/Editor";
+import PostApi from "../../../api/PostApi";
 
-// import 'ckeditor5/ckeditor5.css';
+async function uploadAllImages(images: File[]): Promise<(string | null)[]> {
+  const uploadPromises = images.map((image) => {
+    return PostApi.uploadImageToImgur(image);
+  });
+
+  const results = await Promise.all(uploadPromises);
+  return results;
+}
 
 const CreatePostPage = () => {
   const [form, setForm] = useState({
@@ -31,9 +39,18 @@ const CreatePostPage = () => {
     setForm({ ...form, images: files });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleUpload = async (images: File[]) => {
+    if (!images || images.length === 0) return;
+
+    return await uploadAllImages(images)
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+    const imageUrls = await handleUpload(form.images);
+    
+
+    console.log(imageUrls);
   };
 
   return (
@@ -60,9 +77,14 @@ const CreatePostPage = () => {
         <div className={styles.rowGrouped}>
           <div className={styles.row}>
             <label>Năm sản xuất</label>
-            <select name="year" onChange={handleChange} value={form.year}>
-              <option value="">Chọn năm</option>
-            </select>
+            <input
+              type="number"
+              name="year"
+              placeholder="Nhập năm sản xuất"
+              onChange={handleChange}
+              value={form.year}
+              required
+            />
           </div>
 
           <div className={styles.row}>
@@ -73,6 +95,7 @@ const CreatePostPage = () => {
               placeholder="Nhập số km"
               onChange={handleChange}
               value={form.mileage}
+              required
             />
           </div>
         </div>
@@ -85,6 +108,7 @@ const CreatePostPage = () => {
             placeholder="Nhập giá bán (VND)"
             onChange={handleChange}
             value={form.price}
+            required
           />
         </div>
 
