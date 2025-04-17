@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthApi from "../../api/AuthApi";
 import { delay } from "../../util/delay";
 import { useGlobalLoading } from "../../context/components/globalLoading/GlobalLoadingProvider";
+import { vietnameseNameRegex } from "../../util/regex";
 
 const Signup = () => {
   const { showLoading, hideLoading } = useGlobalLoading();
@@ -42,7 +43,7 @@ const Signup = () => {
       confirmPassword: "",
     });
 
-    if (!/^[a-zA-Z ]+$/.test(formData.fullName)) {
+    if (!vietnameseNameRegex.test(formData.fullName)) {
       setErrors((prev) => ({
         ...prev,
         fullName: "Tên không hợp lệ",

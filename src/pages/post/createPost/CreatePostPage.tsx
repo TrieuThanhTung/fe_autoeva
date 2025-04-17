@@ -1,21 +1,108 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import styles from "./CreatePostPage.module.scss";
 import ImageUpload from "../../../components/uploadImage/UploadImage";
 import CKEditor from "../../../components/Editor/Editor";
+import { uploadAllImages } from "../../../util/utils";
+import { Brand, CreatePostType, Model, Version } from "../../../util/type";
+import { toast } from 'react-toastify';
+import CarInfoApi from "../../../api/CarInfoApi";
+import { useGlobalLoading } from "../../../context/components/globalLoading/GlobalLoadingProvider";
+import PostApi from "../../../api/PostApi";
 
-// import 'ckeditor5/ckeditor5.css';
+type formDataType = {
+  brand: number;        
+  model: number;        
+  version: number;      
+  year: number | string;         
+  mileage: number | string;      
+  price: number | string;        
+  location: string;     
+  images: File[];      
+};
 
 const CreatePostPage = () => {
-  const [form, setForm] = useState({
-    brand: "",
-    model: "",
+
+  const [form, setForm] = useState<formDataType>({
+    brand: -1,
+    model: -1,
+    version: -1,
     year: "",
     mileage: "",
     price: "",
     location: "",
-    description: "",
     images: [] as File[],
   });
+
+  const {showLoading, hideLoading} = useGlobalLoading();
+  const [description, setDescription] = useState<string>("");
+  
+  const [brands, setBrands] = useState<Brand[]>();
+  const [models, setModels] = useState<Model[]>();
+  const [versions, setVersions] = useState<Version[]>();
+
+  useEffect(() => {
+    
+    const fetchBrands = async () => {
+      showLoading();
+      try {
+        const response = await CarInfoApi.getBrands();
+        if (response.status === 200) {
+          setBrands(response.data); 
+        } else {
+          toast.error("Lỗi khi tải dữ liệu hãng xe");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        hideLoading();
+      }
+    };
+
+    fetchBrands();
+  }, []);
+
+  useEffect(() => {
+    const fetchModels = async () => {
+      if (form.brand === -1) return;
+      showLoading();
+      try {
+        const response = await CarInfoApi.getModels(form.brand);
+        if (response.status === 200) {
+          setModels(response.data); 
+        } else {
+          toast.error("Lỗi khi tải dữ liệu mẫu xe");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        hideLoading();
+      }
+    };
+
+    fetchModels();
+  }, [form.brand]);
+
+  useEffect(() => {
+    const fetchVersions = async () => {
+      if (form.model === -1) return;
+      showLoading();
+      try {
+        const response = await CarInfoApi.getVersions(form.model);
+        if (response.status === 200) {
+          setVersions(response.data); 
+        } else {
+          toast.error("Lỗi khi tải dữ liệu phiên bản xe");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        hideLoading();
+      }
+    }
+
+    fetchVersions();
+  }, [form.model]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -24,45 +111,165 @@ const CreatePostPage = () => {
   };
 
   const handleDesChange = (newContent: string) => {
-    setForm({ ...form, description: newContent });
+    setDescription(newContent);
   };
 
   const handleImageUpload = (files: File[]) => {
     setForm({ ...form, images: files });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleUpload = async (images: File[]) => {
+    if (!images || images.length === 0) {
+      toast.error("Vui lòng chọn hình ảnh để tải lên");
+      return;
+    }
+    return await uploadAllImages(images)
+  };
+
+  const verifyForm = () => {
+    if (form.brand === -1) {
+      toast.error("Vui lòng chọn hãng xe");
+      return false;
+    }
+    if (form.model === -1) {
+      toast.error("Vui lòng chọn mẫu xe");
+      return false;
+    }
+    if (form.version === -1) {
+      toast.error("Vui lòng chọn phiên bản xe");
+      return false;
+    }
+    if (Number(form.year) <= 1900 || Number(form.year) > new Date().getFullYear()) {
+      toast.error("Vui lòng nhập năm sản xuất hợp lệ");
+      return false;
+    }
+    if (Number(form.mileage) <= 1 || Number(form.mileage) > 1000000) {
+      toast.error("Vui lòng nhập số km đã đi hợp lệ");
+      return false;
+    }
+    if (form.price === '' || Number(form.price) <= 10000000 || Number(form.price) > 100000000000) {
+      toast.error("Vui lòng nhập giá bán, tối thiểu 10 triệu, tối đa 100 tỷ");
+      return false;
+    }
+    if (form.location.trim() === "") {
+      toast.error("Vui lòng nhập địa chỉ");
+      return false;
+    }
+    if (description.trim() === "") {
+      toast.error("Vui lòng nhập mô tả chi tiết");
+      return false;
+    }
+    if (form.images.length === 0 && form.images.length <= 10) {
+      toast.error("Vui lòng tải lên hình ảnh, tối đa 10 hình ảnh");
+      return false;
+    }
+    return true;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+    showLoading();
+
+    if (!verifyForm()) {
+      hideLoading();
+      return;
+    }
+    try {
+      const imageUrls = await handleUpload(form.images);
+      if (!imageUrls) {
+        toast.error("Lỗi khi tải lên hình ảnh");
+        return;
+      }
+      const formData = {
+        brand_id: form.brand as number,
+        model_id: form.model as number,
+        version_id: form.version as number,
+        description: description,
+        year: form.year as number,
+        price: form.price as number,
+        location: form.location,
+        odo: form.mileage as number,
+        images: imageUrls
+      }
+      console.log(formData);
+      const response = await PostApi.createPost(formData as CreatePostType);
+      if (response.status === 201) {
+        toast.success("Đăng bài thành công");
+        setForm({
+          brand: -1,
+          model: -1,
+          version: -1,
+          year: "",
+          mileage: "",
+          price: "",
+          location: "",
+          images: [] as File[],
+        });
+        setDescription("");
+        console.log("Post created successfully:", response.data);
+      } else {
+        toast.error("Đã có lỗi xảy ra trong quá trình đăng bài");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Đã có lỗi xảy ra trong quá trình đăng bài");
+    } finally { 
+      hideLoading();
+    }
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Tạo Bài Đăng Mới</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.rowGrouped}>
+      <form>
+        <div className={styles.rowGroupedThreed}>
           <div className={styles.row}>
             <label>Hãng xe</label>
             <select name="brand" onChange={handleChange} value={form.brand}>
-              <option value="">Chọn hãng xe</option>
-              <option value="Toyota">Toyota</option>
-              <option value="Honda">Honda</option>
+             <option value="" className={styles.defaultSelectText}>Chọn hãng xe</option>
+              {brands?.map((brand) => (
+                <option key={brand.id} value={brand.id}>
+                  {brand.name}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className={styles.row}>
             <label>Mẫu xe</label>
-            <select name="model" onChange={handleChange} value={form.model}>
-              <option value="">Chọn mẫu xe</option>
+            <select name="model" onChange={handleChange} value={form.model} disabled={form.brand === -1}>
+              <option value="" className={styles.defaultSelectText}>Chọn mẫu xe</option>
+              {models?.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {model.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.row}>
+            <label>Phiên bản</label>
+            <select name="version" onChange={handleChange} value={form.version} disabled={form.model === -1}>
+              <option value="" className={styles.defaultSelectText}>Chọn phiên bản</option>
+              {versions?.map((version) => (
+                <option key={version.id} value={version.id}>
+                  {version.info}
+                </option>
+              ))}
             </select>
           </div>
         </div>
         <div className={styles.rowGrouped}>
           <div className={styles.row}>
             <label>Năm sản xuất</label>
-            <select name="year" onChange={handleChange} value={form.year}>
-              <option value="">Chọn năm</option>
-            </select>
+            <input
+              type="number"
+              name="year"
+              placeholder="Nhập năm sản xuất"
+              onChange={handleChange}
+              value={form.year}
+              required
+            />
           </div>
 
           <div className={styles.row}>
@@ -73,6 +280,7 @@ const CreatePostPage = () => {
               placeholder="Nhập số km"
               onChange={handleChange}
               value={form.mileage}
+              required
             />
           </div>
         </div>
@@ -85,14 +293,20 @@ const CreatePostPage = () => {
             placeholder="Nhập giá bán (VND)"
             onChange={handleChange}
             value={form.price}
+            required
           />
         </div>
 
         <div className={styles.row}>
           <label>Vị trí</label>
-          <select name="location" onChange={handleChange} value={form.location}>
-            <option value="">Chọn tỉnh/thành phố</option>
-          </select>
+          <input
+            type="text"
+            name="location"
+            placeholder="Nhập địa chỉ"
+            onChange={handleChange}
+            value={form.location}
+            required
+          />
         </div>
 
         <div className={styles.row}>
@@ -106,7 +320,7 @@ const CreatePostPage = () => {
         </div>
 
         <div className={styles.containerBtn}>
-          <button className={styles.btnSubmit} type="submit">
+          <button className={styles.btnSubmit} type="button" onClick={handleSubmit}>
             Đăng bài
           </button>
         </div>
