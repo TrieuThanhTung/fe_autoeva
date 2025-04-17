@@ -8,6 +8,7 @@ const ImageUpload = ({ onUpload }: { onUpload: (files: File[]) => void }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/jpeg": [], "image/png": [] },
+    maxSize: 10 * 1024 * 1024,
     multiple: true,
     maxFiles: 10,
     onDrop: (acceptedFiles) => {

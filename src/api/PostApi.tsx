@@ -1,4 +1,6 @@
 import axios from "axios";
+import axiosInstance from "./AxiosInstance";
+import { CreatePostType } from "../util/type";
 
 class PostApi {
   uploadImageToImgur = async ( 
@@ -24,6 +26,9 @@ class PostApi {
     }
   }
 
+  createPost = async (payload: CreatePostType) => {
+     return await axiosInstance.post("/api/sale_posts", payload);
+  }
 }
 
 export default new PostApi();
