@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./CreatePostPage.module.scss";
 import ImageUpload from "../../../components/uploadImage/UploadImage";
 import CKEditor from "../../../components/Editor/Editor";
-import { uploadAllImages } from "../../../util/utils";
+import { formatCurrency, parseCurrency, uploadAllImages } from "../../../util/utils";
 import { Brand, CreatePostType, Model, Version } from "../../../util/type";
 import { toast } from 'react-toastify';
 import CarInfoApi from "../../../api/CarInfoApi";
@@ -110,6 +110,16 @@ const CreatePostPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = parseCurrency(e.target.value);
+    setForm({ ...form, price: rawValue });
+  };
+
+  const handleMileageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = parseCurrency(e.target.value);
+    setForm({ ...form, mileage: rawValue });
+  };
+
   const handleDesChange = (newContent: string) => {
     setDescription(newContent);
   };
@@ -191,7 +201,6 @@ const CreatePostPage = () => {
         odo: form.mileage as number,
         images: imageUrls
       }
-      console.log(formData);
       const response = await PostApi.createPost(formData as CreatePostType);
       if (response.status === 201) {
         toast.success("Đăng bài thành công");
@@ -222,7 +231,7 @@ const CreatePostPage = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Tạo Bài Đăng Mới</h2>
       <form>
-        <div className={styles.rowGroupedThreed}>
+        <div className={styles.rowGroupedThree}>
           <div className={styles.row}>
             <label>Hãng xe</label>
             <select name="brand" onChange={handleChange} value={form.brand}>
@@ -275,11 +284,11 @@ const CreatePostPage = () => {
           <div className={styles.row}>
             <label>Số km đã đi</label>
             <input
-              type="number"
+              type="text"
               name="mileage"
               placeholder="Nhập số km"
-              onChange={handleChange}
-              value={form.mileage}
+              onChange={handleMileageChange}
+              value={form.mileage ? formatCurrency(form.mileage) : ""}
               required
             />
           </div>
@@ -288,11 +297,11 @@ const CreatePostPage = () => {
         <div className={styles.row}>
           <label>Giá bán</label>
           <input
-            type="number"
+            type="text"
             name="price"
             placeholder="Nhập giá bán (VND)"
-            onChange={handleChange}
-            value={form.price}
+            onChange={handlePriceChange}
+            value={form.price ? formatCurrency(form.price) : ""}
             required
           />
         </div>

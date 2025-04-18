@@ -17,6 +17,10 @@ class AuthApi {
   resendVerifyEmail = async (email: string) => {
     return await axiosInstance.post("/api/auth/confirmation", { email });
   }
+
+  logout = async () => {
+    return await axiosInstance.delete("/api/auth/sign_out");
+  }
 }
 
 export default new AuthApi();

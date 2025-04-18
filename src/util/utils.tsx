@@ -8,3 +8,12 @@ export async function uploadAllImages(images: File[]): Promise<(string | null)[]
   const results = await Promise.all(uploadPromises);
   return results;
 }
+
+export const formatCurrency = (value: string | number) => {
+  const number = typeof value === "string" ? value.replace(/\D/g, "") : value;
+  return Number(number).toLocaleString("vi-VN");
+};
+
+export const parseCurrency = (value: string) => {
+  return value.replace(/\D/g, "");
+};
