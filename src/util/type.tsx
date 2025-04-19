@@ -32,3 +32,16 @@ export interface Version {
   id: number;
   info: string;
 }
+
+export interface PostItemType {
+  id: number;
+  title: string;
+  price: string;
+  status: string; 
+  year: number;
+  odo: number;
+  image: string;
+  created_at: string;
+  updated_at: string;
+  favorited: boolean;
+}

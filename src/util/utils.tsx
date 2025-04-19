@@ -17,3 +17,7 @@ export const formatCurrency = (value: string | number) => {
 export const parseCurrency = (value: string) => {
   return value.replace(/\D/g, "");
 };
+
+export const formatDate = (dateStr: string): string => {
+  return new Date(dateStr).toLocaleDateString("vi-VN");
+};

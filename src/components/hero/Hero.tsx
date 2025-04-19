@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
           </div>
           <div className="btn secondary">
             <DirectionsCarRoundedIcon className="icon"/>
-            <Link to="">Danh sách xe</Link>
+            <Link to="/posts">Danh sách xe</Link>
           </div>
         </div>
       </div>
