@@ -29,7 +29,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <p>{message}</p>
         <div className={styles.actions}>
           <button onClick={onCancel}>{cancelBtnText}</button>
-          <button onClick={onConfirm}>{confirmBtnText}</button>
+          <button onClick={onConfirm} className={confirmBtnText === "Đánh dấu đã bán" ? styles.green : '' }>{confirmBtnText}</button>
         </div>
       </div>
     </div>

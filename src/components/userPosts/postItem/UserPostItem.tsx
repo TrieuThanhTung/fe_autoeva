@@ -11,17 +11,20 @@ import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
 interface PostItemProps {
   post: PostItemType;
   handleRemovePost: (postId: number) => void;
+  handleUpdateStatus: (postId: number, status: string) => void
 }
 
-const UserPostItem: React.FC<PostItemProps> = ({ post, handleRemovePost }) => {
+const UserPostItem: React.FC<PostItemProps> = ({ post, handleRemovePost, handleUpdateStatus }) => {
   const {showLoading, hideLoading} = useGlobalLoading();
   const handleNavigate = useHandleNagivate();
 
-  const [showModal, setShowModal] = React.useState(false);
-
+  const [showModal, setShowModal] = React.useState({
+    show: false,
+    action: "remove"
+  });
 
   const handleAsyncRemovePost = async () => {
-    setShowModal(false);
+    setShowModal((prev) => ({ ...prev, show: false }));
     showLoading();
     try {
       const res = await PostApi.deletePost(post.id);
@@ -40,15 +43,40 @@ const UserPostItem: React.FC<PostItemProps> = ({ post, handleRemovePost }) => {
       hideLoading();
     }
   }
+
+  const handleSoldPost = async () => {
+    setShowModal((prev) => ({ ...prev, show: false }));
+    showLoading();
+    try {
+      const res = await PostApi.updateStatusPost(post.id, "sold");
+      if (res.status === 200) {
+        setTimeout(() => {
+          toast.success("Đánh dấu bài đăng đã bán thành công");
+          handleUpdateStatus(post.id, "sold");
+          hideLoading();
+        }, 500);
+      } else {
+        toast.error("Đánh dấu bài đăng đã bán thất bại");
+        hideLoading();
+      }
+    } catch (error) {
+      console.error(error);
+      hideLoading();
+    }
+  }
   
   return (
     <>
       <ConfirmModal 
-        show={showModal}
-        message = "Bạn có chắc chắn muốn xoá bài đăng này không? <br/> Bài đăng sẽ không thể khôi phục lại."
-        confirmBtnText="Xóa"
-        onCancel={() => setShowModal(false)}
-        onConfirm={handleAsyncRemovePost}
+        show={showModal.show}
+        message = {
+          showModal.action === "remove" ? 
+          "Bạn có chắc chắn muốn xoá bài đăng này không?" : 
+          "Bạn có chắc chắn muốn đánh dấu bài đăng này đã bán không?"
+        } 
+        confirmBtnText={showModal.action === "remove" ? "Xóa" : "Đánh dấu đã bán"}
+        onCancel={() => setShowModal((prev) => ({ ...prev, show: false }))}
+        onConfirm={showModal.action === "remove" ? handleAsyncRemovePost : handleSoldPost}
       />
       <tr className={styles.postRow}>
         <td>
@@ -71,8 +99,8 @@ const UserPostItem: React.FC<PostItemProps> = ({ post, handleRemovePost }) => {
         <td>{formatDate(post.created_at)}</td>
         <td className={styles.actionContainer}>
           <button className={styles.editButton} onClick={() => handleNavigate(`/my-posts/${post.id}/edit`)}>Chỉnh sửa</button>
-          {post.status === "active" && <button className={styles.soldButton}>Đánh dấu đã bán</button>}
-          <button onClick={() => setShowModal(true)} className={styles.deleteButton}>Xóa</button>
+          {post.status === "active" && <button onClick={() => setShowModal({ show: true, action: 'update' })} className={styles.soldButton}>Đánh dấu đã bán</button>}
+          <button onClick={() => setShowModal({ show: true, action: 'remove' })} className={styles.deleteButton}>Xóa</button>
         </td>
       </tr>
     </>

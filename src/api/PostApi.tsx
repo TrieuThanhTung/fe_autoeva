@@ -30,6 +30,15 @@ class PostApi {
      return await axiosInstance.post("/api/sale_posts", payload);
   }
 
+  
+  updatePost = async (postId: number, payload: CreatePostType) => {
+    return await axiosInstance.put(`/api/sale_posts/${postId}`, payload);
+  }
+
+  updateStatusPost = async (postId: number, status: string) => {
+    return await axiosInstance.put(`/api/sale_posts/${postId}`, { status });
+  }
+
   deletePost = async (postId: number) => {
     return await axiosInstance.delete(`/api/sale_posts/${postId}`);
   }
