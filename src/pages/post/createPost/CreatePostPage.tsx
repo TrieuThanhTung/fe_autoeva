@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import CarInfoApi from "../../../api/CarInfoApi";
 import { useGlobalLoading } from "../../../context/components/globalLoading/GlobalLoadingProvider";
 import PostApi from "../../../api/PostApi";
+import { useNavigate } from "react-router-dom";
 
 type formDataType = {
   brand: number;        
@@ -22,7 +23,7 @@ type formDataType = {
 };
 
 const CreatePostPage = () => {
-
+  const navigate = useNavigate();
   const [form, setForm] = useState<formDataType>({
     brand: -1,
     model: -1,
@@ -36,6 +37,7 @@ const CreatePostPage = () => {
 
   const {showLoading, hideLoading} = useGlobalLoading();
   const [description, setDescription] = useState<string>("");
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
   
   const [brands, setBrands] = useState<Brand[]>();
   const [models, setModels] = useState<Model[]>();
@@ -125,7 +127,22 @@ const CreatePostPage = () => {
   };
 
   const handleImageUpload = (files: File[]) => {
-    setForm({ ...form, images: files });
+    setForm((prevForm) => ({
+      ...prevForm,
+      images: [...(prevForm.images || []), ...files],
+    }));
+  };
+
+  const handleRemoveImage = (index: number) => {
+    setForm((prevForm) => {
+      return {
+      ...prevForm,
+      images: form.images.filter((_, i) => i !== index),
+      }
+    });
+    setPreviewImages((prevImages) => {
+      return prevImages.filter((_, i) => i !== index);
+    });
   };
 
   const handleUpload = async (images: File[]) => {
@@ -135,6 +152,8 @@ const CreatePostPage = () => {
     }
     return await uploadAllImages(images)
   };
+
+
 
   const verifyForm = () => {
     if (form.brand === -1) {
@@ -153,7 +172,7 @@ const CreatePostPage = () => {
       toast.error("Vui lòng nhập năm sản xuất hợp lệ");
       return false;
     }
-    if (Number(form.mileage) <= 1 || Number(form.mileage) > 1000000) {
+    if (Number(form.mileage) <= 1 || Number(form.mileage) > 10000000) {
       toast.error("Vui lòng nhập số km đã đi hợp lệ");
       return false;
     }
@@ -178,6 +197,7 @@ const CreatePostPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(form);
     showLoading();
 
     if (!verifyForm()) {
@@ -215,7 +235,8 @@ const CreatePostPage = () => {
           images: [] as File[],
         });
         setDescription("");
-        console.log("Post created successfully:", response.data);
+        setPreviewImages([]);
+        navigate("/my-posts");
       } else {
         toast.error("Đã có lỗi xảy ra trong quá trình đăng bài");
       }
@@ -325,7 +346,7 @@ const CreatePostPage = () => {
 
         <div className={styles.imageUpload}>
           <label>Hình ảnh</label>
-          <ImageUpload onUpload={handleImageUpload} />
+          <ImageUpload onUpload={handleImageUpload} previewImages={previewImages} setPreviewImages={setPreviewImages} handleRemoveImage={handleRemoveImage}/>
         </div>
 
         <div className={styles.containerBtn}>

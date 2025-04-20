@@ -5,6 +5,8 @@ type ConfirmModalProps = {
   show: boolean;
   title?: string;
   message?: string;
+  cancelBtnText?: string;
+  confirmBtnText?: string;
   onConfirm: () => void;
   onCancel: () => void;
 };
@@ -13,6 +15,8 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   show,
   title = "Xác nhận",
   message = "Bạn có chắc chắn muốn đăng xuất?",
+  cancelBtnText = "Hủy",
+  confirmBtnText = "Đăng xuất",
   onConfirm,
   onCancel,
 }) => {
@@ -24,8 +28,8 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <h2 className={styles.title}>{title}</h2>
         <p>{message}</p>
         <div className={styles.actions}>
-          <button onClick={onCancel}>Hủy</button>
-          <button onClick={onConfirm}>Đăng xuất</button>
+          <button onClick={onCancel}>{cancelBtnText}</button>
+          <button onClick={onConfirm} className={confirmBtnText === "Đánh dấu đã bán" ? styles.green : '' }>{confirmBtnText}</button>
         </div>
       </div>
     </div>

@@ -12,14 +12,14 @@ const Hero: React.FC = () => {
         <h2>Mua Bán Xe Cũ Dễ Dàng & Nhanh Chóng</h2>
         <p>Nền tảng uy tín với công nghệ định giá AI</p>
         <div className="hero-buttons">
-          <div className="btn primary">
+          <Link to="/predict" className="btn primary">
             <CalculateRoundedIcon className="icon"/>
             <Link to="/predict">Định giá ngay</Link>
-          </div>
-          <div className="btn secondary">
+          </Link>
+          <Link to="/posts" className="btn secondary">
             <DirectionsCarRoundedIcon className="icon"/>
             <Link to="/posts">Danh sách xe</Link>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

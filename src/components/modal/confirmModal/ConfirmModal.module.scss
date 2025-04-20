@@ -32,6 +32,8 @@
   justify-content: space-between;
 
   button {
+    min-width: 160px;
+    margin: 8px 16px;
     padding: 8px 32px;
     border: none;
     border-radius: 6px;
@@ -45,6 +47,10 @@
   button:last-child {
     background: #e53935;
     color: white;
+
+    &.green {
+      background: #4caf4fc7;
+    }
   }
 
   button:hover {
