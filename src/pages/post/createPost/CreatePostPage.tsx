@@ -127,7 +127,22 @@ const CreatePostPage = () => {
   };
 
   const handleImageUpload = (files: File[]) => {
-    setForm({ ...form, images: files });
+    setForm((prevForm) => ({
+      ...prevForm,
+      images: [...(prevForm.images || []), ...files],
+    }));
+  };
+
+  const handleRemoveImage = (index: number) => {
+    setForm((prevForm) => {
+      return {
+      ...prevForm,
+      images: form.images.filter((_, i) => i !== index),
+      }
+    });
+    setPreviewImages((prevImages) => {
+      return prevImages.filter((_, i) => i !== index);
+    });
   };
 
   const handleUpload = async (images: File[]) => {
@@ -137,6 +152,8 @@ const CreatePostPage = () => {
     }
     return await uploadAllImages(images)
   };
+
+
 
   const verifyForm = () => {
     if (form.brand === -1) {
@@ -329,7 +346,7 @@ const CreatePostPage = () => {
 
         <div className={styles.imageUpload}>
           <label>Hình ảnh</label>
-          <ImageUpload onUpload={handleImageUpload} previewImages={previewImages} setPreviewImages={setPreviewImages} />
+          <ImageUpload onUpload={handleImageUpload} previewImages={previewImages} setPreviewImages={setPreviewImages} handleRemoveImage={handleRemoveImage}/>
         </div>
 
         <div className={styles.containerBtn}>
