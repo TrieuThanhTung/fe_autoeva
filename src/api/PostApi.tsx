@@ -29,6 +29,10 @@ class PostApi {
   createPost = async (payload: CreatePostType) => {
      return await axiosInstance.post("/api/sale_posts", payload);
   }
+
+  deletePost = async (postId: number) => {
+    return await axiosInstance.delete(`/api/sale_posts/${postId}`);
+  }
 }
 
 export default new PostApi();

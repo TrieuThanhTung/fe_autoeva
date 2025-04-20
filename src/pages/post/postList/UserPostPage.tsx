@@ -53,6 +53,10 @@ const UserPostPage: React.FC = () => {
     navigate(`/my-posts?page=${value}`);
   };
 
+  const handleRemovePost = (postId: number) => {
+    setUserPosts((prevPosts) => prevPosts.filter(post => post.id !== postId));
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -71,12 +75,12 @@ const UserPostPage: React.FC = () => {
         </thead>
         <tbody>
           {userPosts.length !== 0 ? userPosts.map((post) => (
-            <PostItem key={post.id} post={post} />
+            <PostItem key={post.id} post={post} handleRemovePost={handleRemovePost} />
           )) : <tr><td colSpan={5}>Không có bài đăng nào</td></tr>}
         </tbody>
       </table>
       {totalPages > 1 && (
-        <div style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+        <div className={styles.containerPagination}>
           <Pagination count={totalPages} page={currentPage} onChange={handleChange} />
         </div>
       )}
