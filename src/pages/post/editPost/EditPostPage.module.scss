@@ -20,6 +20,12 @@
     gap: 16px;
   }
 
+  .rowGroupedThree {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .rowGrouped {
     display: grid;
     gap: 16px;
@@ -55,7 +61,7 @@
 
     select {
       background-color: #fff;
-      color: grey
+      color: #000
     }
   }
 
@@ -102,7 +108,7 @@
 
   // Responsive cho mobile
   @media (max-width: 480px) {
-    .rowGrouped {
+    .rowGrouped, .rowGroupedThree {
       grid-template-columns: repeat(1, 1fr);
     }
 
@@ -165,4 +171,15 @@
 /* Khi hover vào button */
 .se-btn:hover {
   background-color: #0056b3 !important;
+}
+
+.defaultSelectText {
+  color: #888
+}
+
+select:disabled {
+  background-color: #bbb5b5;
+  color: #888;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
 }

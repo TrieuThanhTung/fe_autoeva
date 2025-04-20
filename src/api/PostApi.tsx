@@ -26,12 +26,15 @@ class PostApi {
     }
   }
 
+  getUserPost = async (postId: number | string) => {
+    return await axiosInstance.get(`/api/sale_posts/show_user_post/${postId}`);
+  }
+
   createPost = async (payload: CreatePostType) => {
      return await axiosInstance.post("/api/sale_posts", payload);
   }
 
-  
-  updatePost = async (postId: number, payload: CreatePostType) => {
+  updatePost = async (postId: string, payload: CreatePostType) => {
     return await axiosInstance.put(`/api/sale_posts/${postId}`, payload);
   }
 
