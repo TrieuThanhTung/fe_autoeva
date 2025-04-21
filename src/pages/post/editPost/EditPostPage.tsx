@@ -37,7 +37,6 @@ const EditPostPage = () => {
     location: "",
     images: [] as File[],
   });
-  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const { showLoading, hideLoading } = useGlobalLoading();
   const [description, setDescription] = useState<string>("");
@@ -63,28 +62,29 @@ const EditPostPage = () => {
             version: response.data.version.id,
             year: response.data.year,
             mileage: response.data.odo,
-            price: response.data.price,
+            price: Number(response.data.price),
             location: response.data.location,
           }));
           setPreviewImages(response.data.images.map((img: ImageType) => img.url));
           setInitialImages(response.data.images);
           setDescription(response.data.description);
         } else if (response.status === 404) {
-          toast.error("Bài đăng không tồn tại");
+          setTimeout(() => { toast.error("Bài đăng không tồn tại"); }, 1000);
         } else {
-          toast.error("Lỗi khi tải dữ liệu bài đăng");
+          setTimeout(() => { toast.error("Lỗi khi tải dữ liệu bài đăng"); }, 1000);
         }
       } catch (error) {
-        console.error(error);
+        setTimeout(() => { toast.error("Lỗi khi tải dữ liệu bài đăng"); }, 1000);
+        console.log(error);
       } finally {
-        hideLoading();
-        setUpdateSuccess(false);
+        setTimeout(() => {
+          hideLoading();
+        }, 1000); 
       }
     };
     fetchSalePosts();
 
     const fetchBrands = async () => {
-      showLoading();
       try {
         const response = await CarInfoApi.getBrands();
         if (response.status === 200) {
@@ -93,19 +93,16 @@ const EditPostPage = () => {
           toast.error("Lỗi khi tải dữ liệu hãng xe");
         }
       } catch (error) {
-        console.error(error);
-      } finally {
-        hideLoading();
+        console.log(error);
       }
     };
 
     fetchBrands();
-  }, [updateSuccess]);
+  }, []);
 
   useEffect(() => {
     const fetchModels = async () => {
       if (form.brand === -1) return;
-      showLoading();
       try {
         const response = await CarInfoApi.getModels(form.brand);
         if (response.status === 200) {
@@ -114,9 +111,7 @@ const EditPostPage = () => {
           toast.error("Lỗi khi tải dữ liệu mẫu xe");
         }
       } catch (error) {
-        console.error(error);
-      } finally {
-        hideLoading();
+        console.log(error);
       }
     };
 
@@ -126,7 +121,6 @@ const EditPostPage = () => {
   useEffect(() => {
     const fetchVersions = async () => {
       if (form.model === -1) return;
-      showLoading();
       try {
         const response = await CarInfoApi.getVersions(form.model);
         if (response.status === 200) {
@@ -135,9 +129,7 @@ const EditPostPage = () => {
           toast.error("Lỗi khi tải dữ liệu phiên bản xe");
         }
       } catch (error) {
-        console.error(error);
-      } finally {
-        hideLoading();
+        console.log(error);
       }
     }
 
@@ -239,12 +231,15 @@ const EditPostPage = () => {
     showLoading();
 
     if (!verifyForm()) {
-      hideLoading();
+      setTimeout(() => {
+        hideLoading();
+      }
+      , 1000);
       return;
     }
     try {
       let imageUrls: (string | null)[] = [];
-      if (form.images.length === 0) {
+      if (form.images.length > 0) {
         imageUrls = await handleUpload(form.images) as string[]; 
       }
       const formData = {
@@ -258,30 +253,26 @@ const EditPostPage = () => {
         odo: form.mileage as number,
         images: [...imageUrls, ...initialImages.map((img) => img.id)],
       }
-      console.log("Form data to be sent:", formData);
+      if (formData.images.length === 0) {
+        toast.error("Vui lòng chọn hình ảnh để tải lên");
+        hideLoading();
+        return;
+      }
       const response = await PostApi.updatePost(id as string, formData as CreatePostType);
       if (response.status === 200) {
-        toast.success("Cập nhật bài đăng thành công");
-        setForm({
-          brand: -1,
-          model: -1,
-          version: -1,
-          year: "",
-          mileage: "",
-          price: "",
-          location: "",
-          images: [] as File[],
-        });
-        setDescription("");
-        setUpdateSuccess(true);
+        setTimeout(() => { 
+          toast.success("Cập nhật bài đăng thành công");
+        }, 1000);
       } else {
-        toast.error("Đã có lỗi xảy ra trong quá trình cập nhật bài đăng");
+        setTimeout(() => { toast.error("Đã có lỗi xảy ra trong quá trình cập nhật bài đăng"); }, 1000);
       }
     } catch (error) {
-      console.error(error);
-      toast.error("Đã có lỗi xảy ra trong quá trình cập nhật bài đăng");
+      console.log(error);
+      setTimeout(() => { toast.error("Đã có lỗi xảy ra trong quá trình cập nhật bài đăng"); }, 1000);
     } finally {
-      hideLoading();
+      setTimeout(() => {
+        hideLoading();
+      }, 1000);
     }
   };
 
