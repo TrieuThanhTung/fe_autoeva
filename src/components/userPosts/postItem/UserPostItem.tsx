@@ -90,7 +90,7 @@ const UserPostItem: React.FC<PostItemProps> = ({ post, handleRemovePost, handleU
             </div>
           </div>
         </td>
-        <td>{formatCurrency(post.price)} VND</td>
+        <td>{formatCurrency(Number(post.price))} VND</td>
         <td>
           <span className={post.status === "active" ? styles.activeStatus : styles.soldStatus}>
             {post.status === "active" ? "Đang hoạt động" : "Đã bán"}

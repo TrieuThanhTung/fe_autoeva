@@ -46,7 +46,6 @@ const CreatePostPage = () => {
   useEffect(() => {
     
     const fetchBrands = async () => {
-      showLoading();
       try {
         const response = await CarInfoApi.getBrands();
         if (response.status === 200) {
@@ -56,8 +55,6 @@ const CreatePostPage = () => {
         }
       } catch (error) {
         console.error(error);
-      } finally {
-        hideLoading();
       }
     };
 
@@ -67,7 +64,6 @@ const CreatePostPage = () => {
   useEffect(() => {
     const fetchModels = async () => {
       if (form.brand === -1) return;
-      showLoading();
       try {
         const response = await CarInfoApi.getModels(form.brand);
         if (response.status === 200) {
@@ -77,8 +73,6 @@ const CreatePostPage = () => {
         }
       } catch (error) {
         console.error(error);
-      } finally {
-        hideLoading();
       }
     };
 
@@ -88,7 +82,6 @@ const CreatePostPage = () => {
   useEffect(() => {
     const fetchVersions = async () => {
       if (form.model === -1) return;
-      showLoading();
       try {
         const response = await CarInfoApi.getVersions(form.model);
         if (response.status === 200) {
@@ -98,8 +91,6 @@ const CreatePostPage = () => {
         }
       } catch (error) {
         console.error(error);
-      } finally {
-        hideLoading();
       }
     }
 
@@ -223,28 +214,20 @@ const CreatePostPage = () => {
       }
       const response = await PostApi.createPost(formData as CreatePostType);
       if (response.status === 201) {
-        toast.success("Đăng bài thành công");
-        setForm({
-          brand: -1,
-          model: -1,
-          version: -1,
-          year: "",
-          mileage: "",
-          price: "",
-          location: "",
-          images: [] as File[],
-        });
-        setDescription("");
-        setPreviewImages([]);
-        navigate("/my-posts");
+        setTimeout(() => {
+          toast.success("Đăng bài thành công");
+          navigate("/my-posts");
+        }, 1000);
       } else {
-        toast.error("Đã có lỗi xảy ra trong quá trình đăng bài");
-      }
+        setTimeout(() => { toast.error("Đã có lỗi xảy ra trong quá trình đăng bài"); }, 1000);
+      } 
     } catch (error) {
       console.error(error);
-      toast.error("Đã có lỗi xảy ra trong quá trình đăng bài");
+      setTimeout(() => { toast.error("Đã có lỗi xảy ra trong quá trình đăng bài"); }, 1000);
     } finally { 
-      hideLoading();
+      setTimeout(() => {
+        hideLoading();
+      }, 1000);
     }
   };
 
