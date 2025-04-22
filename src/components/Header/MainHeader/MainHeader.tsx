@@ -10,7 +10,6 @@ import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
 import { useState } from "react";
 import { useGlobalLoading } from "../../../context/components/globalLoading/GlobalLoadingProvider";
 import AuthApi from "../../../api/AuthApi";
-import { toast } from "react-toastify";
 import { useAuthContext } from "../../../context/authContext";
 
 type HeaderProps = {
@@ -30,17 +29,16 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
   const handleLogout = async () => {
     showLoading()
     try {
-      const res = await AuthApi.logout();
-      if (res.status === 200) {
-        logout();
-        navigate("/login");
-      } else {
-        toast.error("Đăng xuất không thành công");
-      }
+      await AuthApi.logout();
     } catch (error) {
       console.error(error);
     } finally {
-      hideLoading();
+      setTimeout(() => {
+        hideLoading();
+        logout();
+        navigate("/");
+      }
+      , 1000);
     }
     setShowModal(false);
   };
