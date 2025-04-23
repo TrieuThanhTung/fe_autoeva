@@ -73,12 +73,14 @@ export const data_details = {
 
 export const relatedCars = [
   {
+    id: 1,
     image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
     title: "Toyota Camry 2.0G 2020",
     price: "795.000.000",
     location: "Hà Nội",
   },
   {
+    id: 2,
     image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg",
     title: "Toyota Camry 2.5Q 2018",
     price: "720.000.000",

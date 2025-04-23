@@ -18,6 +18,14 @@ export interface CreatePostType {
   images: []
 }
 
+export interface RelatedPostType {
+  id: string
+  image: string;
+  title: string;
+  price: string;
+  location: string;
+}
+
 export interface Brand {
   id: number;
   name: string;
