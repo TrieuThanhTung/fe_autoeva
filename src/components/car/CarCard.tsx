@@ -21,7 +21,7 @@ const CarCard: React.FC<CarCardProps> = ({id, name, image, price, location, mile
         <img src={image} alt={name} />
       </div>
       <div className="card-content">
-        <h3 className="title-car-card-item">{name}</h3>
+        <h3 className="title-car-card-item truncate-location">{name}</h3>
         <p className="basic-info truncate-location">
           <i className="fas fa-map-marker-alt"></i> {location}
         </p>
