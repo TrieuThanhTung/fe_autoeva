@@ -32,7 +32,7 @@ export const AuthContextProvider: React.FC<{children: ReactNode}> = ({ children 
   };
 
   const logout = () => {
-    localStorage.removeItem("access_token");
+    localStorage.removeItem("access-token");
     localStorage.removeItem("uid");
     localStorage.removeItem("client");
     setLoggedIn(false);
