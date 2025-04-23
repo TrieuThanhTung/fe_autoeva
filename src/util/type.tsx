@@ -18,6 +18,14 @@ export interface CreatePostType {
   images: []
 }
 
+export interface RelatedPostType {
+  id: string
+  image: string;
+  title: string;
+  price: string;
+  location: string;
+}
+
 export interface Brand {
   id: number;
   name: string;
@@ -41,7 +49,24 @@ export interface PostItemType {
   year: number;
   odo: number;
   image: string;
+  location: string;
   created_at: string;
   updated_at: string;
+  favorited: boolean;
+}
+
+export type PostDetalsType = {
+  id: number;
+  title: string;
+  images: string[];
+  price: string;
+  location: string;
+  mileage: string;
+  year: string;
+  origin: string;
+  fuel: string;
+  transmission: string;
+  seats: string;
+  description: string;
   favorited: boolean;
 }
