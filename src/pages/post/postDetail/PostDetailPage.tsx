@@ -14,6 +14,7 @@ import PostApi from "../../../api/PostApi";
 import { formatCurrency, formatDate } from '../../../util/utils';
 import { RelatedPostType } from '../../../util/type';
 import DOMPurify from 'dompurify';
+import FavoriteApi from '../../../api/FavoriteApi';
 
 const PostDetailPage = () => {
   const { id } = useParams();
@@ -30,6 +31,7 @@ const PostDetailPage = () => {
   const [relatedPosts, setRelatedPosts] = useState<Array<RelatedPostType>>();
 
   const [postDetails, setPostDetails] = useState({
+    id: 0,
     "title": "",
     "images": Array<string>(),
     "price": "",
@@ -40,7 +42,8 @@ const PostDetailPage = () => {
     "fuel": "",
     "transmission": "",
     "seats": "",
-    "description": ""
+    "description": "",
+    favorited: false
   });
 
   const fetchPostDetails = async (postId: string) => {
@@ -52,6 +55,7 @@ const PostDetailPage = () => {
       }
       const sale_post = response.data.sale_post
       setPostDetails({
+        id: sale_post.id,
         title: sale_post.title,
         price: formatCurrency(Number(sale_post.price)),
         location: sale_post.location,
@@ -63,6 +67,7 @@ const PostDetailPage = () => {
         seats: sale_post.seats,
         description: DOMPurify.sanitize(sale_post.description),
         images: sale_post.images.map((image: { id: number, url: string }) => image.url),
+        favorited: sale_post.favorited
       });
 
       if (sale_post.sale_post_images.length > 0) {
@@ -80,7 +85,6 @@ const PostDetailPage = () => {
       });
 
       setRelatedPosts(response.data.related_sale_posts);
-      // console.log(response.data.related_sale_posts)
     } catch (error) {
       console.error(error);
       navigate("/not_found")
@@ -97,12 +101,24 @@ const PostDetailPage = () => {
     }
   }, [id]);
 
+  const handleFavoritesPost = async () => {
+    if (postDetails.favorited) {
+      await FavoriteApi.deleteFavoritePost(postDetails.id)
+    } else {
+      await FavoriteApi.createFavoritePost(postDetails.id)
+    }
+    setPostDetails((prevPost) => ({
+      ...prevPost,
+      favorited: !prevPost.favorited
+    }))
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
         <div className={styles.postContainer}>
           <PostImages images={postDetails.images} />
-          <PostDetail {...postDetails} />
+          <PostDetail post={postDetails} handleFavoritesPost={handleFavoritesPost} />
         </div>
         <div className={styles.commentContainer}>
           <CommentSection />

@@ -54,3 +54,19 @@ export interface PostItemType {
   updated_at: string;
   favorited: boolean;
 }
+
+export type PostDetalsType = {
+  id: number;
+  title: string;
+  images: string[];
+  price: string;
+  location: string;
+  mileage: string;
+  year: string;
+  origin: string;
+  fuel: string;
+  transmission: string;
+  seats: string;
+  description: string;
+  favorited: boolean;
+}
