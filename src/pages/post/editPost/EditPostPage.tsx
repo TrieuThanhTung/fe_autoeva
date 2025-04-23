@@ -8,7 +8,7 @@ import CarInfoApi from "../../../api/CarInfoApi";
 import { Brand, CreatePostType, Model, Version } from "../../../util/type";
 import { useGlobalLoading } from "../../../context/components/globalLoading/GlobalLoadingProvider";
 import PostApi from "../../../api/PostApi";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 type formDataType = {
   brand: number;
@@ -38,6 +38,7 @@ const EditPostPage = () => {
     images: [] as File[],
   });
 
+  const navigate = useNavigate()
   const { showLoading, hideLoading } = useGlobalLoading();
   const [description, setDescription] = useState<string>("");
   const [initialImages, setInitialImages] = useState<ImageType[]>([]);
@@ -262,6 +263,7 @@ const EditPostPage = () => {
       if (response.status === 200) {
         setTimeout(() => { 
           toast.success("Cập nhật bài đăng thành công");
+          navigate('/my-posts')
         }, 1000);
       } else {
         setTimeout(() => { toast.error("Đã có lỗi xảy ra trong quá trình cập nhật bài đăng"); }, 1000);

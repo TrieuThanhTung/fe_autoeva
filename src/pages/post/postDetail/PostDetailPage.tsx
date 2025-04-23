@@ -3,7 +3,6 @@ import React from 'react'
 import styles from "./PostDetailPage.module.scss";
 import PostImages from '../../../components/postDetails/postImages/PostImages';
 import PostDetail from '../../../components/postDetails/postDetail/PostDetail';
-import { relatedCars } from '../../../util/data';
 import CommentSection from '../../../components/postDetails/CommentSection/CommentSection';
 import SellerInfo from '../../../components/postDetails/SellerInfo/SellerInfo';
 import RelatedPosts from '../../../components/postDetails/RelatedPosts/RelatedPosts';
@@ -14,13 +13,12 @@ import avatar_seller from "../../../assets/images/avatar_seller.png";
 import PostApi from "../../../api/PostApi";
 import { formatCurrency, formatDate } from '../../../util/utils';
 import { RelatedPostType } from '../../../util/type';
+import DOMPurify from 'dompurify';
 
 const PostDetailPage = () => {
   const { id } = useParams();
-  const {showLoading, hideLoading} = useGlobalLoading();
+  const { showLoading, hideLoading } = useGlobalLoading();
   const navigate = useNavigate()
-
-  const [isLoading, setLoading] = useState(false)
 
   const [sellerInfo, setSellerInfo] = useState({
     name: "",
@@ -32,22 +30,21 @@ const PostDetailPage = () => {
   const [relatedPosts, setRelatedPosts] = useState<Array<RelatedPostType>>();
 
   const [postDetails, setPostDetails] = useState({
-  "title": "",
-  "images": Array<string>(),
-  "price": "",
-  "location": "",
-  "mileage": "",
-  "year": "",
-  "origin": "",
-  "fuel": "",
-  "transmission": "",
-  "seats": "",
-  "description": ""
-});
+    "title": "",
+    "images": Array<string>(),
+    "price": "",
+    "location": "",
+    "mileage": "",
+    "year": "",
+    "origin": "",
+    "fuel": "",
+    "transmission": "",
+    "seats": "",
+    "description": ""
+  });
 
   const fetchPostDetails = async (postId: string) => {
     showLoading();
-    setLoading(true)
     try {
       const response = await PostApi.getPostById(postId);
       if (response.status !== 200) {
@@ -64,14 +61,14 @@ const PostDetailPage = () => {
         fuel: sale_post.fuel,
         transmission: sale_post.transmission,
         seats: sale_post.seats,
-        description: sale_post.description,
-        images: sale_post.images.map((image: {id: number, url: string}) => image.url),
+        description: DOMPurify.sanitize(sale_post.description),
+        images: sale_post.images.map((image: { id: number, url: string }) => image.url),
       });
 
       if (sale_post.sale_post_images.length > 0) {
         setPostDetails((prevState) => ({
           ...prevState,
-          images: [...prevState.images, ...sale_post.sale_post_images.map((image: {id: number, image_url: string}) => image.image_url)],
+          images: [...prevState.images, ...sale_post.sale_post_images.map((image: { id: number, image_url: string }) => image.image_url)],
         }));
       }
 
@@ -90,9 +87,7 @@ const PostDetailPage = () => {
     } finally {
       setTimeout(() => {
         hideLoading();
-        setLoading(false)
-      }
-      , 1000);
+      }, 1000);
     }
   }
 
@@ -120,7 +115,7 @@ const PostDetailPage = () => {
           joinYear={sellerInfo.joinYear}
           phone={sellerInfo.phone}
         />
-        <RelatedPosts posts={relatedPosts as RelatedPostType[]}/>
+        <RelatedPosts posts={relatedPosts as RelatedPostType[]} />
       </div>
     </div>
   );

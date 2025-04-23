@@ -73,7 +73,7 @@ const PostDetail: React.FC<PostDetailProps> = ({
 
       <div className={styles.description}>
         <h3>Mô tả</h3>
-        <p>{description}</p>
+        <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </div>
   );
