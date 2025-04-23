@@ -9,7 +9,7 @@ interface CarCardProps {
   image: string;
   price: string;
   location: string;
-  mileage: number;
+  mileage: number | string;
   isFavorited: boolean;
   onToggleFavorite: () => void;
 }
