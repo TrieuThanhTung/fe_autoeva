@@ -49,6 +49,7 @@ export interface PostItemType {
   year: number;
   odo: number;
   image: string;
+  location: string;
   created_at: string;
   updated_at: string;
   favorited: boolean;
