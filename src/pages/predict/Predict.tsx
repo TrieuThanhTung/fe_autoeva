@@ -3,77 +3,8 @@ import React, { useState, useEffect } from "react";
 import "./predict.scss";
 import { useLocation } from "react-router-dom";
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
-
-// Interface định nghĩa cấu trúc dữ liệu trả về từ API
-interface Brand {
-  id: number;
-  name: string;
-}
-
-interface Model {
-  id: number;
-  name: string;
-}
-
-interface Version {
-  id: number;
-  info: string;
-}
-
-interface PredictionResponseBody {
-  car_name: string;
-  year_of_manufacture: number;
-  mileage: number;
-  predicted_price: string;
-}
-
-interface PredictionResponse {
-  status: number;
-  body: PredictionResponseBody;
-}
-
-// Hàm gọi API và trả về dữ liệu
-const fetchBrands = async (): Promise<Brand[]> => {
-  const response = await fetch("https://spec.autoeva.io.vn/api/brands");
-  return response.json();
-};
-
-const fetchModels = async (brandId: number): Promise<Model[]> => {
-  const response = await fetch(`https://spec.autoeva.io.vn/api/models?brand_id=${brandId}`);
-  return response.json();
-};
-
-const fetchVersions = async (modelId: number): Promise<Version[]> => {
-  const response = await fetch(`https://spec.autoeva.io.vn/api/versions?model_id=${modelId}`);
-  return response.json();
-};
-
-const fetchPrediction = async (
-  brandId: number,
-  modelId: number,
-  versionId: number,
-  year: number,
-  mileage: number
-): Promise<PredictionResponse> => {
-  const response = await fetch("https://spec.autoeva.io.vn/api/predicts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      brand_id: brandId,
-      model_id: modelId,
-      version_id: versionId,
-      year_of_manufacture: year,
-      mileage: mileage,
-    }),
-  });
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || "Failed to predict price");
-  }
-  return response.json();
-};
+import {Brand, Model, Version} from "../../util/type"
+import CarInfoApi from "../../api/CarInfoApi"
 
 const Predict: React.FC = () => {
   const location = useLocation();
@@ -111,7 +42,7 @@ const Predict: React.FC = () => {
   useEffect(() => {
     const getBrands = async () => {
       try {
-        const brandsData = await fetchBrands();
+        const brandsData = await CarInfoApi.fetchBrands();
         setBrands(brandsData);
       } catch (error: any) {
         console.error("Error fetching brands:", error);
@@ -126,7 +57,7 @@ const Predict: React.FC = () => {
     if (selectedBrand) {
       const getModels = async () => {
         try {
-          const modelsData = await fetchModels(parseInt(selectedBrand));
+          const modelsData = await CarInfoApi.fetchModels(parseInt(selectedBrand));
           setModels(modelsData);
           if (!initialModel) {
             setSelectedModel("");
@@ -161,7 +92,7 @@ const Predict: React.FC = () => {
     if (selectedModel) {
       const getVersions = async () => {
         try {
-          const versionsData = await fetchVersions(parseInt(selectedModel));
+          const versionsData = await CarInfoApi.fetchVersions(parseInt(selectedModel));
           setVersions(versionsData);
           if (!initialVersion) {
             setSelectedVersion("");
@@ -234,7 +165,7 @@ const Predict: React.FC = () => {
     }
 
     try {
-      const predictionData = await fetchPrediction(
+      const predictionData = await CarInfoApi.fetchPrediction(
         parseInt(selectedBrand),
         parseInt(selectedModel),
         parseInt(selectedVersion),
@@ -249,7 +180,7 @@ const Predict: React.FC = () => {
     } catch (error: any) {
       console.error("Error predicting price:", error);
       setPredictionError(error.message || "Đã có lỗi xảy ra khi dự đoán giá.");
-      setShowResult(true); // Show result even with error to display the message
+      setShowResult(true);
     }
   };
 

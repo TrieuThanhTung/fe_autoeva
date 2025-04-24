@@ -45,3 +45,36 @@ export interface PostItemType {
   updated_at: string;
   favorited: boolean;
 }
+
+export interface PredictionResponseBody {
+  car_name: string;
+  year_of_manufacture: number;
+  mileage: number;
+  predicted_price: string;
+}
+
+export interface PredictionResponse {
+  status: number;
+  body: PredictionResponseBody;
+}
+export interface AuthHeaders {
+  "access-token": string;
+  uid: string;
+  client: string;
+  [key: string]: string; 
+}
+
+export interface UpdateUserPayload {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  phone_number?: string;
+  role?: string;
+}
+
+export interface ChangePasswordPayload {
+  current_password: string;
+  password: string;
+  password_confirmation: string;
+}
+
