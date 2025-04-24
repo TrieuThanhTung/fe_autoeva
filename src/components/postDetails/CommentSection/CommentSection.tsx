@@ -77,6 +77,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ id }) => {
   }
 
   useEffect(() => {
+    setComments([])
     if (id) {
       fetchComment()
     }
