@@ -1,6 +1,6 @@
 
 import React from "react";
-import styles from "./ProfileCard.module.scss";
+import styles from "./profileCard.module.scss";
 
 interface ProfileCardProps {
   name: string;

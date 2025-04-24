@@ -1,7 +1,7 @@
 // File: components/ChangePasswordCard.tsx
 
 import React from "react";
-import styles from "./ProfileCard.module.scss";
+import styles from "./profileCard.module.scss";
 
 interface ChangePasswordCardProps {
     currentPassword: string;

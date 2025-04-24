@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "./AxiosInstance";
-import { CreatePostType } from "../util/type";
+import { CommentPayload, CreatePostType } from "../util/type";
 
 class PostApi {
   uploadImageToImgur = async ( 
@@ -52,6 +52,15 @@ class PostApi {
 
   getHome = async () => {
     return await axiosInstance.get('/api/sale_posts/home')
+  }
+
+  getComments = async (postId: number | string, page?: string | number) => {
+    const url = page ? `/api/sale_posts/${postId}/comments?page=${page}` : `/api/sale_posts/${postId}/comments` 
+    return await axiosInstance.get(url)
+  }
+
+  createComment = async (postId: number | string, payload: CommentPayload) => {
+    return await axiosInstance.post(`/api/sale_posts/${postId}/comments`, payload)
   }
 }
 

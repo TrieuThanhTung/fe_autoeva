@@ -15,10 +15,13 @@ import { formatCurrency, formatDate } from '../../../util/utils';
 import { RelatedPostType } from '../../../util/type';
 import DOMPurify from 'dompurify';
 import FavoriteApi from '../../../api/FavoriteApi';
+import { useAuthContext } from '../../../context/authContext';
+import { toast } from 'react-toastify';
 
 const PostDetailPage = () => {
   const { id } = useParams();
   const { showLoading, hideLoading } = useGlobalLoading();
+  const { isLoggedIn } = useAuthContext()
   const navigate = useNavigate()
 
   const [sellerInfo, setSellerInfo] = useState({
@@ -104,15 +107,21 @@ const PostDetailPage = () => {
   }, [id]);
 
   const handleFavoritesPost = async () => {
-    if (postDetails.favorited) {
-      await FavoriteApi.deleteFavoritePost(postDetails.id)
-    } else {
-      await FavoriteApi.createFavoritePost(postDetails.id)
+    let res = null
+    if (isLoggedIn && postDetails.favorited === true) {
+      res = await FavoriteApi.deleteFavoritePost(postDetails.id)
+    } else if (isLoggedIn && postDetails.favorited === false) {
+      res = await FavoriteApi.createFavoritePost(postDetails.id)
     }
-    setPostDetails((prevPost) => ({
-      ...prevPost,
-      favorited: !prevPost.favorited
-    }))
+    if (res?.status === 200 || res?.status === 201) {
+      setPostDetails((prevPost) => ({
+        ...prevPost,
+        favorited: !prevPost.favorited
+      }))
+    }
+    if (!res || res.status === 401) {
+      toast.error("Vui lòng đăng nhập, để thêm bài đăng vào danh sách yêu thích.")
+    }
   }
 
   return (
@@ -123,7 +132,7 @@ const PostDetailPage = () => {
           <PostDetail post={postDetails} handleFavoritesPost={handleFavoritesPost} />
         </div>
         <div className={styles.commentContainer}>
-          <CommentSection />
+          <CommentSection id={postDetails.id}/>
         </div>
       </div>
       <div className={styles.sidebar}>
