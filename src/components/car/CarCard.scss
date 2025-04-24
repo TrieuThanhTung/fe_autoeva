@@ -1,4 +1,6 @@
 .card {
+  max-width: 360px;
+  min-width: 320px;
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -62,6 +64,21 @@
     text-overflow: ellipsis;   
     max-width: 100%;             
     display: inline-block;       
+  }
+
+  .wrapper-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .status-sold {
+      margin-left: 16px;
+      min-width: 60px;
+      border: solid 1px red;
+      padding: 4px;
+      color: red;
+      border-radius: 5px;
+    }
   }
 }
 

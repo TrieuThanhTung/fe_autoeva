@@ -26,6 +26,10 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
+
+    .container {
+      padding: 1rem
+    }
   }
 
   @media (max-width: 480px) {
@@ -33,6 +37,10 @@
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       gap: 12px;
+    }
+
+    .container {
+      padding: 8px
     }
   }
 }

@@ -16,9 +16,9 @@ type HeaderProps = {
   toggleSidebar: () => void
 }
 
-const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
-  const {showLoading, hideLoading} = useGlobalLoading();
-  const {logout} = useAuthContext();
+const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
+  const { showLoading, hideLoading } = useGlobalLoading();
+  const { logout } = useAuthContext();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
@@ -38,7 +38,7 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
         logout();
         navigate("/");
       }
-      , 1000);
+        , 1000);
     }
     setShowModal(false);
   };
@@ -60,36 +60,35 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
               <img src={logo} alt="Logo" />
             </Link>
           </div>
-  
+          <div>
+            <nav className="nav">
+              <ul>
+                <li><Link to="/">Trang chủ</Link></li>
+                <li><Link to="/predict">Định giá xe</Link></li>
+                <li><Link to="/posts">Bài đăng</Link></li>
+                {/* <li><Link to="/contact">Liên hệ</Link></li> */}
+              </ul>
+            </nav>
+          </div>
           <div className="search">
             <SearchOutlinedIcon />
             <input type="text" placeholder="Search..." />
           </div>
-  
+
           <div className="menu-items">
-              <Link to="/profile" className="item">
-                <PersonOutlineOutlinedIcon />
-              </Link>
-              <Link to="/favorites" className="item">
-                <FavoriteBorderOutlinedIcon />
-              </Link>
-              <Link to="/my-posts" className="item">
-                <FormatListBulletedIcon />
-              </Link>
-              <button onClick={handleLogoutClick} className="item logout-btn">
-                <LogoutOutlinedIcon />
-              </button>
+            <Link to="/profile" className="item">
+              <PersonOutlineOutlinedIcon />
+            </Link>
+            <Link to="/favorites" className="item">
+              <FavoriteBorderOutlinedIcon />
+            </Link>
+            <Link to="/my-posts" className="item">
+              <FormatListBulletedIcon />
+            </Link>
+            <button onClick={handleLogoutClick} className="item logout-btn">
+              <LogoutOutlinedIcon />
+            </button>
           </div>
-        </div>
-        <div>
-        <nav className="nav">
-            <ul>
-              <li><Link to="/">Trang chủ</Link></li>
-              <li><Link to="/predict">Định giá xe</Link></li>
-              <li><Link to="/posts">Bài đăng</Link></li>
-              <li><Link to="/contact">Liên hệ</Link></li>
-            </ul>
-          </nav>
         </div>
       </header>
     </>
