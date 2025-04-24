@@ -3,6 +3,7 @@ import styles from "./CommentSection.module.scss";
 import { CommentPayload, CommentType } from "../../../util/type";
 import PostApi from "../../../api/PostApi";
 import { toast } from "react-toastify";
+import { badWords } from '@vnphu/vn-badwords';
 
 type CommentSectionProps = {
   id: string | number;
@@ -23,11 +24,15 @@ const CommentSection: React.FC<CommentSectionProps> = ({ id }) => {
 
   const handleSubmit = async () => {
     if (comment.trim() === "") return;
-
+    if (badWords(comment, { validate: true }) as boolean) {
+      toast.warn("Vui lòng bình luận những từ ngữ chuẩn thuần phong, mỹ tục.")
+      return
+    }
+    const remove_badwords = badWords(comment, '*') as string;
     try {
       const payload: CommentPayload = {
         comment: {
-          content: comment
+          content: remove_badwords
         }
       } 
       const res = await PostApi.createComment(id, payload)
@@ -38,7 +43,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ id }) => {
       } else if (res.status === 201) {
         const newComment: CommentType = {
           id: new Date(Date.now()).toISOString(),
-          content: comment,
+          content: remove_badwords,
           created_at: new Date(Date.now()).toISOString(),
           updated_at: new Date(Date.now()).toISOString(),
           user: {
