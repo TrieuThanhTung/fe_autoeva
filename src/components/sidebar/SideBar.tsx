@@ -30,17 +30,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       
       <ul className="menu">
         <li>
-          <Link to="#" onClick={toggleSidebar}>Trang chủ</Link>
+          <Link to="/" onClick={toggleSidebar}>Trang chủ</Link>
         </li>
         <li>
-          <Link to="#" onClick={toggleSidebar}>Định giá xe</Link>
+          <Link to="/predict" onClick={toggleSidebar}>Định giá xe</Link>
         </li>
         <li>
-          <Link to="#" onClick={toggleSidebar}>Bài đăng</Link>
+          <Link to="/posts" onClick={toggleSidebar}>Bài đăng</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="#" onClick={toggleSidebar}>Liên hệ</Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

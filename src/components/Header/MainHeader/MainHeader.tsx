@@ -10,16 +10,15 @@ import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
 import { useState } from "react";
 import { useGlobalLoading } from "../../../context/components/globalLoading/GlobalLoadingProvider";
 import AuthApi from "../../../api/AuthApi";
-import { toast } from "react-toastify";
 import { useAuthContext } from "../../../context/authContext";
 
 type HeaderProps = {
   toggleSidebar: () => void
 }
 
-const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
-  const {showLoading, hideLoading} = useGlobalLoading();
-  const {logout} = useAuthContext();
+const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
+  const { showLoading, hideLoading } = useGlobalLoading();
+  const { logout } = useAuthContext();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
@@ -30,17 +29,16 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
   const handleLogout = async () => {
     showLoading()
     try {
-      const res = await AuthApi.logout();
-      if (res.status === 200) {
-        logout();
-        navigate("/login");
-      } else {
-        toast.error("Đăng xuất không thành công");
-      }
+      await AuthApi.logout();
     } catch (error) {
       console.error(error);
     } finally {
-      hideLoading();
+      setTimeout(() => {
+        hideLoading();
+        logout();
+        navigate("/");
+      }
+        , 1000);
     }
     setShowModal(false);
   };
@@ -62,36 +60,35 @@ const Header:React.FC<HeaderProps> = ({toggleSidebar}) => {
               <img src={logo} alt="Logo" />
             </Link>
           </div>
-  
+          <div>
+            <nav className="nav">
+              <ul>
+                <li><Link to="/">Trang chủ</Link></li>
+                <li><Link to="/predict">Định giá xe</Link></li>
+                <li><Link to="/posts">Bài đăng</Link></li>
+                {/* <li><Link to="/contact">Liên hệ</Link></li> */}
+              </ul>
+            </nav>
+          </div>
           <div className="search">
             <SearchOutlinedIcon />
             <input type="text" placeholder="Search..." />
           </div>
-  
+
           <div className="menu-items">
-              <Link to="/profile" className="item">
-                <PersonOutlineOutlinedIcon />
-              </Link>
-              <Link to="/favorites" className="item">
-                <FavoriteBorderOutlinedIcon />
-              </Link>
-              <Link to="/my-posts" className="item">
-                <FormatListBulletedIcon />
-              </Link>
-              <button onClick={handleLogoutClick} className="item logout-btn">
-                <LogoutOutlinedIcon />
-              </button>
+            <Link to="/profile" className="item">
+              <PersonOutlineOutlinedIcon />
+            </Link>
+            <Link to="/favorites" className="item">
+              <FavoriteBorderOutlinedIcon />
+            </Link>
+            <Link to="/my-posts" className="item">
+              <FormatListBulletedIcon />
+            </Link>
+            <button onClick={handleLogoutClick} className="item logout-btn">
+              <LogoutOutlinedIcon />
+            </button>
           </div>
-        </div>
-        <div>
-        <nav className="nav">
-            <ul>
-              <li><Link to="/">Trang chủ</Link></li>
-              <li><Link to="/predict">Định giá xe</Link></li>
-              <li><Link to="/posts">Bài đăng</Link></li>
-              <li><Link to="/contact">Liên hệ</Link></li>
-            </ul>
-          </nav>
         </div>
       </header>
     </>

@@ -5,7 +5,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 interface SellerInfoProps {
   name: string;
   avatar: string;
-  joinYear: number;
+  joinYear: string;
   phone: string;
 }
 

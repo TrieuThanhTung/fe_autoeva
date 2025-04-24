@@ -45,6 +45,14 @@ class PostApi {
   deletePost = async (postId: number) => {
     return await axiosInstance.delete(`/api/sale_posts/${postId}`);
   }
+
+  getPostById = async (postId: number | string) => {
+    return await axiosInstance.get(`/api/sale_posts/${postId}`);
+  }
+
+  getHome = async () => {
+    return await axiosInstance.get('/api/sale_posts/home')
+  }
 }
 
 export default new PostApi();

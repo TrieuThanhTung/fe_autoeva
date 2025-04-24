@@ -7,6 +7,7 @@ import { useGlobalLoading } from "../../../context/components/globalLoading/Glob
 import PostApi from "../../../api/PostApi";
 import { toast } from "react-toastify";
 import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
+import { Link } from "react-router-dom";
 
 interface PostItemProps {
   post: PostItemType;
@@ -85,7 +86,7 @@ const UserPostItem: React.FC<PostItemProps> = ({ post, handleRemovePost, handleU
               <img src={post.image} alt="car" />
             </div>
             <div>
-              <p className={styles.carName}>{post.title}</p>
+              <Link to={`/post/${post.id}`}><p className={styles.carName}>{post.title}</p></Link>
               <p className={styles.carDetails}>{post.year} - {post.odo} km</p>
             </div>
           </div>
