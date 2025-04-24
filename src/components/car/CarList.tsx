@@ -6,10 +6,10 @@ import { useGlobalLoading } from "../../context/components/globalLoading/GlobalL
 import PostApi from "../../api/PostApi";
 import FavoriteApi from "../../api/FavoriteApi";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const CarList: React.FC = () => {
-  const {isLoggedIn} = AuthContext
+  const {isLoggedIn} = useAuthContext()
   const { showLoading, hideLoading } = useGlobalLoading()
   const [homePosts, setHomePosts] = useState<PostItemType[]>()
 
