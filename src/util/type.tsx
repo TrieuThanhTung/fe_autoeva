@@ -71,3 +71,23 @@ export type PostDetalsType = {
   description: string;
   favorited: boolean;
 }
+
+export type CommentPayload = {
+  comment: {
+    content: string
+  }
+}
+
+interface UserComment {
+  id: number | string;
+  email: string;
+  name: string;
+}
+
+export interface CommentType {
+  id: number | string;
+  content: string;
+  created_at: string; 
+  updated_at: string; 
+  user: UserComment;
+}

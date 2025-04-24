@@ -132,7 +132,7 @@ const PostDetailPage = () => {
           <PostDetail post={postDetails} handleFavoritesPost={handleFavoritesPost} />
         </div>
         <div className={styles.commentContainer}>
-          <CommentSection />
+          <CommentSection id={postDetails.id}/>
         </div>
       </div>
       <div className={styles.sidebar}>

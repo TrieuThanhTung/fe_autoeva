@@ -47,6 +47,82 @@
   font-size: 14px;
 }
 
+.commentItem {
+  border-bottom: 1px solid #eee;
+  padding: 1rem 1rem;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+  }
+  
+  .userInfo {
+    flex: 1;
+  }
+  
+  .nameTime {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .time {
+    font-size: 14px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .content {
+    margin-top: 8px;
+    font-size: 15px;
+  }
+}
+
+.loadMoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.loadMoreButton {
+  padding: 10px 20px;
+  background-color: #ffffff; // xanh dương chủ đạo
+  color: black;
+  border: solid 1px #000;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #ebedee;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+
 /* Responsive */
 @media (max-width: 480px) {
   .commentSection {
