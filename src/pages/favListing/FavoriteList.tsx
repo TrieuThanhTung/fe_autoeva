@@ -85,6 +85,7 @@ const FavoriteList: React.FC = () => {
               id={car.id}
               key={index}
               name={car.title}
+              status={car.status}
               image={car.image}
               price={car.price}
               location={car.location}

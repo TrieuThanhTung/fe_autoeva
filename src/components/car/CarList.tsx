@@ -17,6 +17,7 @@ const CarList: React.FC = () => {
           <CarCard
             id={car.id}
             key={index}
+            status={car.status}
             name={car.name}
             image={car.image}
             price={car.price}
