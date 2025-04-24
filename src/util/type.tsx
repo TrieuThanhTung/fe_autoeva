@@ -61,6 +61,7 @@ export type PostDetalsType = {
   images: string[];
   price: string;
   location: string;
+  status: string;
   mileage: string;
   year: string;
   origin: string;

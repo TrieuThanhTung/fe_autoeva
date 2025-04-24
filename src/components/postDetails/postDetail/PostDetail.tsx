@@ -13,7 +13,10 @@ const PostDetail: React.FC<PostDetailProps> = ({post, handleFavoritesPost}) => {
   return (
     <div className={styles.postDetail}>
       <div className={styles.postHeader}>
-        <h2 className={styles.title}>{post.title}</h2>
+        <div>
+          <h2 className={styles.title}>{post.title}</h2>
+          {post.status === 'sold' && <div className={styles.soldStatus}>Đã bán</div>}
+        </div>
         <button className={`${styles.favoriteButton} ${ post.favorited ? styles.favorited : ''}`} onClick={handleFavoritesPost}>
           <i className="fas fa-heart"></i>
         </button>
@@ -41,7 +44,7 @@ const PostDetail: React.FC<PostDetailProps> = ({post, handleFavoritesPost}) => {
         <h3>Thông tin chi tiết</h3>
         <div className={styles.infoGrid}>
           <div>
-            <strong>Xuất xứ:</strong> {origin}
+            <strong>Xuất xứ:</strong> {post.origin}
           </div>
           <div>
             <strong>Nhiên liệu:</strong> {post.fuel}
