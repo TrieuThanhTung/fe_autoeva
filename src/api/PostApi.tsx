@@ -49,6 +49,10 @@ class PostApi {
   getPostById = async (postId: number | string) => {
     return await axiosInstance.get(`/api/sale_posts/${postId}`);
   }
+
+  getHome = async () => {
+    return await axiosInstance.get('/api/sale_posts/home')
+  }
 }
 
 export default new PostApi();
