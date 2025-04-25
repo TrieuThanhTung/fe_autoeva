@@ -62,6 +62,10 @@ class PostApi {
   createComment = async (postId: number | string, payload: CommentPayload) => {
     return await axiosInstance.post(`/api/sale_posts/${postId}/comments`, payload)
   }
+
+  search = async (query: string) => {
+    return await axiosInstance.get(`/api/sale_posts/search?query=${query}`)
+  }
 }
 
 export default new PostApi();

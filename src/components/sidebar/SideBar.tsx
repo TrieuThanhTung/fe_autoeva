@@ -2,8 +2,8 @@ import "./SideBar.scss"
 import React from "react";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { Link } from "react-router-dom";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import logo from "../../assets/logo_autoeva.svg";
+import Search from "../Header/components/search/Search";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -23,10 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </button>
       </div>
 
-      <div className="search">
-          <SearchOutlinedIcon />
-          <input type="text" placeholder="Search..." />
-      </div>
+      <Search />
       
       <ul className="menu">
         <li>

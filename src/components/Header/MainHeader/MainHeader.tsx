@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./MainHeader.scss";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -11,6 +10,7 @@ import { useState } from "react";
 import { useGlobalLoading } from "../../../context/components/globalLoading/GlobalLoadingProvider";
 import AuthApi from "../../../api/AuthApi";
 import { useAuthContext } from "../../../context/authContext";
+import Search from "../components/search/Search";
 
 type HeaderProps = {
   toggleSidebar: () => void
@@ -70,9 +70,9 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
               </ul>
             </nav>
           </div>
+
           <div className="search">
-            <SearchOutlinedIcon />
-            <input type="text" placeholder="Search..." />
+            <Search />
           </div>
 
           <div className="menu-items">
