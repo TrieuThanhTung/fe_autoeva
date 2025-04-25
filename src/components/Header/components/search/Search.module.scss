@@ -1,0 +1,108 @@
+@use "../../../../style.scss" as global_styles;
+
+.searchContainer {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 0 8px;
+  border-radius: 6px;
+  background-color: white;
+
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    margin-left: 8px;
+    font-size: 16px;
+  }
+}
+
+.icon {
+  color: #888;
+}
+
+.resultList {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+}
+
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+.info {
+  flex: 1;
+
+  .name {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    color: #000;
+  }
+
+  .priceBox {
+    margin-top: 4px;
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #e6002d;
+      margin-right: 8px;
+    }
+
+    .oldPrice {
+      font-size: 14px;
+      color: #999;
+      text-decoration: line-through;
+    }
+  }
+}
+
+
+@include global_styles.tablet{
+  .searchContainer {
+    width: 200px;
+  }
+}
+
+@include global_styles.mobile{
+  .searchContainer {
+    width: calc(100% - 20px);
+  }
+}
+
+

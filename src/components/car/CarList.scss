@@ -15,9 +15,10 @@
     grid-template-columns: repeat(3, 1fr); // Hiển thị 3 xe trên hàng ngang
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1024px) {
     .grid {
-      grid-template-columns: repeat(2, 1fr); // Hiển thị 2 xe trên hàng ngang khi màn hình nhỏ hơn 992px
+      grid-template-columns: repeat(2, 1fr);
+      justify-self: center;
     }
   }
 

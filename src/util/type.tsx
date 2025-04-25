@@ -123,3 +123,17 @@ export interface CommentType {
   updated_at: string; 
   user: UserComment;
 }
+
+export interface SearchParams {
+  query?: string;
+  brand_id?: number | string;
+  model_id?: number | string;
+  version_id?: number | string;
+  year?: number | string;
+  odo_min?: number | string | null;
+  odo_max?: number | string | null;
+  price_min?: number | string | null;
+  price_max?: number | string | null;
+  sort?: string | null;
+  page?: number | string;
+}

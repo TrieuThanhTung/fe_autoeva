@@ -1,46 +1,45 @@
 import "./SideBar.scss"
-import React from "react";
+import React, { useEffect } from "react";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { Link } from "react-router-dom";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Link, useParams } from "react-router-dom";
 import logo from "../../assets/logo_autoeva.svg";
+import Search from "../Header/components/search/Search";
 
 type SidebarProps = {
   isOpen: boolean;
-  toggleSidebar: () => void;
+  toggleSidebar: (status: boolean) => void
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+  const { id } = useParams();
+
+  useEffect(() => {
+    toggleSidebar(false)
+  }, [id])
 
   return (
     <div className={`sidebar ${isOpen ? "show" : ""}`}>
       <div className="top">
         <Link to="/" className="logo">
-          <img src={logo} alt="Logo" onClick={toggleSidebar}/>
+          <img src={logo} alt="Logo" onClick={() => toggleSidebar(false)}/>
         </Link>
-        <button onClick={toggleSidebar} className="close-btn">
+        <button onClick={() => toggleSidebar(false)} className="close-btn">
           <CancelOutlinedIcon className="icon"/>
         </button>
       </div>
 
-      <div className="search">
-          <SearchOutlinedIcon />
-          <input type="text" placeholder="Search..." />
-      </div>
+      <Search />
       
       <ul className="menu">
         <li>
-          <Link to="/" onClick={toggleSidebar}>Trang chủ</Link>
+          <Link to="/" onClick={() => toggleSidebar(false)}>Trang chủ</Link>
         </li>
         <li>
-          <Link to="/predict" onClick={toggleSidebar}>Định giá xe</Link>
+          <Link to="/predict" onClick={() => toggleSidebar(false)}>Định giá xe</Link>
         </li>
         <li>
-          <Link to="/posts" onClick={toggleSidebar}>Bài đăng</Link>
+          <Link to="/posts" onClick={() => toggleSidebar(false)}>Bài đăng</Link>
         </li>
-        {/* <li>
-          <Link to="#" onClick={toggleSidebar}>Liên hệ</Link>
-        </li> */}
       </ul>
     </div>
   );

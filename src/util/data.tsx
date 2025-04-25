@@ -114,3 +114,29 @@ export const userPosts = [
     date: "15/02/2024",
   },
 ];
+export const years = Array.from({ length: 2025 - 1900 + 1 }, (_, i) => 2025 - i);
+
+export const kmRangeValues = [
+  { label: "Tất cả", value: { min: null, max: null } },
+  { label: "Dưới 10.000 km", value: { min: null, max: 10000 } },
+  { label: "10.000 - 30.000 km", value: { min: 10000, max: 30000 } },
+  { label: "30.000 - 70.000 km", value: { min: 30000, max: 70000 } },
+  { label: "70.000 - 100.000 km", value: { min: 70000, max: 100000 } },
+  { label: "Trên 100.000 km", value: { min: 100000, max: null } },
+];
+
+export const priceRangeValues = [
+  { label: "Tất cả", value: { min: null, max: null } },
+  { label: "Dưới 500 triệu", value: { min: null, max: 500_000_000 } },
+  { label: "500 triệu - 1 tỉ", value: { min: 500_000_000, max: 1_000_000_000 } },
+  { label: "1 tỉ - 2 tỉ", value: { min: 1_000_000_000, max: 2_000_000_000 } },
+  { label: "2 tỉ - 3 tỉ", value: { min: 2_000_000_000, max: 3_000_000_000 } },
+  { label: "3 tỉ - 4 tỉ", value: { min: 3_000_000_000, max: 4_000_000_000 } },
+  { label: "4 tỉ - 5 tỉ", value: { min: 4_000_000_000, max: 5_000_000_000 } },
+  { label: "5 tỉ - 6 tỉ", value: { min: 5_000_000_000, max: 6_000_000_000 } },
+  { label: "6 tỉ - 7 tỉ", value: { min: 6_000_000_000, max: 7_000_000_000 } },
+  { label: "7 tỉ - 8 tỉ", value: { min: 7_000_000_000, max: 8_000_000_000 } },
+  { label: "8 tỉ - 9 tỉ", value: { min: 8_000_000_000, max: 9_000_000_000 } },
+  { label: "9 tỉ - 10 tỉ", value: { min: 9_000_000_000, max: 10_000_000_000 } },
+  { label: "Trên 10 tỉ", value: { min: 10_000_000_000, max: null } },
+];

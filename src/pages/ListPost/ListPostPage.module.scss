@@ -46,9 +46,23 @@
 
 .sortContainer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin-top: 16px;
+  padding: 0 16px;
+
+  .buttonApply {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+
+    &:hover {
+      background-color: rgb(163, 163, 163);
+    }
+  }
 }
 
 .sortLabel {

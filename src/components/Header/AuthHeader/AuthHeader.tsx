@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./AuthHeader.scss";
 import logo from "../../../assets/logo_autoeva.svg";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import Search from "../components/search/Search";
 
 const AuthHeader = () => {
   return (
@@ -12,8 +12,7 @@ const AuthHeader = () => {
         </Link>
 
         <div className="search">
-          <SearchOutlinedIcon />
-          <input type="text" placeholder="Search..." />
+          <Search />
         </div>
 
         <div className="auth-buttons">

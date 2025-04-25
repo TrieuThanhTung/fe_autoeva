@@ -8,8 +8,8 @@ import { useState } from "react";
 const MainLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+  const toggleSidebar = (status: boolean) => {
+    setIsOpen(status);
   };
 
   return (
