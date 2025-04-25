@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { kmRangeValues, priceRangeValues, years } from "../../util/data";
 import PostApi from "../../api/PostApi";
 import { Pagination } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useGlobalLoading } from "../../context/components/globalLoading/GlobalLoadingProvider";
 
 const ListPostPage: React.FC = () => {
@@ -36,7 +36,7 @@ const ListPostPage: React.FC = () => {
   const odo_max = searchUrlParams.get("odo_max") || "";
   const price_min = searchUrlParams.get("price_min") || "";
   const price_max = searchUrlParams.get("price_max") || "";
-  const sort = searchUrlParams.get("sort") || "year_desc";
+  const sort = searchUrlParams.get("sort") || "";
   const page = Number(searchUrlParams.get("page") || "1");
 
   const updateParams = (newParams: Partial<SearchParams>) => {
@@ -55,10 +55,8 @@ const ListPostPage: React.FC = () => {
       ...newParams,
     };
 
-    if (newParams.sort) {
-      updated = {...updated, sort: newParams.sort}
-      console.log(updated)
-    }
+    updated = { ...updated, sort: 'price_desc' as string }
+    // console.log(updated)
 
     Object.keys(updated).forEach(
       (key) =>
@@ -163,13 +161,18 @@ const ListPostPage: React.FC = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    if (e.target.value === 'sort') {
-      setSearchParams({ ...searchParams, sort: e.target.value as SearchParams["sort"] });
-      return
-    }
     setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleChangeSort = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const newParams = new URLSearchParams(location.search);
+    newParams.set("sort", e.target.value);
+    newParams.set("page", "1");
+    navigate(`${location.pathname}?${newParams.toString()}`);
+  }
 
   const handleChangeRangeOdo = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const odoRange = kmRangeValues[Number(e.target.value)]
@@ -274,7 +277,7 @@ const ListPostPage: React.FC = () => {
       </div>
 
       <div className={styles.sortContainer}>
-        <select name="sort" className={styles.sortSelect} onChange={handleChange}>
+        <select name="sort" className={styles.sortSelect} onChange={handleChangeSort}>
           <option value={'year_desc'}>Mới nhất</option>
           <option value={'year_asc'} >Cũ nhất</option>
           <option value={'price_asc'}>Giá tăng dần </option>
