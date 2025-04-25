@@ -11,7 +11,6 @@ type SidebarProps = {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
-  // const location = useLocation();
   const { id } = useParams();
 
   useEffect(() => {

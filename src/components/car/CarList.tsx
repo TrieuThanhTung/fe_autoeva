@@ -1,40 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./CarList.scss";
 import CarCard from "../car/CarCard";
 import { PostItemType } from "../../util/type";
-import { useGlobalLoading } from "../../context/components/globalLoading/GlobalLoadingProvider";
-import PostApi from "../../api/PostApi";
 import FavoriteApi from "../../api/FavoriteApi";
 import { toast } from "react-toastify";
 import { useAuthContext } from "../../context/authContext";
 
-const CarList: React.FC = () => {
+type CarListProps = {
+  salePosts: PostItemType[] | undefined;
+  setSalePosts: React.Dispatch<React.SetStateAction<PostItemType[] | undefined>>
+}
+
+const CarList: React.FC<CarListProps> = ({salePosts, setSalePosts}) => {
   const {isLoggedIn} = useAuthContext()
-  const { showLoading, hideLoading } = useGlobalLoading()
-  const [homePosts, setHomePosts] = useState<PostItemType[]>()
-
-  const fetchHomePosts = async () => {
-    showLoading()
-    try {
-      const res = await PostApi.getHome()
-      if (res.status === 200) {
-        setHomePosts(res.data)
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setTimeout(() => {
-        hideLoading()
-      }, 1000)
-    }
-  }
-
-  useEffect(() => {
-    fetchHomePosts()
-  }, [])
 
   const handleFavoritePost = (index: number, status: boolean) => {
-    setHomePosts((prevPosts) => {
+    setSalePosts((prevPosts) => {
       const updatedPosts = prevPosts ? [...prevPosts] : [];
       updatedPosts[index] = {
         ...updatedPosts[index],
@@ -46,8 +27,8 @@ const CarList: React.FC = () => {
 
 
   const toggleFavorite = async (index: number) => {
-    if (homePosts) {
-      const favoritePost = homePosts[index]
+    if (salePosts) {
+      const favoritePost = salePosts[index]
       let res = null
       if (isLoggedIn && favoritePost.favorited === true) {
         res = await FavoriteApi.deleteFavoritePost(favoritePost.id)
@@ -66,7 +47,7 @@ const CarList: React.FC = () => {
   return (
     <section className="carList container">
       <div className="grid">
-        {homePosts?.map((car, index) => (
+        {salePosts?.map((car, index) => (
           <CarCard
             id={car.id}
             key={index}

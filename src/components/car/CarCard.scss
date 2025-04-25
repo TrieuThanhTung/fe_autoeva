@@ -1,6 +1,5 @@
 .card {
-  max-width: 360px;
-  min-width: 320px;
+  width: 360px;
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -123,5 +122,12 @@
     &:hover {
       background-color: #333;
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    margin: auto;
+    box-sizing: border-box;
   }
 }

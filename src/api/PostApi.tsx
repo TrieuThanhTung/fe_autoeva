@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "./AxiosInstance";
-import { CommentPayload, CreatePostType } from "../util/type";
+import { CommentPayload, CreatePostType, SearchParams } from "../util/type";
 
 class PostApi {
   uploadImageToImgur = async ( 
@@ -65,6 +65,10 @@ class PostApi {
 
   search = async (query: string) => {
     return await axiosInstance.get(`/api/sale_posts/search?query=${query}`)
+  }
+
+  getPostLists = async (params?: SearchParams) => {
+    return await axiosInstance.get(`/api/sale_posts/search`, {params})
   }
 }
 
