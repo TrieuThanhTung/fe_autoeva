@@ -13,7 +13,7 @@ import { useAuthContext } from "../../../context/authContext";
 import Search from "../components/search/Search";
 
 type HeaderProps = {
-  toggleSidebar: () => void
+  toggleSidebar: (status: boolean) => void
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
       <header className="header">
         <div className="container">
           <div className="left-block">
-            <button onClick={toggleSidebar} className="open-btn-sidebar-mobile">
+            <button onClick={() => toggleSidebar(true)} className="open-btn-sidebar-mobile">
               ☰
             </button>
             <Link to="/" className="logo">
