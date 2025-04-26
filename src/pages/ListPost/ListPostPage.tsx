@@ -40,7 +40,7 @@ const ListPostPage: React.FC = () => {
   const page = Number(searchUrlParams.get("page") || "1");
 
   const updateParams = (newParams: Partial<SearchParams>) => {
-    let updated = {
+    const updated = {
       query,
       brand_id,
       model_id,
@@ -54,9 +54,6 @@ const ListPostPage: React.FC = () => {
       page,
       ...newParams,
     };
-
-    updated = { ...updated, sort: 'price_desc' as string }
-    // console.log(updated)
 
     Object.keys(updated).forEach(
       (key) =>
