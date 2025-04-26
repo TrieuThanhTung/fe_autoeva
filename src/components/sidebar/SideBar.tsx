@@ -1,7 +1,7 @@
 import "./SideBar.scss"
 import React, { useEffect } from "react";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import logo from "../../assets/logo_autoeva.svg";
 import Search from "../Header/components/search/Search";
 
@@ -11,11 +11,12 @@ type SidebarProps = {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+  const location = useLocation();
   const { id } = useParams();
 
   useEffect(() => {
     toggleSidebar(false)
-  }, [id])
+  }, [id, location.pathname]);
 
   return (
     <div className={`sidebar ${isOpen ? "show" : ""}`}>
