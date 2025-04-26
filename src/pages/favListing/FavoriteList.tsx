@@ -95,7 +95,7 @@ const FavoriteList: React.FC = () => {
             />
           ))}
         </div> :
-          <p>Không có danh sách</p>
+          <p>Chưa có bài đăng nào được yêu thích!</p>
         }
         {totalPages > 1 && (
           <div className='' style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}>

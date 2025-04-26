@@ -11,7 +11,7 @@ type CommentSectionProps = {
 
 const CommentSection: React.FC<CommentSectionProps> = ({ id }) => {
   const [comment, setComment] = useState<string>("");
-  
+  const [uid] = useState<string | null>(localStorage.getItem('uid') || null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -41,17 +41,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ id }) => {
       } else if (res.status !== 201) {
         toast.error("Bình luận lỗi, vui lòng thử lại!")
       } else if (res.status === 201) {
-        const newComment: CommentType = {
-          id: new Date(Date.now()).toISOString(),
-          content: remove_badwords,
-          created_at: new Date(Date.now()).toISOString(),
-          updated_at: new Date(Date.now()).toISOString(),
-          user: {
-            id: localStorage.getItem('uid') || 0,
-            email: localStorage.getItem('uid') || 'email@gmail.com',
-            name: "Bạn"
-          }
-        };
+        const newComment: CommentType = res.data;
         setComments((prevComments) => [newComment, ...(prevComments || [])]);
         setComment("");
       }
@@ -111,7 +101,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ id }) => {
               </div>
               <div className={styles.userInfo}>
                 <div className={styles.nameTime}>
-                  <span className={styles.name}>{c.user.name}</span>
+                  <span className={styles.name}>{uid && uid === c.user.email ? `${c.user.name} (Bạn)` : c.user.name }</span>
                   <span className={styles.time}>
                     <i className="fa fa-clock-o" /> {new Date(c.created_at).toLocaleString('vi-VN')}
                   </span>
