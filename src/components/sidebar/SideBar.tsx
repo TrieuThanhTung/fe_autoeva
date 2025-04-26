@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </button>
       </div>
 
-      <Search />
+      <Search toggleSidebar={toggleSidebar}/>
       
       <ul className="menu">
         <li>

@@ -6,7 +6,11 @@ import PostApi from "../../../../api/PostApi";
 import { formatCurrency } from "../../../../util/utils";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
-const Search: React.FC = () => {
+type SearchProps = {
+  toggleSidebar?: (status: boolean) => void
+}
+
+const Search: React.FC<SearchProps> = ({toggleSidebar}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
@@ -56,6 +60,9 @@ const Search: React.FC = () => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setFilteredResults([])
+      if (toggleSidebar) {
+        toggleSidebar(false);
+      }
       navigate(`/posts?query=${encodeURIComponent(query)}`);
     }
   };
