@@ -17,10 +17,12 @@ const ListPostPage: React.FC = () => {
   const [models, setModels] = useState<Model[]>();
   const [versions, setVersions] = useState<Version[]>();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [salePosts, setSalePosts] = useState<PostItemType[]>()
 
   const [searchParams, setSearchParams] = useState<SearchParams>({
-    query: "",
     page: 1,
     sort: "year_desc",
   });
@@ -55,12 +57,12 @@ const ListPostPage: React.FC = () => {
       ...newParams,
     };
 
+
     Object.keys(updated).forEach(
       (key) =>
         (updated as any)[key] === undefined ||
           (updated as any)[key] === "" ||
-          (updated as any)[key] === null ||
-          isNaN((updated as any)[key]) ? delete (updated as any)[key] : null
+          (updated as any)[key] === null ? delete (updated as any)[key] : null
     );
 
     setSearchUrlParams(updated as any);
@@ -158,11 +160,8 @@ const ListPostPage: React.FC = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
+    setSearchParams((prevSP) => ({ ...prevSP, [e.target.name]: e.target.value }));
   };
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const handleChangeSort = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const newParams = new URLSearchParams(location.search);
