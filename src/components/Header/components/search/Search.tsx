@@ -4,9 +4,14 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { PostItemType } from "../../../../util/type";
 import PostApi from "../../../../api/PostApi";
 import { formatCurrency } from "../../../../util/utils";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
-const Search: React.FC = () => {
+type SearchProps = {
+  toggleSidebar?: (status: boolean) => void
+}
+
+const Search: React.FC<SearchProps> = ({toggleSidebar}) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
   const [query, setQuery] = useState("");
@@ -40,10 +45,9 @@ const Search: React.FC = () => {
       } else {
         await fetchPostByQuery(value.trim())
       }
-    }, 500); // debounce delay 400ms
+    }, 500);
   };
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     setFilteredResults([])
     return () => {
@@ -52,6 +56,16 @@ const Search: React.FC = () => {
       }
     };
   }, [location.pathname, id]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setFilteredResults([])
+      if (toggleSidebar) {
+        toggleSidebar(false);
+      }
+      navigate(`/posts?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   return (
     <div className={styles.searchContainer}>
@@ -62,6 +76,7 @@ const Search: React.FC = () => {
           placeholder="Tìm kiếm..."
           value={query}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
         />
       </div>
       {filteredResults.length > 0 && (
