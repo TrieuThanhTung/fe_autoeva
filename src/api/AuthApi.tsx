@@ -21,6 +21,14 @@ class AuthApi {
   logout = async () => {
     return await axiosInstance.delete("/api/auth/sign_out");
   }
+
+  forgotPassword = async (email: string) => {
+    return await axiosInstance.post("/api/auth/password", { email });
+  }
+
+  resetPassword = async (password: string, token: string) => {
+    return await axiosInstance.put("/api/auth/password", { password, password_confirmation: password, reset_password_token: token });
+  }
 }
 
 export default new AuthApi();

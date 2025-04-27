@@ -218,7 +218,7 @@ const ListPostPage: React.FC = () => {
           </div>
           <div className={styles.filterGroup}>
             <label className={styles.filterLabel}>Mẫu xe</label>
-            <select name="model_id" className={styles.filterSelect} onChange={handleChange}>
+            <select name="model_id" className={styles.filterSelect} onChange={handleChange} disabled={!searchParams.brand_id}>
               <option value="" className={styles.defaultSelectText}>Chọn mẫu xe</option>
               {models?.map((model) => (
                 <option key={model.id} value={model.id}>
@@ -229,7 +229,7 @@ const ListPostPage: React.FC = () => {
           </div>
           <div className={styles.filterGroup}>
             <label className={styles.filterLabel}>Phiên bản</label>
-            <select name="version_id" className={styles.filterSelect} onChange={handleChange}>
+            <select name="version_id" className={styles.filterSelect} onChange={handleChange} disabled={!searchParams.model_id}>
               <option value="" className={styles.defaultSelectText}>Chọn phiên bản</option>
               {versions?.map((version) => (
                 <option key={version.id} value={version.id}>
