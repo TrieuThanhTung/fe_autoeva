@@ -12,6 +12,8 @@ import ListPostPage from "../pages/ListPost/ListPostPage";
 import SignupSuccess from "../pages/signup/sucess/SignupSuccess";
 import VerifySuccess from "../pages/verify/success/VerifySuccess";
 import VerifyPage from "../pages/verify/Verify";
+import ForgotPasswordPage from "../pages/password/forgotPassword/ForgotPasswordPage";
+import ResetPasswordPage from "../pages/password/resetPassword/ResetPasswordPage";
 
 
 const commonRoutes = [
@@ -24,6 +26,8 @@ const commonRoutes = [
   {path: "/post/:id", page: PostDetailPage},
   {path: "/predict", page: Predict},
   {path: "/posts", page: ListPostPage},
+  {path: "/forgot-password", page: ForgotPasswordPage},
+  {path: "/reset-password", page: ResetPasswordPage},
 ]
 
 const userRoutes = [
