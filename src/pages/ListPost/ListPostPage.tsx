@@ -217,7 +217,7 @@ const ListPostPage: React.FC = () => {
             </select>
           </div>
           <div className={styles.filterGroup}>
-            <label className={styles.filterLabel}>Vị trí</label>
+            <label className={styles.filterLabel}>Mẫu xe</label>
             <select name="model_id" className={styles.filterSelect} onChange={handleChange}>
               <option value="" className={styles.defaultSelectText}>Chọn mẫu xe</option>
               {models?.map((model) => (
@@ -228,7 +228,7 @@ const ListPostPage: React.FC = () => {
             </select>
           </div>
           <div className={styles.filterGroup}>
-            <label className={styles.filterLabel}>Mức giá</label>
+            <label className={styles.filterLabel}>Phiên bản</label>
             <select name="version_id" className={styles.filterSelect} onChange={handleChange}>
               <option value="" className={styles.defaultSelectText}>Chọn phiên bản</option>
               {versions?.map((version) => (
@@ -261,7 +261,7 @@ const ListPostPage: React.FC = () => {
           </div>
 
           <div className={styles.filterGroup}>
-            <label className={styles.filterLabel}>Giá</label>
+            <label className={styles.filterLabel}>Mức giá</label>
             <select name="price" className={styles.filterSelect} onChange={handleChangeRangePrice}>
               <option value=""> Tất cả </option>
               {priceRangeValues.map((range, idx) => (
