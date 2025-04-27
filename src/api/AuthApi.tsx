@@ -26,8 +26,8 @@ class AuthApi {
     return await axiosInstance.post("/api/auth/password", { email });
   }
 
-  resetPassword = async (password: string, token: string) => {
-    return await axiosInstance.put("/api/auth/password", { password, password_confirmation: password, reset_password_token: token });
+  resetPassword = async (password: string, confirmPassword: string, token: string) => {
+    return await axiosInstance.put("/api/auth/password", { password, password_confirmation: confirmPassword, reset_password_token: token });
   }
 }
 
