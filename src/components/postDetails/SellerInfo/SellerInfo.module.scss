@@ -10,6 +10,21 @@
   border: 1px solid rgba(233, 232, 232, 0.7);
 }
 
+.sellerCardHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .reportBtn {
+    margin-bottom: 16px;
+    border: none;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
 .sellerInfo {
   display: flex;
   align-items: left;

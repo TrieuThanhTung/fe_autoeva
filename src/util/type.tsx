@@ -137,3 +137,14 @@ export interface SearchParams {
   sort?: string | null;
   page?: number | string;
 }
+
+interface ReportData {
+  reason: string;
+  reportable_type: 'User' | 'SalePost'; 
+  reportable_id: number;
+  images?: number[]; 
+}
+
+export interface ReportPayload {
+  report: ReportData;
+}
