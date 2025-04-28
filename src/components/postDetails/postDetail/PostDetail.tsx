@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./PostDetail.module.scss";
 import { PostDetalsType } from "../../../util/type";
+import OptionsMenu from "../../optionsMenu/OptionsMenu";
 
 interface PostDetailProps {
   post: PostDetalsType;
@@ -17,9 +18,14 @@ const PostDetail: React.FC<PostDetailProps> = ({post, handleFavoritesPost}) => {
           <h2 className={styles.title}>{post.title}</h2>
           {post.status === 'sold' && <div className={styles.soldStatus}>Đã bán</div>}
         </div>
-        <button className={`${styles.favoriteButton} ${ post.favorited ? styles.favorited : ''}`} onClick={handleFavoritesPost}>
-          <i className="fas fa-heart"></i>
-        </button>
+        <div className={styles.btnSection}> 
+          <div className={styles.optionsMenu}>
+            <OptionsMenu reportId={post.id} reportableType="SalePost" titleReport={`Báo cáo bài viết: ${post.title}`} />
+          </div>
+          <button className={`${styles.favoriteButton} ${ post.favorited ? styles.favorited : ''}`} onClick={handleFavoritesPost}>
+            <i className="fas fa-heart"></i>
+          </button>
+        </div>
       </div>
       <div className={styles.meta}>
         <span className={`${styles.price} ${styles.priceTag}`}>

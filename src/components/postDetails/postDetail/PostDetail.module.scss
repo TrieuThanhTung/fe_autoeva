@@ -7,7 +7,13 @@
 
   .postHeader {
     display: flex;
+    gap: 12px;
     justify-content: space-between;
+
+    .btnSection {
+      display: flex;
+      gap: 10px;
+    }
   }
 
   .title {
