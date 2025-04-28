@@ -29,7 +29,7 @@ class UserApi {
   }
 
   createReport = async (payload: ReportPayload) => {
-    return await axiosInstance.post("/api/report", payload);
+    return await axiosInstance.post("/api/reports", payload);
   }
 }
 

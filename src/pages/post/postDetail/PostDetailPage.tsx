@@ -25,6 +25,7 @@ const PostDetailPage = () => {
   const navigate = useNavigate()
 
   const [sellerInfo, setSellerInfo] = useState({
+    id: 0,
     name: "",
     avatar: avatar_seller,
     joinYear: "",
@@ -83,6 +84,7 @@ const PostDetailPage = () => {
       }
 
       setSellerInfo({
+        id: sale_post.user.id,
         name: sale_post.user.first_name ? `${sale_post.user.first_name} ${sale_post.user.last_name}` : sale_post.user.email,
         avatar: sale_post.user.avatar || avatar_seller,
         joinYear: sale_post.user.created_at ? formatDate(sale_post.user.created_at) : new Date().getFullYear().toString(),
@@ -137,6 +139,7 @@ const PostDetailPage = () => {
       </div>
       <div className={styles.sidebar}>
         <SellerInfo
+          id={sellerInfo.id}
           name={sellerInfo.name}
           avatar={sellerInfo.avatar}
           joinYear={sellerInfo.joinYear}

@@ -12,7 +12,8 @@ interface SellerInfoProps {
   phone: string;
 }
 
-const SellerInfo: React.FC<SellerInfoProps> = ({ name, avatar, joinYear, phone }) => {
+const SellerInfo: React.FC<SellerInfoProps> = ({ id, name, avatar, joinYear, phone }) => {
+
   return (
     <div className={styles.sellerCard}>
       <div className={styles.sellerCardHeader}>
@@ -24,7 +25,10 @@ const SellerInfo: React.FC<SellerInfoProps> = ({ name, avatar, joinYear, phone }
           </div>
         </div>
         <button className={styles.reportBtn}>
-          <OptionsMenu onReport={() => console.log("Report clicked")} />
+          <OptionsMenu
+            reportableType="User"
+            reportId={id}
+            titleReport={`Báo cáo người dùng: ${name}`} />
         </button>
       </div>
       <button className={styles.phoneButton}>
