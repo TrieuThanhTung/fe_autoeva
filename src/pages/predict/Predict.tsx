@@ -327,7 +327,7 @@ const Predict: React.FC = () => {
             {predictedPrice !== null ? (
               <div className="price">
                 Giá dự đoán:{" "}
-                <span className="value">{predictedPrice} VND</span>
+                <span className="value">{predictedPrice}</span>
               </div>
             ) : (
               predictionError && <div className="error-message">{predictionError}</div>

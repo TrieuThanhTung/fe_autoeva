@@ -1,5 +1,5 @@
 import axiosInstance from "./AxiosInstance";
-import {AuthHeaders, UpdateUserPayload, ChangePasswordPayload} from "../util/type"
+import {AuthHeaders, UpdateUserPayload, ChangePasswordPayload, ReportPayload} from "../util/type"
 class UserApi {
 
   getProfile = async (authHeaders: AuthHeaders) => {
@@ -26,6 +26,10 @@ class UserApi {
   getPosts = async (page?: number) => {
     const url = page ? `/api/users/sale_posts?page=${page}` : "/api/users/sale_posts";
     return await axiosInstance.get(url);
+  }
+
+  createReport = async (payload: ReportPayload) => {
+    return await axiosInstance.post("/api/reports", payload);
   }
 }
 
