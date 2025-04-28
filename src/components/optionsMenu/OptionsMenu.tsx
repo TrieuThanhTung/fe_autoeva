@@ -82,7 +82,19 @@ export default function OptionsMenu({ reportId, titleReport, reportableType }: O
   }
 
   const handleSubmitReport = async () => {
+    if (!reportContent) {
+      setShowModal(false);
+      toast.error("Vui lòng nhập nội dung báo cáo");
+      return;
+    }
+    if (form.images.length === 0) {
+      setShowModal(false);
+      toast.error("Vui lòng thêm hình ảnh minh chứng");
+      return;
+    }
+
     showLoading();
+
     const imageUrls = await handleUploadImages(form.images);
 
     const reportPayload = {
@@ -98,9 +110,11 @@ export default function OptionsMenu({ reportId, titleReport, reportableType }: O
       const res = await UserApi.createReport(reportPayload);
       if (res.status === 201) {
         delay(() => {toast.success("Báo cáo thành công");})
+      } else {
+        delay(() => {toast.error("Báo cáo thất bại");})
       }
     } catch (error) {
-      console.error("Error submitting report:", error);
+      console.error(error);
     } finally {
       setReportContent("");
       setPreviewImages([]);
