@@ -5,8 +5,6 @@ import styles from "./OptionsMenu.module.scss";
 import { FiFlag } from "react-icons/fi";
 import ImageUpload from "../uploadImage/UploadImage";
 import { uploadAllImages } from "../../util/utils";
-import { ReportPayload } from "../../util/type";
-import { User } from "lucide-react";
 import UserApi from "../../api/UserApi";
 import { toast } from "react-toastify";
 import { delay } from "../../util/delay";
