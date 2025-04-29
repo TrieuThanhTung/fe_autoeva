@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./MainHeader.scss";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+// import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import logo from "../../../assets/logo_autoeva.svg";
 import ConfirmModal from "../../modal/confirmModal/ConfirmModal";
@@ -11,6 +11,7 @@ import { useGlobalLoading } from "../../../context/components/globalLoading/Glob
 import AuthApi from "../../../api/AuthApi";
 import { useAuthContext } from "../../../context/authContext";
 import Search from "../components/search/Search";
+import DropdownMenu from "./dropdownMenu/DropdownMenu";
 
 type HeaderProps = {
   toggleSidebar: (status: boolean) => void
@@ -82,9 +83,12 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
             <Link to="/favorites" className="item">
               <FavoriteBorderOutlinedIcon />
             </Link>
-            <Link to="/my-posts" className="item">
+            {/* <Link to="/my-posts" className="item">
               <FormatListBulletedIcon />
-            </Link>
+            </Link> */}
+            <div className="item">
+              <DropdownMenu />
+            </div>
             <button onClick={handleLogoutClick} className="item logout-btn">
               <LogoutOutlinedIcon />
             </button>
