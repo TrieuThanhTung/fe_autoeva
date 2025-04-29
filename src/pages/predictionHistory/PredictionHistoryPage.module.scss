@@ -1,0 +1,57 @@
+// PredictionHistoryPage.module.scss
+.container {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: calc(100vh - 66px - 233px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+    color: #555;
+  }
+}
+
+.headerCarName {
+  width: 40%;
+}
+
+.headerDate {
+  width: 30%;
+}
+
+.headerPrice {
+  width: 30%;
+}
+
+.containerPagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}

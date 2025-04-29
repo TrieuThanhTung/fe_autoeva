@@ -31,6 +31,11 @@ class UserApi {
   createReport = async (payload: ReportPayload) => {
     return await axiosInstance.post("/api/reports", payload);
   }
+
+  getPredictionHistory = async (page?: number) => {
+    const url = page ? `/api/users/prediction-history?page=${page}` : "/api/users/prediction-history";
+    return await axiosInstance.get(url);
+  }
 }
 
 export default new UserApi();

@@ -14,6 +14,7 @@ import VerifySuccess from "../pages/verify/success/VerifySuccess";
 import VerifyPage from "../pages/verify/Verify";
 import ForgotPasswordPage from "../pages/password/forgotPassword/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/password/resetPassword/ResetPasswordPage";
+import PredictionHistoryPage from "../pages/predictionHistory/PredictionHistoryPage";
 
 
 const commonRoutes = [
@@ -36,6 +37,7 @@ const userRoutes = [
   {path: "/my-posts/create", page: CreatePostPage},
   {path: "/my-posts/:id/edit", page: EditPostPage},
   {path: "/my-posts", page: UserPostPage},
+  {path: "/history-predictions", page: PredictionHistoryPage},
 ]
 
 export {commonRoutes, userRoutes}
