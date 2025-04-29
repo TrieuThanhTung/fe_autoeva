@@ -1,0 +1,69 @@
+// DropdownMenu.module.scss
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.item {
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 2.5rem;
+  right: -16px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  z-index: 1000;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 1rem; 
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    transform: rotate(45deg);
+    z-index: -1; 
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -1.5rem;
+    right: 0rem;
+    width: 10rem;
+    height: 2rem;
+    background-color: transparent;
+  }
+
+  button {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+
+    .icon {
+      font-size: 1rem;
+    }
+  }
+}
