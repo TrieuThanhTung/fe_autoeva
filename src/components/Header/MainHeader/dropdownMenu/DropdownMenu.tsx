@@ -3,11 +3,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import styles from './DropdownMenu.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { FaHistory } from "react-icons/fa";
+import { AiOutlineHistory } from "react-icons/ai";
 import { FaRegRectangleList } from "react-icons/fa6";
 
 const DropdownMenu: React.FC = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const DropdownMenu: React.FC = () => {
             Quản lý bài đăng
           </button>
           <button onClick={() => handleNavigate('/history-predictions')}>
-            <FaHistory size={24} className={styles.icon} />
+            <AiOutlineHistory size={24} className={styles.icon} />
             Lịch sử định giá
           </button>
           <div className={styles.arrow} />
